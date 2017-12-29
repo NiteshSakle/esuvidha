@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Vishal Bhite
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Image Neon and Glow Signs</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="default.css" rel="stylesheet" type="text/css" />
+</head>
+<script language="JavaScript1.2">
+var howOften = 5; //number often in seconds to rotate
+var current = 0; //start the counter at 0
+var ns6 = document.getElementById&&!document.all; //detect netscape 6
+// place your images, text, etc in the array elements here
+var items = new Array();
+    items[0]="<a href='link.htm' ><img alt='image0 (9K)' src=' images/2.jpg' width='520px' height='160px'  border='0' /></a>"; //a linked image
+    items[1]="<a href='link.htm'><img alt='image1 (9K)' src='images/3.jpg' width='520px' height='160px'   border='0' /></a>"; //a linked image
+    items[2]="<a href='link.htm'><img alt='image2 (9K)' src='images/4.jpg'width='520px' height='160px'    border='0' /></a>"; //a linked image
+   items[3]="<a href='link.htm'><img alt='image3 (9K)' src='images/5.jpg' width='520px' height='160px'   border='0' /></a>"; //a linked image
+function rotater() {
+    document.getElementById("placeholder").innerHTML = items[current];
+    current = (current==items.length-1) ? 0 : current + 1;
+    setTimeout("rotater()",howOften*1000);
+}
+
+function rotater() {
+    if(document.layers) {
+        document.placeholderlayer.document.write(items[current]);
+        document.placeholderlayer.document.close();
+    }
+    if(ns6)document.getElementById("placeholderdiv").innerHTML=items[current]
+        if(document.all)
+            placeholderdiv.innerHTML=items[current];
+
+    current = (current==items.length-1) ? 0 : current + 1; //increment or reset
+    setTimeout("rotater()",howOften*1000);
+}
+window.onload=rotater;
+//-->
+</script>
+<body>
+<div id="menu">
+	<ul>
+		<li class="active"><a href="#" accesskey="1" title="">Home</a></li>
+		<li><a href="#" accesskey="2" title="">About Us</a></li>
+		<li><a href="#" accesskey="3" title="">Gallery</a></li>
+		<li><a href="#" accesskey="4" title="">Products</a></li>
+		<li><a href="#" accesskey="5" title="">Client List</a></li>
+		<li><a href="#" accesskey="6" title="">Contact Us</a></li>
+	</ul>
+</div>
+<!-- end #menu -->
+<div id="header">
+	<div id="logo">
+		<h1><a href="#"></a></h1>
+		<h2><a href="#"></a></h2>
+	</div>
+	
+<div id="placeholderdiv"><a href="#">Image Neon and Glow Signs</a></div>
+</div>
+<!-- end #header -->
+<div id="page">
+	<div id="content">
+		<!--div class="post">
+			<h1 class="title">Welcome to Aquaria!</h1>
+			<div class="story">
+				<p><strong>Aquaria</strong> is a free template from <a href="http://www.freecsstemplates.org/">Free CSS Templates</a> released under a <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons Attribution 2.5 License</a>. The  photo is from <a href="http://www.pdphoto.org/">PDPhoto.org</a>. You're free to use it for both commercial or personal use. I only ask that you link back to my site in some way. <em><strong>Enjoy :)</strong></em></p>
+			</div>
+			<div class="meta">
+				<p class="date">Posted on February 22, 2007 by Admin</p>
+				<p class="file">Filed under <a href="#">Uncategorized</a> | <a href="#">Edit</a> | <a href="#">28 Comments</a></p>
+			</div>
+		</div-->
+		<div class="post boxed">
+			<h2 class="title">Home/About-Us</h2>
+			<div class="story">
+				<p><strong></strong>This is an example of a paragraph followed by a blockquote. In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat lorem ipsum dolorem.</p>
+				<blockquote>
+					<p>Pellentesque tristique ante ut risus. Quisque dictum. Integer nisl risus, sagittis convallis, rutrum id, elementum congue, nibh. Suspendisse dictum porta lectus. Donec placerat odio</p>
+				</blockquote>
+				<h3>Heading Level Three</h3>
+				<p>An unordered list example:</p>
+				<ul>
+					<li>List item number one</li>
+					<li>List item number two</li>
+					<li>List item number three </li>
+				</ul>
+				<p>An ordered list example:</p>
+				<ol>
+					<li>List item number one</li>
+					<li>List item number two</li>
+					<li>List item number three</li>
+				</ol>
+			</div>
+			<div class="meta">
+				<p class="date">Posted on February 22, 2007 by Admin</p>
+				<p class="file">Filed under <a href="#">Uncategorized</a> | <a href="#">Edit</a> | <a href="#">28 Comments</a></p>
+			</div>
+		</div>
+	</div>
+	<!-- end #content -->
+	<div id="sidebar">
+		<ul>
+			<li>
+				<h2>Specialist in</h2>
+				<ul>
+					<li class="first"><a href="#">Neon Sign</a></li>
+						<li class="first"><a href="#">Bunglow Letters</a></li>
+						<li class="first"><a href="#">Brass & Steel Letters</a></li>
+						<li class="first"><a href="#">Flex Printing</a></li>
+						<li class="first"><a href="#">Digital Printing</a></li>
+						<li class="first"><a href="#">Vinyl Cutting</a></li>
+						<li class="first"><a href="#">Offset Printing</a></li>
+						<li class="first"><a href="#">Screen Printing</a></li>
+	                              <li class="first"><a href="#">Punching</a></li>
+				</ul>
+			</li>
+			<li>
+				<h2>Clients</h2>
+				<ul>
+					<li class="first"><a href="#">NRB Bearings</a></li>
+					<li><a href="#">Swad Hotel</a></li>
+					<li><a href="#">Dr. Hedgewar Hospital</a></li>
+					<li><a href="#">Chaitanya Hosptial Dhule</a></li>
+					<li><a href="#">bh</a></li>
+					<li><a href="#">Nulla Luctus Eleifend</a></li>
+					<li><a href="#">Posuere Augue Sit Nisl</a></li>
+				</ul>
+			</li>
+			<!--li>
+				<h2>Blog Roll</h2>
+				<ul>
+					<li class="first"><a href="#">Donec Dictum Metus</a></li>
+					<li><a href="#">Etiam Rhoncus Volutpat</a></li>
+					<li><a href="#">Integer Gravida Nibh</a></li>
+					<li><a href="#">Maecenas Luctus Lectus</a></li>
+					<li><a href="#">Mauris Vulputate Dolor Nibh</a></li>
+					<li><a href="#">Nulla Luctus Eleifend</a></li>
+					<li><a href="#">Posuere Augue Sit Nisl</a></li>
+				</ul>
+			</li-->
+		</ul>
+	</div>
+	<!-- end #sidebar -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+<!-- end #page -->
+<div id="footer">
+	<p id="legal">Copyright &copy; 1982-2013 Image Neon & Glow Signs. Designed & Developed by Vishal Bhite</p>
+	<p id="links"><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="" title=""><abbr title="">Site Map</abbr></a> </p>
+</div>
+<!-- end #footer -->
+<div align=center></div></body>
+</html>

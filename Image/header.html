@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Vishal Bhite
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Image Neon and Glow Signs</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="default.css" rel="stylesheet" type="text/css" />
+</head>
+<script language="JavaScript1.2">
+var howOften = 5; //number often in seconds to rotate
+var current = 0; //start the counter at 0
+var ns6 = document.getElementById&&!document.all; //detect netscape 6
+// place your images, text, etc in the array elements here
+var items = new Array();
+    items[0]="<a href='link.htm' ><img alt='image0 (9K)' src=' images/2.jpg' width='520px' height='160px'  border='0' /></a>"; //a linked image
+    items[1]="<a href='link.htm'><img alt='image1 (9K)' src='images/3.jpg' width='520px' height='160px'   border='0' /></a>"; //a linked image
+    items[2]="<a href='link.htm'><img alt='image2 (9K)' src='images/4.jpg'width='520px' height='160px'    border='0' /></a>"; //a linked image
+   items[3]="<a href='link.htm'><img alt='image3 (9K)' src='images/5.jpg' width='520px' height='160px'   border='0' /></a>"; //a linked image
+function rotater() {
+    document.getElementById("placeholder").innerHTML = items[current];
+    current = (current==items.length-1) ? 0 : current + 1;
+    setTimeout("rotater()",howOften*1000);
+}
+
+function rotater() {
+    if(document.layers) {
+        document.placeholderlayer.document.write(items[current]);
+        document.placeholderlayer.document.close();
+    }
+    if(ns6)document.getElementById("placeholderdiv").innerHTML=items[current]
+        if(document.all)
+            placeholderdiv.innerHTML=items[current];
+
+    current = (current==items.length-1) ? 0 : current + 1; //increment or reset
+    setTimeout("rotater()",howOften*1000);
+}
+window.onload=rotater;
+//-->
+</script>
+</head>
+<body>
+<div id="menu">
+	<ul>
+		<li class="active"><a href="index.php" accesskey="1" title="">Home</a></li>
+		<li><a href="about-us.php" accesskey="2" title="">About Us</a></li>
+		<li><a href="gallery.php" accesskey="3" title="">Gallery</a></li>
+		<li><a href="enquiry.php" accesskey="4" title="">Enquiry</a></li>
+		<li><a href="clients.php" accesskey="5" title="">Client List</a></li>
+		<li><a href="contact-us.php" accesskey="6" title="">Contact Us</a></li>
+	</ul>
+</div>
+<!-- end #menu -->
+<div id="header">
+	<div id="logo">
+		<h1><a href="#"></a></h1>
+		<h2><a href="#"></a></h2>
+	</div>
+	
+<div id="placeholderdiv"><a href="#">Image Neon and Glow Signs</a></div>
+</div>
+<!-- end #header -->

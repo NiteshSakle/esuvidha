@@ -1,0 +1,299 @@
+﻿.body {
+    background-image: url("bg.png");
+    background-repeat: repeat-x;
+     background-repeat: repeat-x;
+}
+.Heading1
+{
+	font-weight: bolder;
+	font-size: 8pt;
+	color: #999999;
+	font-family: Tahoma;
+	padding: 15px 5px 10px 10px;
+	text-decoration: none;
+}
+.Heading2
+{
+	font-weight: normal;
+	font-size: 8pt;
+	color: #666666;
+	font-family: Tahoma;
+	padding: 15px 5px 10px 10px;
+	text-decoration: none;
+}
+.Heading3
+{
+	font-weight: bold;
+	font-size: 10pt;
+	color: #707095;
+	font-family: Tahoma;
+	padding: 15px 5px 10px 10px;
+	text-decoration: none;
+}
+.Heading4
+{
+	font-weight: bold;
+	font-size: 8pt;
+	color: #707095;
+	font-family: Tahoma;
+	padding: 15px 5px 10px 10px;
+	text-decoration: none;
+}
+
+.SubHeading1
+{
+	font-weight: bolder;
+	font-size: 8pt;
+	color: #999999;
+	font-family: Tahoma;
+	padding: 30px 150px 10px 5px;
+	text-decoration: none;
+}
+.welcomebar
+{
+	font-size: 8pt;
+	color: #ffffff;
+	font-family: tahoma;
+	background-color: Aqua;
+	color: Red;
+}
+.textJustify
+{
+	font-size: 8pt;
+	color: #000000;
+	font-style: normal;
+	font-family: Tahoma;
+	text-align: justify;
+	line-height: 11pt;
+	letter-spacing: 1px;
+}
+.DropDown
+{
+	font-size: 8pt;
+	color: #000000;
+	font-style: normal;
+	font-family: Tahoma;
+	background-color: #f9f2e0;
+	border-right: #a3a3a3 1px solid;
+	border-top: #a3a3a3 1px solid;
+	border-left: #a3a3a3 1px solid;
+	border-bottom: #a3a3a3 1px solid; /*height: 15px;*/
+}
+.ListHeading
+{
+	font-weight: bolder;
+	font-size: 10pt;
+	color: #6EBDF1;
+	font-family: Tahoma;
+	padding: 0px 150px 0px 5px;
+	text-decoration: none;
+}
+.DgHeader
+{
+	font-weight: bolder;
+	font-size: 8pt;
+	background-color: WindowText;
+	color: Red;
+	font-family: Tahoma;
+	padding: 30px 150px 10px 5px;
+	text-decoration: none;
+	text-align: left;
+}
+.TxtHeader
+{
+	font-size: 8pt;
+	font-family: Tahoma;
+	padding: 0px 10px 0px 5px;
+	color: #808080;
+}
+.DgRow
+{
+	font-size: 8pt;
+	background-color: #EEF7FC;
+	font-family: Tahoma;
+}
+
+A:active
+{
+	color: #006600;
+}
+A:hover
+{
+	color: #003366;
+}
+
+.csslinkButton
+{
+	text-align: left;
+	font: 9pt Tahoma;
+	background-image :url(images/BlackBar2.bmp);
+	color:Navy;
+	text-decoration: none; /*background-image: url(images/btnBlack.bmp);*/
+	margin-left: 5px;
+}
+
+.csslinkButton:hover
+{
+	/*text-align: left;text-decoration: large;font-size:large;*/	
+	
+	background-image: url(images/BlackBar.bmp);
+	font: 10pt Georgia;
+	color:WHITE;
+	/*background-image: url(images/btnPink.bmp);*/
+	margin-left: 5px;
+}
+.cssLink
+{
+	text-align: left;
+	font: 8pt Tahoma;
+		color:Black;
+	text-decoration: none; /*background-image: url(images/btnBlack.bmp);*/
+	margin-left: 5px;
+}
+.cssLink:hover
+{
+	/*text-align: left;text-decoration: large;font-size:large;*/	
+	
+	
+	font: 8pt Tahoma;
+	color:White;
+	background-color:Orange;
+		margin-left: 5px;
+}
+.cssLink2
+{
+	text-align: left;
+	font:13pt Tahoma;
+		color:Black;
+	text-decoration: none; /*background-image: url(images/btnBlack.bmp);*/
+	margin-left: 5px;
+}
+.cssLink2:hover
+{
+	/*text-align: left;text-decoration: large;font-size:large;*/	
+	
+	
+	font: 13pt Tahoma;
+	color:Maroon;
+	background-color:Scrollbar;
+		margin-left: 1px;
+}
+.cssBtn
+{
+	text-align: left;
+	font: 10pt Tahoma;
+	color:Black;
+	text-decoration: none; 
+	margin-left: 5px;
+	/*background-image: url(images/b1.bmp);*/
+}
+
+.cssBtn:hover
+{
+	/*text-align: left;text-decoration: large;font-size:large;*/	
+	font: 10pt Tahoma;
+	color:Red;
+	margin-left: 5px;
+	/*background-image: url(images/b2.bmp);*/
+}
+
+.cssLink3
+{
+	text-align: left;
+	font:14pt Georgia;
+		color:Black;
+	text-decoration: none; /*background-image: url(images/btnBlack.bmp);*/
+	margin-left: 5px;
+}
+.cssLink3:hover
+{
+	/*text-align: left;text-decoration: large;font-size:large;*/	
+	
+	
+	font: 9pt Georgia;
+	color:White;	
+	background-color:Black;
+		margin-left: 5px;
+}
+
+
+.BodyText
+{
+	font-size: 8pt;
+	font-family: Tahoma;
+	color: #101010;
+}
+.TextBox
+{
+	font-size: 8pt;
+	font-family: Tahoma;
+	color: #101010;
+	height: 12px;
+	width: 160px;
+	font-family: tahoma FONT-SIZE: 8pt;
+	color: Maroon;
+}
+
+.textboxLabel
+{
+	border: 0px;
+	background: transparent;
+	line-height: normal;
+	padding-left: 5px;
+	padding-right: 5px;
+	height: 18px;
+	width: 160px;
+	font-weight: normal;
+	font-size: 8pt;
+	color: Navy;
+	font-family: tahoma;
+}
+
+
+.TbText
+{
+	font-size: 8pt;
+	color: #606060;
+	font-family: Tahoma;
+	padding: 30px 150px 10px 5px;
+	text-decoration: none;
+	text-align: left;
+}
+.TxtBox
+{
+	border-right: deepskyblue 1px ridge;
+	border-top: deepskyblue 1px ridge;
+	border-left: deepskyblue 1px ridge;
+	border-bottom: deepskyblue 1px ridge;
+	font-size: 8pt;
+	font-family: Tahoma;
+	color: #101010;
+}
+.lstBox
+{
+	border-right: deepskyblue 1px ridge;
+	border-top: deepskyblue 1px ridge;
+	border-left: deepskyblue 1px ridge;
+	border-bottom: deepskyblue 1px ridge;
+	font-size: 8pt;
+	font-family: Tahoma;
+	color: #101010;
+}
+.ddl
+{
+	border-right: deepskyblue 1px ridge;
+	border-top: deepskyblue 1px ridge;
+	border-left: deepskyblue 1px ridge;
+	border-bottom: deepskyblue 1px ridge;
+	font-size: 8pt;
+	font-family: Tahoma;
+	color: #101010;
+}
+
+.hlink
+{
+	font-size: 8pt;
+	font-family: Tahoma;
+	color: Lime;
+	text-decoration: none;
+}

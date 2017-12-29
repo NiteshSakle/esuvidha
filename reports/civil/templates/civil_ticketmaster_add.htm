@@ -1,0 +1,397 @@
+<!doctype html><p align=center><font size=+1 color=red>This website was created by evaluation version of PHPRunner Trial.</font></p>
+<p align=center><font size=+1 color=red>This warning message will not appear on website created by a paid-for version of PHPRunner Trial.</font></p>
+<html  {$html_attrs}>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{$pagetitle}</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link REL="stylesheet" href="styles/default.css" type="text/css">
+		{BEGIN rtlCSS}
+		<link REL="stylesheet" href="styles/defaultRTL.css" type="text/css">
+		{END rtlCSS}
+		{BEGIN styleCSSFiles}
+		<link REL="stylesheet" href="{$stylepath}" type="text/css">
+		{END styleCSSFiles}
+	</head>
+
+	<body class="{$stylename} function-add" {$bodyattrs}>
+	{BEGIN body}
+		{$header}
+		<style>
+			{$containerCss}
+		</style>
+		<DIV class="bs-top">
+        
+
+{BEGIN container_editpage}
+<div {$editpage_chiddenattr} data-pageid="{$pageid}" data-container="editpage" class="container    "> 
+
+
+
+
+{BEGIN container_header}
+<div {$header_chiddenattr} data-pageid="{$pageid}" data-container="header" class="   col-md-9 col-md-offset-3"> 
+
+{BEGIN addheader}
+	<h2 {$addheader_hiddenattr} data-pageid="{$pageid}" data-brick="addheader" >{$pagetitlelabel civil_ticketmaster add}</h2>
+
+{END addheader}
+
+
+
+</div>
+{END container_header}
+
+
+
+
+
+
+
+
+{BEGIN container_message}
+<div {$message_chiddenattr} data-pageid="{$pageid}" data-container="message" class="   col-md-6 col-md-offset-3"> 
+
+{BEGIN message_block}
+<div {$message_hiddenattr} data-pageid="{$pageid}" data-brick="message" class="alert {$message_class}" role="alert">
+<h5>{$message}</h5>
+<div>
+{BEGIN back_button}
+		<button class="btn btn-sm btn-default" {$backbutton_attrs}>Back to list</button>
+{END back_button}
+{BEGIN view_page_button}
+	<button class="btn btn-sm btn-default" {$view_page_button_attrs}>View</button>
+{END view_page_button}
+{BEGIN edit_page_button}
+	<button class="btn btn-sm btn-default" {$edit_page_button_attrs}>Edit</button>
+{END edit_page_button}
+</div>
+</div>
+
+{END message_block}
+
+
+
+</div>
+{END container_message}
+
+
+
+
+
+
+
+</div>
+{END container_editpage}
+
+
+
+{BEGIN container_fields}
+<div {$fields_chiddenattr} data-pageid="{$pageid}" data-container="fields" class="   col-md-12 "> 
+
+
+<div {$addfields_hiddenattr} data-pageid="{$pageid}" data-brick="addfields" class="form-horizontal" role="form">
+			{BEGIN emp_id_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_emp_id}" data-fieldname="emp_id" data-signal-error-for="emp_id{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_emp_id}">
+		{BEGIN emp_id_label}{$label civil_ticketmaster emp_id}{END emp_id_label}
+	</label>
+	<div class="col-md-6" >
+		{$emp_id_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="emp_id">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster emp_id}
+		</div>
+	</div>
+</div>
+</div>
+{END emp_id_fieldblock}
+
+			{BEGIN defect_id_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_defect_id}" data-fieldname="defect_id" data-signal-error-for="defect_id{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_defect_id}">
+		{BEGIN defect_id_label}{$label civil_ticketmaster defect_id}{END defect_id_label}
+	</label>
+	<div class="col-md-6" >
+		{$defect_id_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="defect_id">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster defect_id}
+		</div>
+	</div>
+</div>
+</div>
+{END defect_id_fieldblock}
+
+			{BEGIN problem_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_problem}" data-fieldname="problem" data-signal-error-for="problem{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_problem}">
+		{BEGIN problem_label}{$label civil_ticketmaster problem}{END problem_label}
+	</label>
+	<div class="col-md-6" >
+		{$problem_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="problem">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster problem}
+		</div>
+	</div>
+</div>
+</div>
+{END problem_fieldblock}
+
+			{BEGIN assign_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_assign}" data-fieldname="assign" data-signal-error-for="assign{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_assign}">
+		{BEGIN assign_label}{$label civil_ticketmaster assign}{END assign_label}
+	</label>
+	<div class="col-md-6" >
+		{$assign_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="assign">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster assign}
+		</div>
+	</div>
+</div>
+</div>
+{END assign_fieldblock}
+
+			{BEGIN createdate_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_createdate}" data-fieldname="createdate" data-signal-error-for="createdate{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_createdate}">
+		{BEGIN createdate_label}{$label civil_ticketmaster createdate}{END createdate_label}
+	</label>
+	<div class="col-md-6" >
+		{$createdate_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="createdate">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster createdate}
+		</div>
+	</div>
+</div>
+</div>
+{END createdate_fieldblock}
+
+			{BEGIN solvedate_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_solvedate}" data-fieldname="solvedate" data-signal-error-for="solvedate{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_solvedate}">
+		{BEGIN solvedate_label}{$label civil_ticketmaster solvedate}{END solvedate_label}
+	</label>
+	<div class="col-md-6" >
+		{$solvedate_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="solvedate">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster solvedate}
+		</div>
+	</div>
+</div>
+</div>
+{END solvedate_fieldblock}
+
+			{BEGIN status_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_status}" data-fieldname="status" data-signal-error-for="status{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_status}">
+		{BEGIN status_label}{$label civil_ticketmaster status}{END status_label}
+	</label>
+	<div class="col-md-6" >
+		{$status_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="status">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster status}
+		</div>
+	</div>
+</div>
+</div>
+{END status_fieldblock}
+
+			{BEGIN ipaddress_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_ipaddress}" data-fieldname="ipaddress" data-signal-error-for="ipaddress{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_ipaddress}">
+		{BEGIN ipaddress_label}{$label civil_ticketmaster ipaddress}{END ipaddress_label}
+	</label>
+	<div class="col-md-6" >
+		{$ipaddress_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="ipaddress">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster ipaddress}
+		</div>
+	</div>
+</div>
+</div>
+{END ipaddress_fieldblock}
+
+			{BEGIN priority_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_priority}" data-fieldname="priority" data-signal-error-for="priority{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_priority}">
+		{BEGIN priority_label}{$label civil_ticketmaster priority}{END priority_label}
+	</label>
+	<div class="col-md-6" >
+		{$priority_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="priority">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster priority}
+		</div>
+	</div>
+</div>
+</div>
+{END priority_fieldblock}
+
+			{BEGIN remark_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_remark}" data-fieldname="remark" data-signal-error-for="remark{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_remark}">
+		{BEGIN remark_label}{$label civil_ticketmaster remark}{END remark_label}
+	</label>
+	<div class="col-md-6" >
+		{$remark_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="remark">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster remark}
+		</div>
+	</div>
+</div>
+</div>
+{END remark_fieldblock}
+
+			{BEGIN nameofperson_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_nameofperson}" data-fieldname="nameofperson" data-signal-error-for="nameofperson{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_nameofperson}">
+		{BEGIN nameofperson_label}{$label civil_ticketmaster nameofperson}{END nameofperson_label}
+	</label>
+	<div class="col-md-6" >
+		{$nameofperson_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="nameofperson">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster nameofperson}
+		</div>
+	</div>
+</div>
+</div>
+{END nameofperson_fieldblock}
+
+			{BEGIN ext_fieldblock}
+<div class=container>
+<div class="form-group {$fielddispclass_ext}" data-fieldname="ext" data-signal-error-for="ext{$id}" >
+	<label class="col-md-3 control-label" for="{$labelfor_ext}">
+		{BEGIN ext_label}{$label civil_ticketmaster ext}{END ext_label}
+	</label>
+	<div class="col-md-6" >
+		{$ext_editcontrol}
+	</div>
+	<div class="col-md-3 help-block" data-helpfor="ext">
+		<div class="text-muted" >
+		{$tooltip civil_ticketmaster ext}
+		</div>
+	</div>
+</div>
+</div>
+{END ext_fieldblock}
+
+
+</div>
+
+
+
+
+</div>
+{END container_fields}
+
+
+
+{BEGIN container_bottombuttons}
+<div {$bottombuttons_chiddenattr} data-pageid="{$pageid}" data-container="bottombuttons" class="container    "> 
+
+
+
+
+{BEGIN container_buttons}
+<div {$buttons_chiddenattr} data-pageid="{$pageid}" data-container="buttons" class=" form-group   "> 
+
+
+
+
+{BEGIN container_leftbuttons}
+<div {$leftbuttons_chiddenattr} data-pageid="{$pageid}" data-container="leftbuttons" class="   col-md-3 col-md-offset-3"> 
+
+{BEGIN addbuttons}
+	{BEGIN save_button}
+	<button class="btn btn-primary" {$savebutton_attrs}>Save</button>
+	{END save_button}
+	{BEGIN reset_button}
+	<button class="btn btn-default" id="resetButton{$id}">Reset</button>
+	{END reset_button}
+	{BEGIN back_button}
+		<button class="btn btn-default" id="backButton{$id}">Back to list</button>
+	{END back_button}
+	{BEGIN cancel_button}
+	<a href="#" class="btn btn-default" id="cancelButton{$id}">Cancel</a>
+	{END cancel_button}
+
+{END addbuttons}
+
+
+
+</div>
+{END container_leftbuttons}
+
+
+
+
+
+
+</div>
+{END container_buttons}
+
+
+
+
+
+
+</div>
+{END container_bottombuttons}
+
+
+		</div>
+		<div class="bs-middle ">
+			<div class="bs-topmiddle">
+				
+			</div>
+			<div class="bs-left" {$blockattr_left}>
+				
+			</div>
+			<div class="bs-center">
+				
+			</div>
+			<div class="bs-right">
+				
+			</div>
+		</div>
+		<DIV class="bs-bottom">
+        
+		</div>
+		{$footer}
+	{END body}
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<?php
+include("header.php");
+include("connect.php");
+$result=mysql_query("SELECT * FROM section ORDER BY name ASC");
+?>
+<?php //echo date('d/m/Y h:i:s'); ?>
+<?php if(!isset($_SESSION['section'])) { ?>
+<form id="form1" name="form1" method="post" action="login_exec.php" onSubmit="return validate();">
+  <div id="content_main">
+           SAP ID :- <input type="text" name="sapid" id="sapid"  maxlength="20"><br>
+		    CPF NO:- <input type="text" name="cpfno" id="cpfno"  maxlength="20"><br>
+		             
+            <!--<input type="hidden" name="name" id="name">
+             <input type="hidden" name="id" id="id">
+              <input type="hidden" name="contact" id="contact">
+              <input type="hidden" name="privilege" id="privilege">-->
+            <input type="submit" name="submit" id="submit" value="submit"  /><br>
+			<a href="register.php">Sign Up</a> <a href="forget.php">Forget</a>
+        </div>
+     <?php } else { ?>
+           <div id="content_main">
+            <h2>You have Succesfully logged in As a <?php echo $_SESSION['section'];  ?></h2>
+        	<p>&nbsp;</p>
+           	<p>&nbsp;</p>
+            <h3>Your Computer IP Address is</h3>
+           <h1><p><?php echo get_real_up_address();?></p></h1>
+        	<p>&nbsp;</p>
+        </div>
+         <?php } ?>
+</form>
+<?php  include("footer.php");  ?>

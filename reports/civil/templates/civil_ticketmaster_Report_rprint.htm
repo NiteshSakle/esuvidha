@@ -1,0 +1,167 @@
+<!doctype html><p align=center><font size=+1 color=red>This website was created by evaluation version of PHPRunner Trial.</font></p>
+<p align=center><font size=+1 color=red>This warning message will not appear on website created by a paid-for version of PHPRunner Trial.</font></p>
+<html  {$html_attrs}>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{$pagetitle}</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link REL="stylesheet" href="styles/default.css" type="text/css">
+		{BEGIN rtlCSS}
+		<link REL="stylesheet" href="styles/defaultRTL.css" type="text/css">
+		{END rtlCSS}
+		{BEGIN styleCSSFiles}
+		<link REL="stylesheet" href="{$stylepath}" type="text/css">
+		{END styleCSSFiles}
+	</head>
+
+	<body class="{$stylename} function-rprint" {$bodyattrs}>
+	{BEGIN body}
+		{$header}
+		<style>
+			{$containerCss}
+		</style>
+		<DIV class="bs-top">
+        
+
+{BEGIN container_pdf}
+<div {$pdf_chiddenattr} data-pageid="{$pageid}" data-container="pdf" class="   col-md-12 "> 
+
+{BEGIN printbuttons}
+
+{END printbuttons}
+
+
+
+</div>
+{END container_pdf}
+
+
+
+
+
+{BEGIN container_pageheader}
+<div {$pageheader_chiddenattr} data-pageid="{$pageid}" data-container="pageheader" class="    "> 
+
+{BEGIN printheader}
+	<h2 {$printheader_hiddenattr} data-pageid="{$pageid}" data-brick="printheader" >{$pagetitlelabel civil_ticketmaster_Report rprint}</h2>
+
+{END printheader}
+
+
+{BEGIN page_number}
+<span>Page <span class="rp-pageno">{$pageno}</span> of <span class="rp-pagecount">{$pagecount}</span></span>
+{END page_number}
+
+
+
+</div>
+{END container_pageheader}
+
+
+
+{BEGIN container_grid}
+
+
+
+<style>
+	td.pagesummary.pagesummary.pagesummary.pagesummary.pagesummary.pagesummary.pagesummary.pagesummary {background-color:#ffffbb;}
+	td.globalsummary.globalsummary.globalsummary.globalsummary.globalsummary.globalsummary.globalsummary.globalsummary {background-color:#ffe0b0;}
+
+</style>
+
+<div id="grid_block{$id}" class="rnr-report-gridblock">
+			{BEGIN grid_block}
+<table {$report_print_hiddenattr} data-pageid="{$pageid}" data-brick="report_print" class="table table-striped table-bordered rnr-b-grid rnr-gridtable" cellpadding="0" >
+<thead>
+<tr class="rnr-toprow table-header style1">
+<th >&nbsp;</th>
+
+<th>{$label civil_ticketmaster_Report ticketid}</th>
+<th>{$label civil_ticketmaster_Report emp_id}</th>
+<th>{$label civil_ticketmaster_Report defect_id}</th>
+<th>{$label civil_ticketmaster_Report problem}</th>
+<th>{$label civil_ticketmaster_Report assign}</th>
+<th>{$label civil_ticketmaster_Report createdate}</th>
+<th>{$label civil_ticketmaster_Report solvedate}</th>
+<th>{$label civil_ticketmaster_Report status}</th>
+<th>{$label civil_ticketmaster_Report ipaddress}</th>
+<th>{$label civil_ticketmaster_Report priority}</th>
+<th>{$label civil_ticketmaster_Report remark}</th>
+<th>{$label civil_ticketmaster_Report nameofperson}</th>
+<th>{$label civil_ticketmaster_Report ext}</th>
+</tr>
+</thead>
+<tbody>
+{BEGIN grid_row}
+<!-------------------------------------  data ----------------------------------------->
+{BEGIN row_data}
+<tr class="rnr-row style1" {$rowattrs}>
+<td class="rnr-nowrap" {$rowstyle} {$recordattrs}>
+	<!-------------------------------------  begin detail links for row ----------------------------------------->
+	
+			{BEGIN dtables_link}
+		
+							
+				
+					<a {$dtables_link_attrs}  title="Show details">
+				<span class="badge civil_ticketremarks_badge" {$civil_ticketremarks_childnumber_attr}>
+					<span class="glyphicon glyphicon-th-list"></span> 
+					<span class="{$civil_ticketremarks_cntspan_class}" >{$civil_ticketremarks_childnumber}</span>
+				</span></a>
+		{END dtables_link}
+	
+	<!-------------------------------------  end detail links for row ----------------------------------------->
+</td>
+	<td {$recordattrs}>{$ticketid_value}</td>
+	<td {$recordattrs}>{$emp_id_value}</td>
+	<td {$recordattrs}>{$defect_id_value}</td>
+	<td {$recordattrs}>{$problem_value}</td>
+	<td {$recordattrs}>{$assign_value}</td>
+	<td {$recordattrs}>{$createdate_value}</td>
+	<td {$recordattrs}>{$solvedate_value}</td>
+	<td {$recordattrs}>{$status_value}</td>
+	<td {$recordattrs}>{$ipaddress_value}</td>
+	<td {$recordattrs}>{$priority_value}</td>
+	<td {$recordattrs}>{$remark_value}</td>
+	<td {$recordattrs}>{$nameofperson_value}</td>
+	<td {$recordattrs}>{$ext_value}</td>
+</tr>
+{END row_data}
+
+{END grid_row}
+</tbody>
+</table>
+{END grid_block}
+</div>
+
+
+
+
+
+{END container_grid}
+
+
+		</div>
+		<div class="bs-middle ">
+			<div class="bs-topmiddle">
+				
+			</div>
+			<div class="bs-left" {$blockattr_left}>
+				
+			</div>
+			<div class="bs-center">
+				
+			</div>
+			<div class="bs-right">
+				
+			</div>
+		</div>
+		<DIV class="bs-bottom">
+        
+		</div>
+		{$footer}
+	{END body}
+	</body>
+</html>

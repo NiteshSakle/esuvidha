@@ -1,0 +1,216 @@
+<!doctype html><p align=center><font size=+1 color=red></font></p>
+<p align=center><font size=+1 color=red></font></p>
+<html  {$html_attrs}>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{$pagetitle}</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link REL="stylesheet" href="styles/default.css" type="text/css">
+		{BEGIN rtlCSS}
+		<link REL="stylesheet" href="styles/defaultRTL.css" type="text/css">
+		{END rtlCSS}
+		{BEGIN styleCSSFiles}
+		<link REL="stylesheet" href="{$stylepath}" type="text/css">
+		{END styleCSSFiles}
+	</head>
+
+	<body class="{$stylename} function-print" {$bodyattrs}>
+	{BEGIN body}
+		{$header}
+		<style>
+			{$containerCss}
+		</style>
+		<DIV class="bs-top">
+        
+
+{BEGIN container_pdf}
+<div {$pdf_chiddenattr} data-pageid="{$pageid}" data-container="pdf" class="   col-md-12 "> 
+
+{BEGIN printbuttons}
+{BEGIN pdflink_block}
+<a href="#" class="pdflink btn btn-default" {$pdflink_attrs}>PDF View</a>
+{END pdflink_block}
+
+{END printbuttons}
+
+
+
+</div>
+{END container_pdf}
+
+
+
+
+
+{BEGIN container_pageheader}
+<div {$pageheader_chiddenattr} data-pageid="{$pageid}" data-container="pageheader" class="    "> 
+
+{BEGIN printheader}
+	<h2 {$printheader_hiddenattr} data-pageid="{$pageid}" data-brick="printheader" >{$pagetitlelabel user print}</h2>
+
+{END printheader}
+
+
+{BEGIN page_number}
+<span>Page <span class="rp-pageno">{$pageno}</span> of <span class="rp-pagecount">{$pagecount}</span></span>
+{END page_number}
+
+
+
+</div>
+{END container_pageheader}
+
+
+
+{BEGIN container_grid}
+
+
+{BEGIN grid_block}
+	<table class="table table-bordered rp-maintable" {$printgrid_hiddenattr} data-pageid="{$pageid}" data-brick="printgrid" >
+	<thead>
+	{BEGIN grid_header}
+		<tr class="{$gridHeader_class}" >
+		{BEGIN record_header}
+			{BEGIN emp_id_fieldheadercolumn}
+			<th class="{$emp_id_class}" {$emp_id_style}>
+				{$label user emp_id}
+			</th>
+			{END emp_id_fieldheadercolumn}
+			{BEGIN sapid_fieldheadercolumn}
+			<th class="{$sapid_class}" {$sapid_style}>
+				{$label user sapid}
+			</th>
+			{END sapid_fieldheadercolumn}
+			{BEGIN cpfno_fieldheadercolumn}
+			<th class="{$cpfno_class}" {$cpfno_style}>
+				{$label user cpfno}
+			</th>
+			{END cpfno_fieldheadercolumn}
+			{BEGIN desig_id_fieldheadercolumn}
+			<th class="{$desig_id_class}" {$desig_id_style}>
+				{$label user desig_id}
+			</th>
+			{END desig_id_fieldheadercolumn}
+			{BEGIN firstname_fieldheadercolumn}
+			<th class="{$firstname_class}" {$firstname_style}>
+				{$label user firstname}
+			</th>
+			{END firstname_fieldheadercolumn}
+			{BEGIN quarterno_fieldheadercolumn}
+			<th class="{$quarterno_class}" {$quarterno_style}>
+				{$label user quarterno}
+			</th>
+			{END quarterno_fieldheadercolumn}
+			{BEGIN mobileno_fieldheadercolumn}
+			<th class="{$mobileno_class}" {$mobileno_style}>
+				{$label user mobileno}
+			</th>
+			{END mobileno_fieldheadercolumn}
+			{BEGIN email_fieldheadercolumn}
+			<th class="{$email_class}" {$email_style}>
+				{$label user email}
+			</th>
+			{END email_fieldheadercolumn}
+			{BEGIN password_fieldheadercolumn}
+			<th class="{$password_class}" {$password_style}>
+				{$label user password}
+			</th>
+			{END password_fieldheadercolumn}
+			{BEGIN endrecordheader_block}
+			<th class="rnr-cs">&nbsp;</th>
+			{END endrecordheader_block}
+		{END record_header}
+		</tr>
+	{END grid_header}
+	</thead>
+	
+	<tbody>	
+	{BEGIN grid_row}
+		<tr class="{$rowclass}" {$rowattrs} {$rowstyle}>
+		{BEGIN grid_record}
+			{BEGIN emp_id_fieldcolumn}
+			<td  class="{$emp_id_class}" {$emp_id_style} {$recordattrs}>
+				{$emp_id_value}
+			</td>
+			{END emp_id_fieldcolumn}
+			{BEGIN sapid_fieldcolumn}
+			<td  class="{$sapid_class}" {$sapid_style} {$recordattrs}>
+				{$sapid_value}
+			</td>
+			{END sapid_fieldcolumn}
+			{BEGIN cpfno_fieldcolumn}
+			<td  class="{$cpfno_class}" {$cpfno_style} {$recordattrs}>
+				{$cpfno_value}
+			</td>
+			{END cpfno_fieldcolumn}
+			{BEGIN desig_id_fieldcolumn}
+			<td  class="{$desig_id_class}" {$desig_id_style} {$recordattrs}>
+				{$desig_id_value}
+			</td>
+			{END desig_id_fieldcolumn}
+			{BEGIN firstname_fieldcolumn}
+			<td  class="{$firstname_class}" {$firstname_style} {$recordattrs}>
+				{$firstname_value}
+			</td>
+			{END firstname_fieldcolumn}
+			{BEGIN quarterno_fieldcolumn}
+			<td  class="{$quarterno_class}" {$quarterno_style} {$recordattrs}>
+				{$quarterno_value}
+			</td>
+			{END quarterno_fieldcolumn}
+			{BEGIN mobileno_fieldcolumn}
+			<td  class="{$mobileno_class}" {$mobileno_style} {$recordattrs}>
+				{$mobileno_value}
+			</td>
+			{END mobileno_fieldcolumn}
+			{BEGIN email_fieldcolumn}
+			<td  class="{$email_class}" {$email_style} {$recordattrs}>
+				{$email_value}
+			</td>
+			{END email_fieldcolumn}
+			{BEGIN password_fieldcolumn}
+			<td  class="{$password_class}" {$password_style} {$recordattrs}>
+				{$password_value}
+			</td>
+			{END password_fieldcolumn}
+			{BEGIN endrecord_block}
+			<td class="rnr-cs" {$endrecordblock_attrs}>&nbsp;</td>
+			{END endrecord_block}
+		{END grid_record}
+		</tr>
+{END grid_row}
+	</tbody>
+
+</table>
+
+{END grid_block}
+
+
+
+{END container_grid}
+
+
+		</div>
+		<div class="bs-middle ">
+			<div class="bs-topmiddle">
+				
+			</div>
+			<div class="bs-left" {$blockattr_left}>
+				
+			</div>
+			<div class="bs-center">
+				
+			</div>
+			<div class="bs-right">
+				
+			</div>
+		</div>
+		<DIV class="bs-bottom">
+        
+		</div>
+		{$footer}
+	{END body}
+	</body>
+</html>

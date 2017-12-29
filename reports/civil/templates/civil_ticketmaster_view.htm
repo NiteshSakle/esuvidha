@@ -1,0 +1,322 @@
+<!doctype html><p align=center><font size=+1 color=red>This website was created by evaluation version of PHPRunner Trial.</font></p>
+<p align=center><font size=+1 color=red>This warning message will not appear on website created by a paid-for version of PHPRunner Trial.</font></p>
+<html  {$html_attrs}>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{$pagetitle}</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link REL="stylesheet" href="styles/default.css" type="text/css">
+		{BEGIN rtlCSS}
+		<link REL="stylesheet" href="styles/defaultRTL.css" type="text/css">
+		{END rtlCSS}
+		{BEGIN styleCSSFiles}
+		<link REL="stylesheet" href="{$stylepath}" type="text/css">
+		{END styleCSSFiles}
+	</head>
+
+	<body class="{$stylename} function-view" {$bodyattrs}>
+	{BEGIN body}
+		{$header}
+		<style>
+			{$containerCss}
+		</style>
+		<DIV class="bs-top">
+        
+
+{BEGIN container_viewpage}
+<div {$viewpage_chiddenattr} data-pageid="{$pageid}" data-container="viewpage" class="container    "> 
+
+
+
+
+{BEGIN container_header}
+<div {$header_chiddenattr} data-pageid="{$pageid}" data-container="header" class="   col-md-12 "> 
+
+{BEGIN viewheader}
+	<h2 {$viewheader_hiddenattr} data-pageid="{$pageid}" data-brick="viewheader" >{$pagetitlelabel civil_ticketmaster view}</h2>
+
+{END viewheader}
+
+
+
+</div>
+{END container_header}
+
+
+
+
+
+
+</div>
+{END container_viewpage}
+
+
+
+{BEGIN container_fields}
+<div {$fields_chiddenattr} data-pageid="{$pageid}" data-container="fields" class=" form-horizontal  col-md-12 "> 
+
+
+<div {$viewfields_hiddenattr} data-pageid="{$pageid}" data-brick="viewfields" >
+
+	<div class="container">
+			</div>
+	<div class="bs-2column">
+		<div class="bs-details">
+			{BEGIN mastertable_block}
+<div class="panel panel-info table-panel">
+	<div class="panel-heading">
+	{$master_heading}
+	</div>
+	<div class="panel-body">
+{$showmasterfile}
+	</div>
+</div>
+{END mastertable_block}
+		</div>
+	</div>
+	<div class="container">
+					{BEGIN ticketid_fieldblock}
+	<div class="{$fielddispclass_ticketid} col-md-6 bs-viewcontrolgroup" data-fieldname="ticketid">
+		<label class="control-label" for="{$labelfor_ticketid}">
+			{$label civil_ticketmaster ticketid}
+		</label>
+		<div class="" >
+			{$ticketid_value}&nbsp;
+		</div>
+	</div>
+{END ticketid_fieldblock}
+					{BEGIN emp_id_fieldblock}
+	<div class="{$fielddispclass_emp_id} col-md-6 bs-viewcontrolgroup" data-fieldname="emp_id">
+		<label class="control-label" for="{$labelfor_emp_id}">
+			{$label civil_ticketmaster emp_id}
+		</label>
+		<div class="" >
+			{$emp_id_value}&nbsp;
+		</div>
+	</div>
+{END emp_id_fieldblock}
+					{BEGIN defect_id_fieldblock}
+	<div class="{$fielddispclass_defect_id} col-md-6 bs-viewcontrolgroup" data-fieldname="defect_id">
+		<label class="control-label" for="{$labelfor_defect_id}">
+			{$label civil_ticketmaster defect_id}
+		</label>
+		<div class="" >
+			{$defect_id_value}&nbsp;
+		</div>
+	</div>
+{END defect_id_fieldblock}
+					{BEGIN problem_fieldblock}
+	<div class="{$fielddispclass_problem} col-md-6 bs-viewcontrolgroup" data-fieldname="problem">
+		<label class="control-label" for="{$labelfor_problem}">
+			{$label civil_ticketmaster problem}
+		</label>
+		<div class="" >
+			{$problem_value}&nbsp;
+		</div>
+	</div>
+{END problem_fieldblock}
+					{BEGIN assign_fieldblock}
+	<div class="{$fielddispclass_assign} col-md-6 bs-viewcontrolgroup" data-fieldname="assign">
+		<label class="control-label" for="{$labelfor_assign}">
+			{$label civil_ticketmaster assign}
+		</label>
+		<div class="" >
+			{$assign_value}&nbsp;
+		</div>
+	</div>
+{END assign_fieldblock}
+					{BEGIN createdate_fieldblock}
+	<div class="{$fielddispclass_createdate} col-md-6 bs-viewcontrolgroup" data-fieldname="createdate">
+		<label class="control-label" for="{$labelfor_createdate}">
+			{$label civil_ticketmaster createdate}
+		</label>
+		<div class="" >
+			{$createdate_value}&nbsp;
+		</div>
+	</div>
+{END createdate_fieldblock}
+					{BEGIN solvedate_fieldblock}
+	<div class="{$fielddispclass_solvedate} col-md-6 bs-viewcontrolgroup" data-fieldname="solvedate">
+		<label class="control-label" for="{$labelfor_solvedate}">
+			{$label civil_ticketmaster solvedate}
+		</label>
+		<div class="" >
+			{$solvedate_value}&nbsp;
+		</div>
+	</div>
+{END solvedate_fieldblock}
+					{BEGIN status_fieldblock}
+	<div class="{$fielddispclass_status} col-md-6 bs-viewcontrolgroup" data-fieldname="status">
+		<label class="control-label" for="{$labelfor_status}">
+			{$label civil_ticketmaster status}
+		</label>
+		<div class="" >
+			{$status_value}&nbsp;
+		</div>
+	</div>
+{END status_fieldblock}
+					{BEGIN ipaddress_fieldblock}
+	<div class="{$fielddispclass_ipaddress} col-md-6 bs-viewcontrolgroup" data-fieldname="ipaddress">
+		<label class="control-label" for="{$labelfor_ipaddress}">
+			{$label civil_ticketmaster ipaddress}
+		</label>
+		<div class="" >
+			{$ipaddress_value}&nbsp;
+		</div>
+	</div>
+{END ipaddress_fieldblock}
+					{BEGIN priority_fieldblock}
+	<div class="{$fielddispclass_priority} col-md-6 bs-viewcontrolgroup" data-fieldname="priority">
+		<label class="control-label" for="{$labelfor_priority}">
+			{$label civil_ticketmaster priority}
+		</label>
+		<div class="" >
+			{$priority_value}&nbsp;
+		</div>
+	</div>
+{END priority_fieldblock}
+					{BEGIN remark_fieldblock}
+	<div class="{$fielddispclass_remark} col-md-6 bs-viewcontrolgroup" data-fieldname="remark">
+		<label class="control-label" for="{$labelfor_remark}">
+			{$label civil_ticketmaster remark}
+		</label>
+		<div class="" >
+			{$remark_value}&nbsp;
+		</div>
+	</div>
+{END remark_fieldblock}
+					{BEGIN nameofperson_fieldblock}
+	<div class="{$fielddispclass_nameofperson} col-md-6 bs-viewcontrolgroup" data-fieldname="nameofperson">
+		<label class="control-label" for="{$labelfor_nameofperson}">
+			{$label civil_ticketmaster nameofperson}
+		</label>
+		<div class="" >
+			{$nameofperson_value}&nbsp;
+		</div>
+	</div>
+{END nameofperson_fieldblock}
+					{BEGIN ext_fieldblock}
+	<div class="{$fielddispclass_ext} col-md-6 bs-viewcontrolgroup" data-fieldname="ext">
+		<label class="control-label" for="{$labelfor_ext}">
+			{$label civil_ticketmaster ext}
+		</label>
+		<div class="" >
+			{$ext_value}&nbsp;
+		</div>
+	</div>
+{END ext_fieldblock}
+	</div>
+</div>
+
+
+
+
+</div>
+{END container_fields}
+
+
+
+{BEGIN container_bottombuttons}
+<div {$bottombuttons_chiddenattr} data-pageid="{$pageid}" data-container="bottombuttons" class="container    "> 
+
+
+
+
+{BEGIN container_buttons}
+<div {$buttons_chiddenattr} data-pageid="{$pageid}" data-container="buttons" class=" form-group   "> 
+
+
+
+
+{BEGIN container_leftbuttons}
+<div {$leftbuttons_chiddenattr} data-pageid="{$pageid}" data-container="leftbuttons" class="   col-md-6 "> 
+
+{BEGIN viewbuttons}
+{BEGIN back_button}
+<button class="btn btn-primary" {$backbutton_attrs}>Back to list</button>
+{END back_button}
+{BEGIN close_button}
+<button href="#" class="btn btn-primary" {$closebutton_attrs}>Close window</button>
+{END close_button}
+{END viewbuttons}
+
+
+
+</div>
+{END container_leftbuttons}
+
+
+
+
+
+
+
+
+{BEGIN container_leftbuttons_1}
+<div {$leftbuttons_1_chiddenattr} data-pageid="{$pageid}" data-container="leftbuttons_1" class="   col-md-4 "> 
+
+{BEGIN rightviewbuttons}
+<div class="btn-group" role="group">
+		{BEGIN prev_button}
+	<button class="btn btn-default {$prevbutton_class}" {$prevbutton_attrs}><span class="glyphicon glyphicon-chevron-left"></span></button>
+	{END prev_button}
+	{BEGIN next_button}
+	<button class="btn btn-default {$nextbutton_class}" {$nextbutton_attrs}><span class="glyphicon glyphicon-chevron-right"></span></button>
+	{END next_button}
+		<div class="btn-group dropup" role="group">
+		<button class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="glyphicon glyphicon-menu-hamburger"></span></button>
+		<ul class="dropdown-menu dropdown-left">
+									{BEGIN edit_page_button}
+				<li><a href=# {$edit_page_button_attrs}>Edit</a></li>
+			{END edit_page_button}
+		</ul>
+	</div>
+</div>
+{END rightviewbuttons}
+
+
+
+</div>
+{END container_leftbuttons_1}
+
+
+
+
+
+
+</div>
+{END container_buttons}
+
+
+
+
+
+
+</div>
+{END container_bottombuttons}
+
+
+		</div>
+		<div class="bs-middle ">
+			<div class="bs-topmiddle">
+				
+			</div>
+			<div class="bs-left" {$blockattr_left}>
+				
+			</div>
+			<div class="bs-center">
+				
+			</div>
+			<div class="bs-right">
+				
+			</div>
+		</div>
+		<DIV class="bs-bottom">
+        
+		</div>
+		{$footer}
+	{END body}
+	</body>
+</html>

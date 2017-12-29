@@ -1,0 +1,49 @@
+<div {$pageattrs}>
+
+{BEGIN container_column}
+<div class="rnr-c rnr-ch rnr-c-column">
+
+{BEGIN masterlist_title}
+<div  class="style1 rnr-bl rnr-b-masterprintheader {$brickclass_masterprintheader}"><span>{$pagetitlelabel civil_ticketremarks masterprint}</span></div>
+{END masterlist_title}
+
+<div class="rnr-hfiller"></div>
+</div>
+{END container_column}
+
+
+
+{BEGIN container_mastergrid}
+
+
+
+<table {$bsmasterprintgrid_hiddenattr} data-pageid="{$pageid}" data-brick="bsmasterprintgrid" class="table rnr-b-mastergridfields rnr-gridtable" >
+		<thead>
+		<tr>
+			<th class="{$remarkid_class}">{$label civil_ticketremarks remarkid}</th>
+			<th class="{$ticketid_class}">{$label civil_ticketremarks ticketid}</th>
+			<th class="{$remark_class}">{$label civil_ticketremarks remark}</th>
+			<th class="{$remakdate_class}">{$label civil_ticketremarks remakdate}</th>
+			<th class="{$remarkby_class}">{$label civil_ticketremarks remarkby}</th>
+			<th class="{$ipaddress_class}">{$label civil_ticketremarks ipaddress}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="{$remarkid_class}">{$remarkid_mastervalue}</td>
+			<td class="{$ticketid_class}">{$ticketid_mastervalue}</td>
+			<td class="{$remark_class}">{$remark_mastervalue}</td>
+			<td class="{$remakdate_class}">{$remakdate_mastervalue}</td>
+			<td class="{$remarkby_class}">{$remarkby_mastervalue}</td>
+			<td class="{$ipaddress_class}">{$ipaddress_mastervalue}</td>
+		</tr>
+	</tbody>
+
+</table> 
+
+
+
+
+{END container_mastergrid}
+
+</div>

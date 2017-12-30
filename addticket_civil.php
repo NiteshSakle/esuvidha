@@ -176,7 +176,6 @@ if ($_POST) {
  //close cURL resource, and free up system resources
         curl_close($ch);
 
-        header('Location:ticketsuccess.php?ticket=' . $ticketid);
         echo "<script>
                     alert('Your ticket is submitted successfully ..!!');
                     window.location.href='login.php';

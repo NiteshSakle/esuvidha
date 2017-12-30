@@ -107,7 +107,6 @@
 
 
 <?php
-$_SESSION['area'] = $_GET['area'];
 
 include("connect.php");
 include("header.php");
@@ -164,23 +163,29 @@ if ($_POST) {
         //echo $firstname;
         //echo urlencode($_SESSION['firstname']);
         $sms = "Dear%20" . urlencode($_SESSION['firstname']) . "%20Thank%20you%20for%20contacting%20us.Ticket%20No:" . $ticketid . "%20%20We%20will%20get%20back%20to%20you%20soon!";
-// create a new cURL resource
+ //create a new cURL resource
 
         $ch = curl_init();
 
-// set URL and other appropriate options
+ //set URL and other appropriate options
         curl_setopt($ch, CURLOPT_URL, "http://api.mvaayoo.com/mvaayooapi/MessageCompose?user=sakoradi@mahagenco.in:ktps123&senderID=KTPSOM&receipientno=$ext&dcs=0&msgtxt='$sms'&state=4");
 
-// grab URL and pass it to the browser
+ //grab URL and pass it to the browser
         curl_exec($ch);
 
-// close cURL resource, and free up system resources
+ //close cURL resource, and free up system resources
         curl_close($ch);
 
-
         header('Location:ticketsuccess.php?ticket=' . $ticketid);
+        echo "<script>
+                    alert('Your ticket is submitted successfully ..!!');
+                    window.location.href='login.php';
+                    </script>";
+
         exit;
     }
+} else {
+    $_SESSION['area'] = $_GET['area'];
 }
 ?>
 

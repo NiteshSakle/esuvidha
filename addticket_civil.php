@@ -107,8 +107,11 @@
 
 
 <?php
-include("header.php");
+$_SESSION['area'] = $_GET['area'];
+
 include("connect.php");
+include("header.php");
+
 $result = mysql_query("SELECT * FROM civil_defect");
 if ($_POST) {
     if (!isset($_SESSION['emp_id'])) {

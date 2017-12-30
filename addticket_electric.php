@@ -91,8 +91,10 @@
 
 
 <?php
-include("header.php");
+$_SESSION['area'] = 'electric';
 include("connect.php");
+include("header.php");
+
 $result = mysql_query("SELECT * FROM electric_defect");
 if ($_POST) {
     if (!isset($_SESSION['emp_id'])) {
@@ -166,7 +168,7 @@ if ($_POST) {
 <form id="form1" name="form1" method="post" action="addticket_electric.php" onSubmit="return validate1();">
     <div class="table-form">
         <table border="2px solid #ffffff" cellspacing="2" cellpadding="10" class="new-table" style="width: 100%" >
-<?php if ($_GET['err'] == "err") { ?>
+            <?php if ($_GET['err'] == "err") { ?>
                 <tr>
                     <td colspan="2"><font color="red">Please select problem / sub problem</font></td>
                 </tr>
@@ -177,12 +179,12 @@ if ($_POST) {
 
                     <h3><select name="problem" id="problem" onchange="getState(this.value)">
                             <option value="-1">Please Select Main Problem</option>
-<?php
-$cntry = mysql_query("SELECT `defect_Id`, `defect_name` FROM electric_defect ORDER BY `defect_name` ASC");
-while ($row = mysql_fetch_assoc($cntry)) {
-    echo '<option value="' . $row['defect_Id'] . "#" . $row['defect_name'] . '">' . $row['defect_name'] . '</option>';
-}
-?>
+                            <?php
+                            $cntry = mysql_query("SELECT `defect_Id`, `defect_name` FROM electric_defect ORDER BY `defect_name` ASC");
+                            while ($row = mysql_fetch_assoc($cntry)) {
+                                echo '<option value="' . $row['defect_Id'] . "#" . $row['defect_name'] . '">' . $row['defect_name'] . '</option>';
+                            }
+                            ?>
                         </select>
                     </h3>
 
@@ -213,7 +215,7 @@ while ($row = mysql_fetch_assoc($cntry)) {
          <input type="radio" name="group1" value="3"> Low
           </td-->
             </tr>
-<?php if (!isset($_SESSION['section'])) { ?>
+            <?php if (!isset($_SESSION['section'])) { ?>
                 <input type="hidden" name="name" id="name">
                 <!--input type="hidden" name="id" id="id"-->
                 <input type="hidden" name="contact" id="contact">
@@ -223,15 +225,15 @@ while ($row = mysql_fetch_assoc($cntry)) {
                   <td>Select Section</td>
                   <td> <select name="section" id="section" class="">
                            <option class="" value="">Select Section</option>
-    <?php while ($row = mysql_fetch_array($result)) { ?>
-                                       <option class="" value="<?php echo $row['id'] . "#" . $row['name'] . "#" . $row['contact'] . "#" . $row['privilege'] ?>"><?php echo $row['name'] ?></option>
-    <?php } ?>
+                <?php while ($row = mysql_fetch_array($result)) { ?>
+                                           <option class="" value="<?php echo $row['id'] . "#" . $row['name'] . "#" . $row['contact'] . "#" . $row['privilege'] ?>"><?php echo $row['name'] ?></option>
+                <?php } ?>
                                    </select>
                   </td>
                </tr>  <?php } else { ?>
                <input type="hidden" name="id" id="id" value="<?php echo $_SESSION['id']; ?>">
             <?php } ?>
-               <tr-->
+           <tr-->
             <td colspan="2">
                 <input type="submit" name="submit" id="submit"  class="submitbutton" value="Submit" style="width: 50%"  />
             </td>         

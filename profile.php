@@ -36,7 +36,7 @@ if ($_POST) {
             
             echo "<script>
                     alert('Your information has been saved..!!');
-                    window.location.href='index.php';
+                    window.location.href='login.php';
                     </script>";
 //            header("location:editprofile.php");
         } else {

@@ -1,6 +1,6 @@
 <?php
-session_start();
 error_reporting(0);
+session_start();
 
 function get_real_up_address() {
 
@@ -26,37 +26,22 @@ function get_real_up_address() {
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="style.css" />
-        <?PHP IF ($_SESSION['area'] == 'civil') { ?>
-            <style>
-                body { background-image:url(images/back.JPG); no-repeat;}
+        <style>
+            body { background-image:url(images/back.JPG); no-repeat;}
 
-            </style><?PHP } ?>
-        <?PHP IF ($_GET['id2'] == 'civil') { ?>
-            <style>
-                body { background-image:url(images/back.JPG); no-repeat;}
-
-            </style><?PHP } ?>
-        <?PHP IF ($_SESSION['area'] == 'electric') { ?>
-            <style>
-                body { background-image:url(images/back.JPG); no-repeat;}
-
-            </style><?PHP } ?>
-        <?PHP IF ($_GET['id2'] == 'electric') { ?>
-            <style>
-                body { background-image:url(images/back.JPG); no-repeat;}
-
-            </style><?PHP } ?>
+        </style>
         <?PHP
-        IF ($_SESSION['area'] == 'electric') {
-            $tableName = "electric_ticketmaster";
-        }
-        IF ($_SESSION['area'] == 'civil') {
-            $tableName1 = "civil_ticketremarks";
-        }
-        IF ($_SESSION['area'] == 'electric') {
-            $tableName1 = "electric_ticketremarks";
-        }
-        ?>
+
+//        IF ($_SESSION['area'] == 'electric') {
+//            $tableName = "electric_ticketmaster";
+//        }
+//        IF ($_SESSION['area'] == 'civil') {
+//            $tableName1 = "civil_ticketremarks";
+//        }
+//        IF ($_SESSION['area'] == 'electric') {
+//            $tableName1 = "electric_ticketremarks";
+//        }
+//        ?>
 
         <title>Khaperkheda TPS e-सुविधा</title>
     </head>
@@ -132,44 +117,42 @@ function get_real_up_address() {
             <h1 class="headline">KHAPERKHEDA THERMAL POWER STATION</h1>
         </div>
         <span>
-     <!--       <a href="http://192.168.100.77:8080/esuvidha/index.php"><span style="font-size:20px;color: lightskyblue; text-align: left; margin-left: 20px;top:10px">Home</span> </a>     -->
+     <!--    <a href="http://192.168.100.77:8080/esuvidha/index.php"><span style="font-size:20px;color: lightskyblue; text-align: left; margin-left: 20px;top:10px">Home</span> </a>     -->
             <?php if (isset($_SESSION['firstname'])) { ?>
                 <span style="float:right; color: lightskyblue;font-size:20px; margin-right: 2%"> Hello, <?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?></span>
             <?php } ?>
         </span>
         <?php
         $area1 = $_GET['id2'];
-        IF ($_SESSION['area'] == 'civil' or $area1 == 'civil') {
+        IF ($_GET['area'] == 'civil' or $area1 == 'civil') {
             ?>
-            <h1 style="text-align: center; margin: 0px"> <u> CIVIL COLONY MAINTENANCE </u> </h1> 
+            <h1 style="text-align: center; margin: 30px 0px 0px 0px"> <u> CIVIL COLONY MAINTENANCE </u> </h1> 
         <?php } elseif ($_SESSION['area'] == 'electric' OR $area1 == 'electric') { ?>
-            <h1 style="text-align: center"> <u> EM-COLONY </u> </h1><?php } ?>
+            <h1 style="text-align: center; margin: 30px 0px 0px 0px"> <u> EM-COLONY </u> </h1><?php } ?>
         <?php IF ($area1 == '' AND ! isset($_SESSION['sapid'])) { ?>
             <h2></h2><?php } ?>
 
-        <div id="menu" style="margin-left: 25%; margin-top: 2%">
+        <div id="menu" style="margin-left: 25%; margin-top: 1%">
             <ul >
                 <?php if (isset($_SESSION['sapid'])) { ?>
 
                     <?php
-                    echo $_POST['area'];
-                    IF ($_SESSION['area'] == 'civil' and $_SESSION['quarterno'] !== '') {
+//                    echo $_POST['area'];
+                    IF ($_GET['area'] == 'civil' and $_SESSION['quarterno'] !== '') {
                         ?>
-                        <li class="menuitem"><a href="addticket_civil.php">Add Defect</a></li> 
-                    <?php }IF ($_SESSION['area'] == 'electric' and $_SESSION['quarterno'] !== '') { ?>
-                        <li class="menuitem"><a href="addticket_electric.php">Add Defect</a></li><?php } ?>
-                    <li class="menuitem"><a href="list1.php">My Defect</a></li>
-                    <li class="menuitem"><a href="#">IP Address <?php echo get_real_up_address(); ?></a></li>
-                    <?php if ($_SESSION['privilege'] == 0) { ?>
-                        <li class="menuitem"><a href="editprofile.php">Edit Profile</a></li>
-
-                        <?php } if($_SESSION['privilege'] == 1) { ?>
-                        <li class="menuitem"><a href="register.php">Register New Account</a></li>
-                        <?php
-                        }?>
+                        <li class="menuitem"><a href="addticket_civil.php?area=<?php echo $_GET['area'];?>">Add Defect</a></li> 
+                    <?php }IF ($_GET['area'] == 'electric' and $_SESSION['quarterno'] !== '') { ?>
+                        <li class="menuitem"><a href="addticket_electric.php">Add Defect</a></li><?php } 
+                    if(isset($_GET['area'])) {?> <li class="menuitem"><a href="list1.php?area=<?php echo $_GET['area'];?>">My Defect</a></li> <?php } 
+                    if(!isset($_GET['area'])) {?> <li class="menuitem"><a href="#">IP Address <?php echo get_real_up_address(); ?></a></li> <?php } ?>
+                    <li class="menuitem"><a href="editprofile.php?area=civil">Edit Profile</a></li>
+                    <?php if ($_SESSION['privilege'] == 1) { ?>
+                        <li class="menuitem"><a href="register.php?area=civil">Register New Account</a></li>
+                        <?php }
+                    ?>
                     <li class="menuitem"><a href="logout.php">Logout</a></li>                    
                     <?php } ?> 
-                                            
+
                 <!--li class="menuitem"><a href="search.php">Search</a></li--> 
             </ul>
         </div>

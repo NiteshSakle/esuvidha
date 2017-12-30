@@ -1,37 +1,51 @@
 <?php
 include("header.php");
 include("connect.php");
-$result=mysql_query("SELECT * FROM section ORDER BY name ASC");
+$result = mysql_query("SELECT * FROM section ORDER BY name ASC");
 ?>
-
-<?php  IF ($_GET['id']==1){
-			$message = "user name and password not found!!";
-echo "<script type='text/javascript'>alert('$message');</script>";
-
+<?php
+$id = $_GET['id'];
+if ($id == 5) {
+    $message = "You have successfully registered!";
+    echo "<script type='text/javascript'>alert('$message');</script>";
 }
-	?>
-<?php if(!isset($_SESSION['section'])) { 
-$id=$_GET['id2'];
-
+if ($id == 6) {
+    $message = "You have successfully changed the password!";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+}
 ?>
-<div class="form">
-    <form id="form1" class="login-form" name="form1" method="post" action="login_exec.php" onSubmit="return validate();" >
-          <input type="text" name="sapid" id="sapid"  maxlength="08"  placeholder="SAP ID (Don't prefix zeros)" />
-          <input type="password" name="password" id="password" placeholder="PASSWORD" />
-          <input type="hidden" name="area" id="area" value=<?php echo $id;?> />       
-          <input type="submit" name="submit" id="submit"  class="submitbutton" value="Login"  />
-          <p class="message"><a href="forget.php">Forget Password</a></p>
+<?php
+IF ($_GET['id'] == 1) {
+    $message = "user name and password not found!!";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+}
+?>
+<?php if (!isset($_SESSION['section'])) { ?>
 
-         <?php  } else { ?>
-               <div id="content_main">
-                <h2>You have Succesfully logged in As a <?php echo $_SESSION['section'];  ?></h2>
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                <h3>Your Computer IP Address is</h3>
-               <h1><p><?php echo get_real_up_address();?></p></h1>
-                    <p>&nbsp;</p>
-            </div>
-             <?php } ?>
-    </form>
-</div>
-<?php  include("footer.php");  ?>
+    <form id="form1" name="form1" method="post" action="login_exec.php" onSubmit="return validate();">
+        
+        <table width="99%" border="0" cellspacing="0" cellpadding="50" style="margin-top: 5%">
+            <tr>
+                <td width="33%" style="padding: 0px 180px !important">
+                    <a href='addticket_civil.php?area=civil' ><img src="images/civil.jpg" ></a>
+                </td>
+                <td width="33%" >
+                    <a href='addticket_electric.php?area=electric' ><img src="images/electric.jpg"  ></a> 
+                </td>
+                <td width="33%">
+                    <a href='http://192.168.100.3/MIS_MM/defectList.aspx' ><img src="images/comp.jpg"></a> 
+                </td>
+            </tr>
+        </table>
+
+<?php } else { ?>
+        <div id="content_main">
+            <h2>You have Succesfully logged in As a <?php echo $_SESSION['section']; ?></h2>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <h3>Your Computer IP Address is</h3>
+            <h1><p><?php echo get_real_up_address(); ?></p></h1>
+            <p>&nbsp;</p>
+        </div>
+<?php } ?>
+</form>

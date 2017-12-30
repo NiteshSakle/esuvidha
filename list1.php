@@ -152,10 +152,10 @@ if ($_GET) {
     <?php
     $query = '';
     $query1 = '';
-    IF ($_SESSION['area'] == 'civil') {
+    IF ( $_GET['area'] == 'civil') {
         $tableName = "civil_ticketmaster";
     }
-    IF ($_SESSION['area'] == 'electric') {
+    IF ( $_GET['area'] == 'electric') {
         $tableName = "electric_ticketmaster";
     }
     $targetpage = "list1.php";
@@ -313,7 +313,7 @@ if ($_GET) {
 // echo $paginate;
     ?>
     <div>
-        <form id="form1" name="form1" method="post" action="list1.php?id=1" onSubmit="return validate1();">
+        <form id="form1" name="form1" method="post" action="list1.php?id=1&area=<?php echo $_GET['area'];?>" onSubmit="return validate1();">
             <table width="95%" border="1" cellspacing="2" cellpadding="2">
                 .
     <?php if ($_SESSION['privilege'] != 0) { ?>
@@ -321,7 +321,7 @@ if ($_GET) {
                     <span><select name="problem" id="problem">
                             <option value="-1">Select Defect Group</option>
         <?php
-        IF ($_SESSION['area'] == 'civil') {
+        IF ($_GET['area'] == 'civil') {
             $cntry = mysql_query("SELECT `defect_Id`, `defect_name` FROM civil_defect ORDER BY `defect_name` ASC");
             while ($row = mysql_fetch_assoc($cntry)) {
                 ?>	
@@ -331,7 +331,7 @@ if ($_GET) {
         }
         ?>
         <?php
-        IF ($_SESSION['area'] == 'electric') {
+        IF ($_GET['area'] == 'electric') {
             $cntry = mysql_query("SELECT `defect_Id`, `defect_name` FROM electric_defect ORDER BY `defect_name` ASC");
             while ($row = mysql_fetch_assoc($cntry)) {
                 ?>	
@@ -358,9 +358,9 @@ if ($_GET) {
 
             </td>
 
-            <td><a href="list1.php?status=1&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>">View New</a></td>
-            <td><a href="list1.php?status=2&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>">View Attended</a></td>
-            <td><a href="list1.php?status=3&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>">View Pending</a></td>
+            <td><a href="list1.php?status=1&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area'];?>">View New</a></td>
+            <td><a href="list1.php?status=2&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area'];?>">View Attended</a></td>
+            <td><a href="list1.php?status=3&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area'];?>">View Pending</a></td>
             <td><a href="http://192.168.5.20/esuvidha/list1.php">View All</a></td>
         </tr>
         <tr>

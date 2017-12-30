@@ -11,7 +11,7 @@ IF ($_GET['id'] == 1) {
 }
 ?>
 <?php
-if (!isset($_SESSION['section'])) {
+if (!$_SESSION['sapid']) {
     $id = $_GET['id2'];
     ?>
     <div class="form">
@@ -22,16 +22,10 @@ if (!isset($_SESSION['section'])) {
             <input type="submit" name="submit" id="submit"  class="submitbutton" value="Login"  />
             <p class="message"><a href="forget.php">Forget Password</a></p>
 
-        <?php } else { ?>
-            <div id="content_main">
-                <h2>You have Succesfully logged in As a <?php echo $_SESSION['section']; ?></h2>
-                <p>&nbsp;</p>
-                <p>&nbsp;</p>
-                <h3>Your Computer IP Address is</h3>
-                <h1><p><?php echo get_real_up_address(); ?></p></h1>
-                <p>&nbsp;</p>
-            </div>
-        <?php } ?>
+        <?php } else { 
+            header('Location:login.php');
+            exit;
+        } ?>
     </form>
 </div>
 <?php include("footer.php"); ?>

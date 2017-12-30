@@ -375,10 +375,9 @@ if ($_GET) {
         </tr>
     <?php while ($row = mysql_fetch_array($result)) { ?>
             <tr>
-
-                <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid'] ?>"><?php echo $row['ticketid']; ?></a></td>
+                <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid'] ?>&area=<?php echo $_GET['area'];?>"><?php echo $row['ticketid']; ?></a></td>
                 <td><?php echo empName($row['emp_id']); ?></td>
-                <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid'] ?>"><?php echo $row['remark']; ?></a></td>
+                <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid']?>&area=<?php echo $_GET['area'];?>"><?php echo $row['remark']; ?></a></td>
                 <td><?php
         //echo $row['createdate'] ; 
         echo date("d/m/y", strtotime($row['createdate']));

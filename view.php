@@ -13,13 +13,15 @@ include("connect.php");
  if($row=mysql_fetch_object($rw))
  return $row->contact;
  }
- IF ($_SESSION['area']=='civil'){
+ 
+ $area = $_GET['area'];
+ IF ($area=='civil'){
 $tableName="civil_ticketmaster";}
-IF ($_SESSION['area']=='electric'){
+IF ($area=='electric'){
 	$tableName="electric_ticketmaster";}
-	 IF ($_SESSION['area']=='civil'){
+	 IF ($area=='civil'){
 $tableName1="civil_ticketremarks";}
-IF ($_SESSION['area']=='electric'){
+IF ($area=='electric'){
 	$tableName1="electric_ticketremarks";}
 //echo "SELECT * FROM ticketremarks where ticketid=".$_GET['ticketid'];
 $remarklist=mysql_query("SELECT * FROM $tableName1 where ticketid=".$_GET['ticketid']);
@@ -59,13 +61,13 @@ if($_POST)
     $status= $_POST['status'];
  $solveddate=date('Y-m-d H:i:s');
 
- IF ($_SESSION['area']=='civil'){
+ IF ($area=='civil'){
 $tableName="civil_ticketmaster";}
-IF ($_SESSION['area']=='electric'){
+IF ($area=='electric'){
 	$tableName="electric_ticketmaster";}
-	 IF ($_SESSION['area']=='civil'){
+	 IF ($area=='civil'){
 $tableName1="civil_ticketremarks";}
-IF ($_SESSION['area']=='electric'){
+IF ($area=='electric'){
 	$tableName1="electric_ticketremarks";}
  
  //echo "UPDATE ticketmaster SET status=$status,solvedate=$solveddate WHERE ticketid=$id";

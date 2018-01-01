@@ -229,7 +229,7 @@ if ($_POST) {
             </tr>
             <tr>
                 <td>Contact no.</td>
-                <td><input type="text" name="ext" id="ext" value="<?php echo $_SESSION['mobileno']; ?>" style="width: 40%"> *Other than registered number  </td>
+                <td><input type="text" name="ext" id="ext" value="<?php echo $_SESSION['mobileno']; ?>" style="width: 40%"> </td>
             </tr>
         <!--    <tr>
                 td>Priority</td>

@@ -28,7 +28,7 @@ if ($_POST) {
 SET password = '$password'
 WHERE sapid='$sapid' and cpfno='$cpfno'";
             mysql_query($qry1);
-
+            
             header("location: index.php?id=6");
         } else {
 

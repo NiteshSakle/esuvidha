@@ -6,7 +6,15 @@ $result = mysql_query("SELECT * FROM section ORDER BY name ASC");
 
 <?php
 IF ($_GET['id'] == 1) {
-    $message = "user name and password not found!!";
+    $message = "Invalid login credentials..!!";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+}
+IF ($_GET['id'] == 6) {
+    $message = "You have successfully changed the password!";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+}
+IF ($_GET['id'] == 5) {
+    $message = "You have successfully registered!";
     echo "<script type='text/javascript'>alert('$message');</script>";
 }
 ?>

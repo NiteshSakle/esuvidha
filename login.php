@@ -3,23 +3,7 @@ include("header.php");
 include("connect.php");
 $result = mysql_query("SELECT * FROM section ORDER BY name ASC");
 ?>
-<?php
-$id = $_GET['id'];
-if ($id == 5) {
-    $message = "You have successfully registered!";
-    echo "<script type='text/javascript'>alert('$message');</script>";
-}
-if ($id == 6) {
-    $message = "You have successfully changed the password!";
-    echo "<script type='text/javascript'>alert('$message');</script>";
-}
-?>
-<?php
-IF ($_GET['id'] == 1) {
-    $message = "user name and password not found!!";
-    echo "<script type='text/javascript'>alert('$message');</script>";
-}
-?>
+
 <?php if (!isset($_SESSION['section'])) { ?>
 
     <form id="form1" name="form1" method="post" action="login_exec.php" onSubmit="return validate();">

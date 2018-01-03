@@ -53,12 +53,12 @@ if ($_POST) {
                 <tr><td>Password</td>
                     <td><input type="password" class="demoInputBox" name="password" value="<?php if (isset($_POST['password'])) echo $_POST['password']; ?>"></td>
                 </tr>
-                <tr><td>First Name</td>
+                <tr><td>Full Name</td>
                     <td><input type="text" class="demoInputBox" name="firstName" value="<?php if (isset($_POST['firstName'])) echo $_POST['firstName']; ?>"></td>
                 </tr>
-                <tr><td>Last Name</td>
+<!--                <tr><td>Last Name</td>
                     <td><input type="text" class="demoInputBox" name="lastName" value="<?php if (isset($_POST['lastName'])) echo $_POST['lastName']; ?>"></td>
-                </tr>
+                </tr>-->
                 <tr><td>Address</td>
                     <td>
                         Type <select name="type" id="type" class="">

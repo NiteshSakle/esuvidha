@@ -108,6 +108,12 @@ if ($_POST) {
 
     $emp_id = $_SESSION['emp_id'];
     $sec = explode("#", $_POST['problem']);
+    if ($sec[0] == -1) {
+        echo "<script>
+            alert('Please select problem..!!');
+            window.location.href='addticket_electric.php?area=electric';
+            </script>";
+    }
     $defect_id = $sec[0];
     $problem = $sec[1];
     $other = $_POST['other'];
@@ -119,7 +125,7 @@ if ($_POST) {
     $priority = $_POST['group1'];
     $remark = $_POST['remark'];
     $nameofperson = $_POST['nameofperson'];
-    $ext = $_SESSION['mobileno'];
+    $ext = $_POST['ext'];
 
     $remarkby = $_SESSION['section'];
     if ($problem == "Other") {
@@ -209,7 +215,7 @@ if ($_POST) {
             </tr>
             <tr>
                 <td>Contact No.</td>
-                <td><input type="text" name="ext" id="ext" value="<?php echo $_SESSION['mobileno']; ?>" style="width: 40%" > </td>
+                <td><input type="text" name="ext" id="ext" value="<?php echo $_SESSION['mobileno']; ?>" style="width: 40%" > *Other than registered number </td>
             </tr>
             <tr>
                 <!--td>Priority</td>
@@ -229,14 +235,14 @@ if ($_POST) {
                   <td> <select name="section" id="section" class="">
                            <option class="" value="">Select Section</option>
                 <?php while ($row = mysql_fetch_array($result)) { ?>
-                                           <option class="" value="<?php echo $row['id'] . "#" . $row['name'] . "#" . $row['contact'] . "#" . $row['privilege'] ?>"><?php echo $row['name'] ?></option>
+                                               <option class="" value="<?php echo $row['id'] . "#" . $row['name'] . "#" . $row['contact'] . "#" . $row['privilege'] ?>"><?php echo $row['name'] ?></option>
                 <?php } ?>
                                    </select>
                   </td>
                </tr>  <?php } else { ?>
                <input type="hidden" name="id" id="id" value="<?php echo $_SESSION['id']; ?>">
             <?php } ?>
-           <tr-->
+       <tr-->
             <td colspan="2">
                 <input type="submit" name="submit" id="submit"  class="submitbutton" value="Submit" style="width: 50%"  />
             </td>         

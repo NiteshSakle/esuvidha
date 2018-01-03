@@ -66,8 +66,13 @@ if ($result) {
 
 
         session_write_close();
-        header("location: login.php");
-        exit();
+        if ($member['mobileno'] == '' or $_SESSION['quarterno'] == '') {
+            header("location: editprofile.php");
+        } else {
+            header("location: login.php");
+        }
+        exit();                    
+
 //        IF ($_POST['area'] == 'civil') {
 //            if ($member['mobileno'] == '' and $_SESSION['privilege'] == 0 or $_SESSION['quarterno'] == '') {
 //                header("location: editprofile.php");

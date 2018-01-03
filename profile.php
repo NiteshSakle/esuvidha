@@ -33,6 +33,7 @@ if ($_POST) {
             mysql_query($qry1);
             $_SESSION['mobileno'] = $Mobile;
             $_SESSION['email'] = $userEmail;
+            $_SESSION['quarterno'] = $quarterno;
             
             echo "<script>
                     alert('Your information has been saved..!!');

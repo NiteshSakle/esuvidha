@@ -7,18 +7,22 @@ include("connect.php");
         function valid1()
         {
             if (document.frmRegistration.password.value == "") {
-                alert("Please enter password");
+                alert("Please Enter Password");
                 document.frmRegistration.password.focus();
                 return false;
             } else if (document.frmRegistration.quarterno.value == "") {
-                alert("Please enter quarterno");
+                alert("Please Enter Quarter Number");
                 document.frmRegistration.quarterno.focus();
                 return false;
             } else if (document.frmRegistration.Mobile.value == "") {
-                alert("Please enter Mobile");
+                alert("Please Enter Mobile Number");
                 document.frmRegistration.Mobile.focus();
                 return false;
-            } else
+            } else if (document.frmRegistration.Mobile.value.length != 10) {
+                alert("Please Enter Valid Mobile Number");
+                document.frmRegistration.Mobile.focus();
+                return false;
+            }  
                 return true;
         }
     </script>
@@ -51,10 +55,10 @@ include("connect.php");
 
                 </tr>		
                 <tr><td>Mobile Number</td>
-                    <td><input type="text" class="demoInputBox" name="Mobile" id="Mobile" value="<?php echo $_SESSION['mobileno']; ?>"></td>
+                    <td><input type="text" class="demoInputBox" name="Mobile" id="Mobile" value="<?php echo $_SESSION['mobileno']; ?>"  pattern="[789][0-9]{9}" title="Not a valid number"></td>
                 </tr>
                 <tr><td>Email</td>
-                    <td><input type="text" class="demoInputBox" name="userEmail" id="userEmail" value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?>"></td>
+                    <td><input type="text" class="demoInputBox" name="userEmail" id="userEmail" value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Not a valid email"></td>
                 </tr>
                 <td colspan="2">
                     <input type="submit" name="submit" id="submit"  class="submitbutton" value="Save Details" style="width: 50%"  />

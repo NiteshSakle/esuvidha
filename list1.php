@@ -8,9 +8,7 @@ function empName($deptid) {
     if ($row1 = mysql_fetch_object($rw))
         return $row1->name;
 }
-?> 
 
-<?php
 if ($_POST) {
     if (!isset($_SESSION['emp_id'])) {
         $_SESSION['sapid'] = $member['sapid'];
@@ -32,10 +30,7 @@ if ($_GET) {
     $def = $_GET['problem'];
     //echo $def;
 }
-?>
-
-
-<?php if (isset($_SESSION['emp_id'])) { ?>     <style>
+if (isset($_SESSION['emp_id'])) { ?>     <style>
         table { margin: 1em; border-collapse: collapse; }
         td, th { padding: .3em; border: 1px #ccc solid; }
         thead { background: #fc9; }
@@ -141,14 +136,22 @@ if ($_GET) {
             background-color:#FCC;
             list-style:none;}
 
-        ul{margin:6px;
+/*        ul{
+           margin:6px;
            padding:0px;}
+        
+        .button {
+            background: #F5FAFA;
+            padding: 4px;
+            float: right;
+            text-align: center;
+            border-radius: 5px;
+            color: #000;
+            margin-right: 5%;
+            font-weight: bold;
+        }*/
 
     </style>
-
-
-
-
     <?php
     $query = '';
     $query1 = '';
@@ -222,7 +225,23 @@ if ($_GET) {
 
 
     $result = mysql_query($query1);
-
+    
+//    $tmp_result = mysql_query($query1);
+//    $num_column = mysql_num_fields($tmp_result);
+//    $csv_header = '';
+//    for($i=0;$i<$num_column;$i++) {
+//            $csv_header .= '"' . mysql_field_name($tmp_result,$i) . '",';
+//    }	
+//    $csv_header .= "\n";
+//
+//    $csv_row ='';
+//    
+//    while($row = mysql_fetch_row($tmp_result)) {
+//	for($i=0;$i<$num_column;$i++) {
+//		$csv_row .= '"' . $row[$i] . '",';
+//	}
+//	$csv_row .= "\n";
+//    }
     // Initial page num setup
     if ($page == 0) {
         $page = 1;
@@ -307,10 +326,16 @@ if ($_GET) {
         }
 
         //	$paginate.= "</div>";
-    }
+    }            
 // echo $total_pages.' Results';
     // pagination
 // echo $paginate;
+            if($total_pages == 0) {
+                echo "<script>
+                    alert('Please add defect first..!!');
+                    window.location.href='login.php';
+                    </script>";
+            }
     ?>
     <div>
         <form id="form1" name="form1" method="post" action="list1.php?id=1&area=<?php echo $_GET['area'];?>" onSubmit="return validate1();">
@@ -348,8 +373,12 @@ if ($_GET) {
                     <input type="submit" name="submit" id="submit" value="Submit"  />
                         <?php } ?> 
         </form>
+        
+<!--        <form action="welcome.php" method="post">
+        <a href="downloadcsv.php?head=<?php echo $csv_row; ?>"> Delete </a>-->
 
-
+        <?php echo '<a class="button" href="downloadcsv.php?header='. $csv_header .'&row=' . $csv_row .'" >' ."Export to CSV".'</a>'; ?>
+        <?php if( $total_pages > 0) { ?>
         <tr>
             <td colspan=4><?php echo 'Total:-' . $total_pages . '   ' . $paginate;
                     if ($id == 1) {
@@ -363,6 +392,7 @@ if ($_GET) {
             <td><a href="list1.php?status=3&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area'];?>">View Pending</a></td>
             <td><a href="http://192.168.5.20/esuvidha/list1.php">View All</a></td>
         </tr>
+        <?php } ?>
         <tr>
             <th width='5%'>Ticket ID</th>
             <th width='20%'>Name</th>
@@ -399,9 +429,4 @@ if ($_GET) {
             </tr>        	<?php } ?>
     </table>
     .
-    </div>      <?php } else { ?>
-    <div id="content_main">
-        <h2>Please Log on with Your Section</h2>
-    </div>
-
-            <?php } ?>
+    </div>      <?php }  ?>

@@ -126,6 +126,12 @@ if ($_POST) {
 
     $emp_id = $_SESSION['emp_id'];
     $sec = explode("#", $_POST['problem']);
+    if ($sec[0] == "") {
+        echo "<script>
+            alert('Please select problem..!!');
+            window.location.href='addticket_civil.php?area=civil';
+            </script>";        
+    }
     $defect_id = $sec[0];
     $problem = $sec[1];
     $other = $_POST['other'];
@@ -137,7 +143,7 @@ if ($_POST) {
     $priority = $_POST['group1'];
     $remark = $_POST['remark'];
     $nameofperson = $_POST['nameofperson'];
-    $ext = $_SESSION['mobileno'];
+    $ext = $_POST['ext'];
 
     $remarkby = $_SESSION['section'];
     if ($problem == "Other") {
@@ -146,7 +152,7 @@ if ($_POST) {
         if ($problem == "")
             $problem = $_POST['problem'];
     }
-    if ($defect_id == -1 or $defect_id == "") {
+    if ($defect_id == -1 or $defect_id == "0" or $defect_id == "") {
 
         header('Location:addticket_civil.php?err=err');
         exit;
@@ -229,7 +235,7 @@ if ($_POST) {
             </tr>
             <tr>
                 <td>Contact no.</td>
-                <td><input type="text" name="ext" id="ext" value="<?php echo $_SESSION['mobileno']; ?>" style="width: 40%"> </td>
+                <td><input type="text" name="ext" id="ext" value="<?php echo $_SESSION['mobileno']; ?>" style="width: 40%"> *Other than registered number </td>
             </tr>
         <!--    <tr>
                 td>Priority</td>

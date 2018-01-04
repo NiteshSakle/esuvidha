@@ -43,7 +43,7 @@ include("connect.php");
                     <td><?PHP echo $_SESSION['firstname']; ?></td>
                 </tr>
 
-                <tr><td>Quarter No(eg III/3/3)</td>
+                <tr><td>Quarter No(eg D/125/13)</td>
                     <td>
     <?php if ($_SESSION['quarterno'] == "") { ?> <input type="text" class="demoInputBox" name="quarterno" id="quarterno" value=""><?php } else {
         ?>

@@ -126,12 +126,6 @@ if ($_POST) {
 
     $emp_id = $_SESSION['emp_id'];
     $sec = explode("#", $_POST['problem']);
-    if ($sec[0] == "") {
-        echo "<script>
-            alert('Please select problem..!!');
-            window.location.href='addticket_civil.php?area=civil';
-            </script>";        
-    }
     $defect_id = $sec[0];
     $problem = $sec[1];
     $other = $_POST['other'];
@@ -142,6 +136,13 @@ if ($_POST) {
     $ipaddress = get_real_up_address();
     $priority = $_POST['group1'];
     $remark = $_POST['remark'];
+    if($remark == "Please Select Subdefect") {
+        echo "<script>
+            alert('Please Select Sub Problem..!!');
+            window.location.href='addticket_civil.php?area=civil';
+            </script>";
+            exit();
+    }
     $nameofperson = $_POST['nameofperson'];
     $ext = $_POST['ext'];
 
@@ -184,9 +185,8 @@ if ($_POST) {
 
         echo "<script>
                     alert('Your ticket is submitted successfully ..!!');
-                    window.location.href='login.php';
+                    window.location.href='list1.php?area=civil';
                     </script>";
-
         exit;
     }
 } else {
@@ -206,7 +206,7 @@ if ($_POST) {
             <tr>
                 <td>Select problem<font color="red">*</font></td>
                 <td> 
-                    <h3><select name="problem" id="problem" onchange="getState(this.value)">
+                    <h3><select name="problem" id="problem" onchange="getState(this.value)" required>
                             <option value="">Please Select Main Problem</option>
                             <?php
                             $cntry = mysql_query("SELECT `defect_Id`, `defect_name` FROM civil_defect ORDER BY `defect_name` ASC");

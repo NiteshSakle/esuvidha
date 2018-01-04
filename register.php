@@ -61,21 +61,21 @@ if ($_POST) {
                 </tr>-->
                 <tr><td>Address</td>
                     <td>
-                        Type <select name="type" id="type" class="">
+                        Type: <select name="type" id="type" class="" style="margin-left: 9%">
                             <option class="" value="">Type</option>
-                            <option class="" value="I">I</option>
-                            <option class="" value="II">II</option>
-                            <option class="" value="III">III</option>
-                            <option class="" value="IV">IV</option>
-                            <option class="" value="V">V</option>
+                            <option class="" value="I">A</option>
+                            <option class="" value="II">B</option>
+                            <option class="" value="III">C</option>
+                            <option class="" value="IV">D</option>
+                            <option class="" value="V">E</option>
 
                         </select>
                         <br/>
                         Bulid no:
-                        <input type="text" class="demoInputBox" name="buildno" value="" size=2" style="width: 80%; margin: 10px">
+                        <input type="text" class="demoInputBox" name="buildno" value="" size=2" style="width: 74%; margin: 10px">
                         <br/>
                         Qrt no:  &nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" class="demoInputBox" name="qrtno" value="" size="3" style="width: 80%">
+                        <input type="text" class="demoInputBox" name="qrtno" value="" size="3" style="width: 74%">
                     </td>
                 </tr>
 

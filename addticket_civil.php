@@ -204,10 +204,10 @@ if ($_POST) {
             <?php } ?>
 
             <tr>
-                <td>Select problem<font color="red">*</font></td>
+                <td>Select Defect<font color="red">*</font></td>
                 <td> 
                     <h3><select name="problem" id="problem" onchange="getState(this.value)" required>
-                            <option value="">Please Select Main Problem</option>
+                            <option value="">Please Select Main Defect</option>
                             <?php
                             $cntry = mysql_query("SELECT `defect_Id`, `defect_name` FROM civil_defect ORDER BY `defect_name` ASC");
                             while ($row = mysql_fetch_assoc($cntry)) {
@@ -221,10 +221,10 @@ if ($_POST) {
             </tr>
 
             <tr>
-                <td>Sub Problem<font color="red">*</font></td>
+                <td>Sub Defect<font color="red">*</font></td>
                 <td><!--textarea name="remark" rows="9" cols="55"></textarea--> 
                     <h3><select name="remark" id="remark" onchange="getCity(this.value)">
-                            <option value="-1">Please Select Sub Problem</option>
+                            <option value="-1">Please Select Sub Defect</option>
                         </select>
                     </h3>
                 </td>

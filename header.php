@@ -140,10 +140,10 @@ function get_real_up_address() {
 //                    echo $_POST['area'];
                     IF ($_GET['area'] == 'civil' and $_SESSION['quarterno'] !== '') {
                         ?>
-                        <li class="menuitem"><a href="addticket_civil.php?area=<?php echo $_GET['area'];?>">Add Problem</a></li> 
+                        <li class="menuitem"><a href="addticket_civil.php?area=<?php echo $_GET['area'];?>">Add Defect</a></li> 
                     <?php }IF ($_GET['area'] == 'electric' and $_SESSION['quarterno'] !== '') { ?>
-                        <li class="menuitem"><a href="addticket_electric.php">Add Problem</a></li><?php } 
-                    if(isset($_GET['area'])) {?> <li class="menuitem"><a href="list1.php?area=<?php echo $_GET['area'];?>">My Problems</a></li> <?php } 
+                        <li class="menuitem"><a href="addticket_electric.php">Add Defect</a></li><?php } 
+                    if(isset($_GET['area'])) {?> <li class="menuitem"><a href="list1.php?area=<?php echo $_GET['area'];?>">My Defect</a></li> <?php } 
                     if(!isset($_GET['area'])) {?> <li class="menuitem"><a href="#">IP Address <?php echo get_real_up_address(); ?></a></li> <?php } ?>
                     <li class="menuitem"><a href="editprofile.php?area=civil">Edit Profile</a></li>
                     <?php if ($_SESSION['privilege'] == 1) { ?>

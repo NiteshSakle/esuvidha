@@ -18,10 +18,11 @@ if ($_POST) {
     $userEmail = $_POST['userEmail'];
     $qry2 = "SELECT * FROM user WHERE quarterno='$address'";
     $result2 = mysql_query($qry2);
-    if ($sapid !== '' and $cpfno !== '' and $password !== '' and $firstName !== '' and $lastName !== '' and $type !== '' and $buildno !== '' and $qrtno !== '') {
+    if ($sapid !== '' and $cpfno !== '' and $password !== '' and $firstName !== '' and $type !== '' and $buildno !== '' and $qrtno !== '') {
         //echo $result2;
-        if (mysql_fetch_array($result2) !== true) {
-
+        if (mysql_fetch_array($result2) != true) {
+            echo $result2;
+            exit();
             $qry1 = "insert into user values('',$sapid,$cpfno,'','$firstName','$lastName','$address','$Mobile','$userEmail','$password','','','')";
 
             mysql_query($qry1);
@@ -63,11 +64,11 @@ if ($_POST) {
                     <td>
                         Type: <select name="type" id="type" class="" style="margin-left: 9%">
                             <option class="" value="">Type</option>
-                            <option class="" value="I">A</option>
-                            <option class="" value="II">B</option>
-                            <option class="" value="III">C</option>
-                            <option class="" value="IV">D</option>
-                            <option class="" value="V">E</option>
+                            <option class="" value="A">A</option>
+                            <option class="" value="B">B</option>
+                            <option class="" value="C">C</option>
+                            <option class="" value="D">D</option>
+                            <option class="" value="E">E</option>
 
                         </select>
                         <br/>
@@ -80,10 +81,10 @@ if ($_POST) {
                 </tr>
 
                 <tr><td>Mobile Number</td>
-                    <td><input type="text" class="demoInputBox" name="Mobile" value=""></td>
+                    <td><input type="text" class="demoInputBox" name="Mobile" value="" pattern="[789][0-9]{9}" title="Not a valid number"></td>
                 </tr>
                 <tr><td>Email</td>
-                    <td><input type="text" class="demoInputBox" name="userEmail" value="<?php if (isset($_POST['userEmail'])) echo $_POST['userEmail']; ?>"></td>
+                    <td><input type="text" class="demoInputBox" name="userEmail" value="<?php if (isset($_POST['userEmail'])) echo $_POST['userEmail']; ?>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Not a valid email"></td>
                 </tr>
                 <tr>
                     <td colspan="2">

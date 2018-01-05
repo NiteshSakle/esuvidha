@@ -118,6 +118,7 @@ if ($_POST) {
     $ipaddress = get_real_up_address();
     $priority = $_POST['group1'];
     $remark = $_POST['remark'];
+
     if($remark == "Please Select Subdefect" and $sec[0] != 3) {
         echo "<script>
             alert('Please Select Sub Problem..!!');
@@ -184,11 +185,11 @@ if ($_POST) {
                 </tr>
             <?php } ?>
             <tr>
-                <td>Select problem<font color="red">*</font></td>
+                <td>Select Defect<font color="red">*</font></td>
                 <td> 
 
                     <h3><select name="problem" id="problem" onchange="getState(this.value)" required>
-                            <option value="">Please Select Main Problem</option>
+                            <option value="">Please Select Main Defect</option>
                             <?php
                             $cntry = mysql_query("SELECT `defect_Id`, `defect_name` FROM electric_defect ORDER BY `defect_name` ASC");
                             while ($row = mysql_fetch_assoc($cntry)) {
@@ -202,10 +203,10 @@ if ($_POST) {
             </tr>
 
             <tr>
-                <td>Sub Problem<font color="red">*</font></td>
+                <td>Sub Defect<font color="red">*</font></td>
                 <td><!--textarea name="remark" rows="9" cols="55"></textarea--> 
                     <h3><select name="remark" id="remark" onchange="getCity(this.value)">
-                            <option value="-1">Please Select Sub Problem</option>
+                            <option value="-1">Please Select Sub Defect</option>
                         </select>
                     </h3>
                 </td>

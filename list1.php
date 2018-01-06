@@ -94,9 +94,6 @@ if (isset($_SESSION['emp_id'])) { ?>     <style>
             background-color: #9999CC; color: green;
         }
 
-
-    </style>
-    <style>
         .paginate {
             font-family:Arial, Helvetica, sans-serif;
             padding: 3px;
@@ -134,23 +131,9 @@ if (isset($_SESSION['emp_id'])) { ?>     <style>
             padding:4px;
             margin-bottom:3px;
             background-color:#FCC;
-            list-style:none;}
-
-/*        ul{
-           margin:6px;
-           padding:0px;}
+            list-style:none;
+        }
         
-        .button {
-            background: #F5FAFA;
-            padding: 4px;
-            float: right;
-            text-align: center;
-            border-radius: 5px;
-            color: #000;
-            margin-right: 5%;
-            font-weight: bold;
-        }*/
-
     </style>
     <?php
     $query = '';
@@ -226,22 +209,6 @@ if (isset($_SESSION['emp_id'])) { ?>     <style>
 
     $result = mysql_query($query1);
     
-//    $tmp_result = mysql_query($query1);
-//    $num_column = mysql_num_fields($tmp_result);
-//    $csv_header = '';
-//    for($i=0;$i<$num_column;$i++) {
-//            $csv_header .= '"' . mysql_field_name($tmp_result,$i) . '",';
-//    }	
-//    $csv_header .= "\n";
-//
-//    $csv_row ='';
-//    
-//    while($row = mysql_fetch_row($tmp_result)) {
-//	for($i=0;$i<$num_column;$i++) {
-//		$csv_row .= '"' . $row[$i] . '",';
-//	}
-//	$csv_row .= "\n";
-//    }
     // Initial page num setup
     if ($page == 0) {
         $page = 1;
@@ -374,10 +341,6 @@ if (isset($_SESSION['emp_id'])) { ?>     <style>
                         <?php } ?> 
         </form>
         
-<!--        <form action="welcome.php" method="post">
-        <a href="downloadcsv.php?head=<?php echo $csv_row; ?>"> Delete </a>-->
-
-        <?php echo '<a class="button" href="downloadcsv.php?header='. $csv_header .'&row=' . $csv_row .'" >' ."Export to CSV".'</a>'; ?>
         <?php if( $total_pages > 0) { ?>
         <tr>
             <td colspan=4><?php echo 'Total:-' . $total_pages . '   ' . $paginate;

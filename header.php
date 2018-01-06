@@ -147,7 +147,7 @@ function get_real_up_address() {
                     if(!isset($_GET['area'])) {?> <li class="menuitem"><a href="#">IP Address <?php echo get_real_up_address(); ?></a></li> <?php } ?>
                     <li class="menuitem"><a href="editprofile.php?area=civil">Edit Profile</a></li>
                     <?php if ($_SESSION['privilege'] == 1) { ?>
-                        <li class="menuitem"><a href="register.php?area=civil">Register New Account</a></li>
+                        <li class="menuitem"><a href="register.php?area=civil"> New Quarter Allotment</a></li>
                         <?php }
                     ?>
                     <li class="menuitem"><a href="logout.php">Logout</a></li>                    

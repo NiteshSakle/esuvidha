@@ -119,9 +119,9 @@ if ($_POST) {
     $priority = $_POST['group1'];
     $remark = $_POST['remark'];
 
-    if($remark == "Please Select Subdefect" and $sec[0] != 3) {
+    if($remark == "Please Select Sub Defect") {
         echo "<script>
-            alert('Please Select Sub Problem..!!');
+            alert('Please Select Sub Defect..!!');
             window.location.href='addticket_electric.php?area=electric';
             </script>";
             exit();

@@ -136,9 +136,9 @@ if ($_POST) {
     $ipaddress = get_real_up_address();
     $priority = $_POST['group1'];
     $remark = $_POST['remark'];
-    if($remark == "Please Select Subdefect") {
+    if($remark == "Please Select Sub Defect") {
         echo "<script>
-            alert('Please Select Sub Problem..!!');
+            alert('Please Select Sub Defect..!!');
             window.location.href='addticket_civil.php?area=civil';
             </script>";
             exit();

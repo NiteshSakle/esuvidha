@@ -30,19 +30,6 @@ function get_real_up_address() {
             body { background-image:url(images/back.JPG); no-repeat;}
 
         </style>
-        <?PHP
-
-//        IF ($_SESSION['area'] == 'electric') {
-//            $tableName = "electric_ticketmaster";
-//        }
-//        IF ($_SESSION['area'] == 'civil') {
-//            $tableName1 = "civil_ticketremarks";
-//        }
-//        IF ($_SESSION['area'] == 'electric') {
-//            $tableName1 = "electric_ticketremarks";
-//        }
-//        ?>
-
         <title>Khaperkheda TPS e-सुविधा</title>
     </head>
     <script language="javascript" type="text/javascript">
@@ -113,13 +100,13 @@ function get_real_up_address() {
     </script>
     <body>
         <div class="heading">
-            <img src="images/logo.png" alt=""/>        
+            <img src="images/logo.png" alt="Mahagenco"/>        
             <h1 class="headline">KHAPERKHEDA THERMAL POWER STATION</h1>
         </div>
         <span>
-         <a href="http://192.168.103.101:7777/esuvidha/index.php"><span style="font-size:20px;color: lightskyblue; text-align: left; margin-left: 20px;top:10px">Home</span> </a>   
+<!--         <a href="http://192.168.103.101:7777/esuvidha/index.php"><span style="font-size:20px;color: lightskyblue; text-align: left; margin-left: 20px;top:10px">Home</span> </a>   -->
             <?php if (isset($_SESSION['firstname'])) { ?>
-                <span style="float:right; color: lightskyblue;font-size:20px; margin-right: 2%"> Hello, <?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?></span>
+                <span style="float:right; color: lightskyblue;font-size:20px; margin-right: 2%"> Welcome, <?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?></span>
             <?php } ?>
         </span>
         <?php
@@ -127,33 +114,31 @@ function get_real_up_address() {
         IF ($_GET['area'] == 'civil' or $area1 == 'civil') {
             ?>
             <h1 style="text-align: center; margin: 30px 0px 0px 0px"> <u> CIVIL COLONY MAINTENANCE </u> </h1> 
-        <?php } elseif ($_SESSION['area'] == 'electric' OR $area1 == 'electric') { ?>
+        <?php } elseif ($_GET['area'] == 'electric' OR $area1 == 'electric') { ?>
             <h1 style="text-align: center; margin: 30px 0px 0px 0px"> <u> EM-COLONY </u> </h1><?php } ?>
         <?php IF ($area1 == '' AND ! isset($_SESSION['sapid'])) { ?>
             <h2></h2><?php } ?>
 
-        <div id="menu" style="margin-left: 25%; margin-top: 1%">
-            <ul >
+        <div class="topnav">
                 <?php if (isset($_SESSION['sapid'])) { ?>
-
+                    <a href="http://192.168.103.101:7777/esuvidha/index.php"><span>Home</span> </a> 
                     <?php
-//                    echo $_POST['area'];
                     IF ($_GET['area'] == 'civil' and $_SESSION['quarterno'] !== '') {
                         ?>
-                        <li class="menuitem"><a href="addticket_civil.php?area=<?php echo $_GET['area'];?>">Add Defect</a></li> 
+                         <a href="addticket_civil.php?area=<?php echo $_GET['area'];?>">Add Defect</a>  
                     <?php }IF ($_GET['area'] == 'electric' and $_SESSION['quarterno'] !== '') { ?>
-                        <li class="menuitem"><a href="addticket_electric.php">Add Defect</a></li><?php } 
-                    if(isset($_GET['area'])) {?> <li class="menuitem"><a href="list1.php?area=<?php echo $_GET['area'];?>">My Defect</a></li> <?php } 
-                    if(!isset($_GET['area'])) {?> <li class="menuitem"><a href="#">IP Address <?php echo get_real_up_address(); ?></a></li> <?php } ?>
-                    <li class="menuitem"><a href="editprofile.php?area=civil">Edit Profile</a></li>
+                         <a href="addticket_electric.php?area=<?php echo $_GET['area'];?>">Add Defect</a> <?php } 
+                    if(isset($_GET['area'])) {?>  <a href="list1.php?area=<?php echo $_GET['area'];?>">My Defect</a>  <?php } 
+                    if(!isset($_GET['area'])) {?>  <a href="#">IP Address <?php echo get_real_up_address(); ?></a>  <?php } ?>
+                     <a href="editprofile.php">Edit Profile</a> 
                     <?php if ($_SESSION['privilege'] == 1) { ?>
-                        <li class="menuitem"><a href="register.php?area=civil"> New Quarter Allotment</a></li>
+                         <a href="register.php?area=civil"> New / Change Of Quarter</a> 
                         <?php }
                     ?>
-                    <li class="menuitem"><a href="logout.php">Logout</a></li>                    
+                     <a href="logout.php">Logout</a>                     
                     <?php } ?> 
 
                 <!--li class="menuitem"><a href="search.php">Search</a></li--> 
-            </ul>
+
         </div>
 

@@ -8,15 +8,15 @@ $result = mysql_query("SELECT * FROM section ORDER BY name ASC");
 
     <form id="form1" name="form1" method="post" action="login_exec.php" onSubmit="return validate();">
         
-        <table width="99%" border="0" cellspacing="0" cellpadding="50" style="margin-top: 5%">
+        <table width="100%" border="0" cellspacing="0" cellpadding="50" style="margin: 0 5%">
             <tr>
-                <td width="33%" style="padding: 0px 180px !important">
+                <td width="30%">
                     <a href='addticket_civil.php?area=civil' ><img src="images/civil.jpg" ></a>
                 </td>
-                <td width="33%" >
+                <td width="30%" >
                     <a href='addticket_electric.php?area=electric' ><img src="images/electric.jpg"  ></a> 
                 </td>
-                <td width="33%">
+                <td width="30%">
                     <a href='http://192.168.100.3/MIS_MM/defectList.aspx' ><img src="images/comp.jpg"></a> 
                 </td>
             </tr>

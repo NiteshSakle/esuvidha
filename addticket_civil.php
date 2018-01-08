@@ -136,7 +136,7 @@ if ($_POST) {
     $ipaddress = get_real_up_address();
     $priority = $_POST['group1'];
     $remark = $_POST['remark'];
-    if($remark == "Please Select Sub Defect") {
+    if($remark == "Please Select Subdefect") {
         echo "<script>
             alert('Please Select Sub Defect..!!');
             window.location.href='addticket_civil.php?area=civil';
@@ -223,8 +223,8 @@ if ($_POST) {
             <tr>
                 <td>Sub Defect<font color="red">*</font></td>
                 <td><!--textarea name="remark" rows="9" cols="55"></textarea--> 
-                    <h3><select name="remark" id="remark" onchange="getCity(this.value)">
-                            <option value="-1">Please Select Sub Defect</option>
+                    <h3><select name="remark" id="remark" onchange="getCity(this.value)" required>
+                            <option value="">Please Select Sub Defect</option>
                         </select>
                     </h3>
                 </td>

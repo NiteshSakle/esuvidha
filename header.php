@@ -113,9 +113,9 @@ function get_real_up_address() {
         $area1 = $_GET['id2'];
         IF ($_GET['area'] == 'civil' or $area1 == 'civil') {
             ?>
-            <h1 style="text-align: center; margin: 30px 0px 0px 0px"> <u> CIVIL COLONY MAINTENANCE </u> </h1> 
+            <h2 style="text-align: center; margin: 30px 0px 0px 0px"> <u> CIVIL COLONY MAINTENANCE </u> </h2> 
         <?php } elseif ($_GET['area'] == 'electric' OR $area1 == 'electric') { ?>
-            <h1 style="text-align: center; margin: 30px 0px 0px 0px"> <u> EM-COLONY </u> </h1><?php } ?>
+            <h2 style="text-align: center; margin: 30px 0px 0px 0px"> <u> EM-COLONY </u> </h2><?php } ?>
         <?php IF ($area1 == '' AND ! isset($_SESSION['sapid'])) { ?>
             <h2></h2><?php } ?>
 

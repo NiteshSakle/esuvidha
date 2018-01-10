@@ -22,15 +22,9 @@ if ($_POST) {
 
     $defect = $_POST['problem'];
 }
-if ($_POST) {
-    $def = $_POST['problem'];
-    //echo $def;
-}
-if ($_GET) {
-    $def = $_GET['problem'];
-    //echo $def;
-}
-if (isset($_SESSION['emp_id'])) { ?>     <style>
+
+if (isset($_SESSION['emp_id'])) {
+    ?>     <style>
         table { margin: 1em; border-collapse: collapse; }
         td, th { padding: .3em; border: 1px #ccc solid; }
         thead { background: #fc9; }
@@ -44,7 +38,6 @@ if (isset($_SESSION['emp_id'])) { ?>     <style>
             border-bottom: 1px solid #C1DAD7;
             border-top: 1px solid #C1DAD7;
             letter-spacing: 2px;
-
             text-align: left;
             padding: 6px 6px 6px 12px;
             background: #CAE8EA url(images/bg_header.jpg) no-repeat;
@@ -133,15 +126,15 @@ if (isset($_SESSION['emp_id'])) { ?>     <style>
             background-color:#FCC;
             list-style:none;
         }
-        
+
     </style>
     <?php
     $query = '';
     $query1 = '';
-    IF ( $_GET['area'] == 'civil') {
+    IF ($_GET['area'] == 'civil') {
         $tableName = "civil_ticketmaster";
     }
-    IF ( $_GET['area'] == 'electric') {
+    IF ($_GET['area'] == 'electric') {
         $tableName = "electric_ticketmaster";
     }
     $targetpage = "list1.php";
@@ -208,7 +201,7 @@ if (isset($_SESSION['emp_id'])) { ?>     <style>
 
 
     $result = mysql_query($query1);
-    
+
     // Initial page num setup
     if ($page == 0) {
         $page = 1;
@@ -293,69 +286,78 @@ if (isset($_SESSION['emp_id'])) { ?>     <style>
         }
 
         //	$paginate.= "</div>";
-    }            
+    }
 // echo $total_pages.' Results';
     // pagination
 // echo $paginate;
-            if($total_pages == 0) {
-                echo "<script>
-                    alert('Please add defect first..!!');
-                    window.location.href='login.php';
+    if ($total_pages == 0) {
+        echo "<script>
+                    alert('Please add defect first..!!');                    
                     </script>";
-            }
+        if($_GET['area'] == 'civil') {
+            echo "<script> window.location.href='addticket_civil.php?area=civil' </script>";
+        } elseif($_GET['area'] == 'electric') {
+            echo "<script> window.location.href='addticket_electric.php?area=electric' </script>";
+        }
+        exit();
+    }
     ?>
     <div>
-        <form id="form1" name="form1" method="post" action="list1.php?id=1&area=<?php echo $_GET['area'];?>" onSubmit="return validate1();">
+        <form id="form1" name="form1" method="post" action="list1.php?id=1&area=<?php echo $_GET['area']; ?>" onSubmit="return validate1();">
             <table width="95%" border="1" cellspacing="2" cellpadding="2">
                 .
     <?php if ($_SESSION['privilege'] != 0) { ?>
 
                     <span><select name="problem" id="problem">
                             <option value="-1">Select Defect Group</option>
-        <?php
-        IF ($_GET['area'] == 'civil') {
-            $cntry = mysql_query("SELECT `defect_Id`, `defect_name` FROM civil_defect ORDER BY `defect_name` ASC");
-            while ($row = mysql_fetch_assoc($cntry)) {
-                ?>	
+                            <?php
+                            IF ($_GET['area'] == 'civil') {
+                                $cntry = mysql_query("SELECT `defect_Id`, `defect_name` FROM civil_defect ORDER BY `defect_name` ASC");
+                                while ($row = mysql_fetch_assoc($cntry)) {
+                                    ?>	
                                     <option value="<?php echo $row['defect_name']; ?>"  <?php if ($_POST[problem] == $row[defect_name]) echo "selected"; ?> <?php if ($_GET[problem] == $row[defect_name]) echo "selected"; ?> ><?php echo $row['defect_name']; ?></option> 
 
-            <?php }
-        }
-        ?>
-        <?php
-        IF ($_GET['area'] == 'electric') {
-            $cntry = mysql_query("SELECT `defect_Id`, `defect_name` FROM electric_defect ORDER BY `defect_name` ASC");
-            while ($row = mysql_fetch_assoc($cntry)) {
-                ?>	
+                                <?php
+                                }
+                            }
+                            ?>
+                            <?php
+                            IF ($_GET['area'] == 'electric') {
+                                $cntry = mysql_query("SELECT `defect_Id`, `defect_name` FROM electric_defect ORDER BY `defect_name` ASC");
+                                while ($row = mysql_fetch_assoc($cntry)) {
+                                    ?>	
                                     <option value="<?php echo $row['defect_name']; ?>"  <?php if ($_POST[problem] == $row[defect_name]) echo "selected"; ?> <?php if ($_GET[problem] == $row[defect_name]) echo "selected"; ?> ><?php echo $row['defect_name']; ?></option> 
 
-            <?php }
-        }
-        ?>
+                                <?php
+                                }
+                            }
+                            ?>
 
 
                         </select>									
 
                     </span>
                     <input type="submit" name="submit" id="submit" value="Submit"  />
-                        <?php } ?> 
+        <?php } ?> 
         </form>
-        
-        <?php if( $total_pages > 0) { ?>
-        <tr>
-            <td colspan=4><?php echo 'Total:-' . $total_pages . '   ' . $paginate;
-                    if ($id == 1) {
-                        echo $defect;
-                    } ?>
 
-            </td>
+                <?php if ($total_pages > 0) { ?>
+            <tr>
+                <td colspan=4><?php
+            echo 'Total:-' . $total_pages . '   ' . $paginate;
+            if ($id == 1) {
+                echo $defect;
+            }
+            ?>
 
-            <td><a href="list1.php?status=1&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area'];?>">View New</a></td>
-            <td><a href="list1.php?status=2&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area'];?>">View Attended</a></td>
-            <td><a href="list1.php?status=3&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area'];?>">View Pending</a></td>
-            <td><a href="http://192.168.5.20/esuvidha/list1.php">View All</a></td>
-        </tr>
-        <?php } ?>
+                </td>
+
+                <td><a href="list1.php?status=1&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>">View New</a></td>
+                <td><a href="list1.php?status=2&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>">View Attended</a></td>
+                <td><a href="list1.php?status=3&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>">View Pending</a></td>
+                <td><a href="http://192.168.5.20/esuvidha/list1.php">View All</a></td>
+            </tr>
+    <?php } ?>
         <tr>
             <th width='5%'>Ticket ID</th>
             <th width='20%'>Name</th>
@@ -366,30 +368,35 @@ if (isset($_SESSION['emp_id'])) { ?>     <style>
             <th width='10%'>QrtNo</th>
             <th width='10%'>Signature</th>
         </tr>
-    <?php while ($row = mysql_fetch_array($result)) { ?>
+                <?php while ($row = mysql_fetch_array($result)) { ?>
             <tr>
-                <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid'] ?>&area=<?php echo $_GET['area'];?>"><?php echo $row['ticketid']; ?></a></td>
+                <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid'] ?>&area=<?php echo $_GET['area']; ?>"><?php echo $row['ticketid']; ?></a></td>
                 <td><?php echo empName($row['emp_id']); ?></td>
-                <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid']?>&area=<?php echo $_GET['area'];?>"><?php echo $row['remark']; ?></a></td>
+                <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid'] ?>&area=<?php echo $_GET['area']; ?>"><?php echo $row['remark']; ?></a></td>
                 <td><?php
-        //echo $row['createdate'] ; 
-        echo date("d/m/y", strtotime($row['createdate']));
-        ?>
+            //echo $row['createdate'] ; 
+            echo date("d/m/y", strtotime($row['createdate']));
+                    ?>
 
                 </td>
                 <td><?php echo $row['ext']; ?></td>
-                <td <?php if ($row['status'] == 1) { ?> class="datacellone" <?php } ?> ><?php if ($row['status'] == 1) echo "New";
-        if ($row['status'] == 2) echo "Attended";
-        if ($row['status'] == 3) echo "Pending"; ?></td>
+                <td <?php if ($row['status'] == 1) { ?> class="datacellone" <?php } ?> ><?php
+                    if ($row['status'] == 1)
+                        echo "New";
+                    if ($row['status'] == 2)
+                        echo "Attended";
+                    if ($row['status'] == 3)
+                        echo "Pending";
+                    ?></td>
                 <td><?php
-        if ($_SESSION['privilege'] == 2 or $_SESSION['privilege'] == 1)
-            echo $row['assign'];
-        else
-            echo $_SESSION['quarterno'];
-        ?></td>
+                    if ($_SESSION['privilege'] == 2 or $_SESSION['privilege'] == 1)
+                        echo $row['assign'];
+                    else
+                        echo $_SESSION['quarterno'];
+                    ?></td>
                 <td><?php ?></td>
 
             </tr>        	<?php } ?>
     </table>
     .
-    </div>      <?php }  ?>
+    </div>      <?php } ?>

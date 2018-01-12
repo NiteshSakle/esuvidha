@@ -10,7 +10,7 @@ if ($_POST) {
     $type = $_POST['type'];
     $buildno = $_POST['buildno'];
     $quarterno = $_POST['quarterno'];
-    $address = $type . "/" . $buildno . "/" . $qrtno;
+    $address = $type . "/" . $buildno . "/" . $quarterno;
 
     $Mobile = $_POST['Mobile'];
     $userEmail = $_POST['userEmail'];
@@ -21,7 +21,7 @@ if ($_POST) {
         if (mysql_fetch_array($result2) !== true) {
             if ($quarterno != '') {
 //$qry1="insert into user values('',$sapid,$cpfno,'','$firstName','$lastName','$address','$Mobile','$userEmail','$password','','','')";
-                echo $qry1 = "UPDATE user SET password='$password',quarterno='$quarterno',mobileno='$Mobile',email='$userEmail' WHERE sapid=$_SESSION[sapid]";
+                echo $qry1 = "UPDATE user SET password='$password',quarterno='$address',mobileno='$Mobile',email='$userEmail' WHERE sapid=$_SESSION[sapid]";
             } else {
                 //$qry1="insert into user values('',$sapid,$cpfno,'','$firstName','$lastName','$address','$Mobile','$userEmail','$password','','','')";
                 echo $qry1 = "UPDATE user SET password='$password',mobileno='$Mobile',email='$userEmail' WHERE sapid=$_SESSION[sapid]";

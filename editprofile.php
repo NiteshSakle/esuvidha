@@ -43,17 +43,33 @@ include("connect.php");
                     <td><?PHP echo $_SESSION['firstname']; ?></td>
                 </tr>
 
-                <tr><td>Quarter No(eg D/125/13)</td>
+                <?php if ($_SESSION['quarterno'] == "") { ?>
+                    <tr>
+                        <td>Address</td>
+                        <td>
+                            Type: <select name="type" id="type" class="" style="margin-left: 9%">
+                                    <option class="" value="">Type</option>
+                                    <option class="" value="A">A</option>
+                                    <option class="" value="B">B</option>
+                                    <option class="" value="C">C</option>
+                                    <option class="" value="D">D</option>
+                                    <option class="" value="E">E</option>
+                                </select>
+                            <br/>
+                            Bulid no:
+                            <input type="text" id="buildno_txt" class="demoInputBox" name="buildno" value="" size=2" style="width: 74%; margin: 10px">
+                            <br/>
+                            Qrt no:  &nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" id="qrtno_txt" class="demoInputBox" name="quarterno" value="" size="3" style="width: 74%">
+                        </td>
+                    </tr>
+                <?php } else{ ?>
+                    <tr><td>Quarter No </td>
                     <td>
-    <?php if ($_SESSION['quarterno'] == "") { ?> <input type="text" class="demoInputBox" name="quarterno" id="quarterno" value=""><?php } else {
-        ?>
-
-         <input type="text" class="demoInputBox" name="quarterno" id="quarterno" value="<?php echo $_SESSION['quarterno']; ?>" disabled>
-
-    <?php } ?>
+                        <input type="text" class="demoInputBox" name="quarterno" id="quarterno" value="<?php echo $_SESSION['quarterno']; ?>" disabled>
                     </td>
-
-                </tr>		
+                </tr>	
+                <?php } ?>
                 <tr><td>Mobile Number</td>
                     <td><input type="text" class="demoInputBox" name="Mobile" id="Mobile" value="<?php echo $_SESSION['mobileno']; ?>"  pattern="[789][0-9]{9}" title="Not a valid number"></td>
                 </tr>

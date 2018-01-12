@@ -182,7 +182,7 @@ if (isset($_SESSION['emp_id'])) {
     if ($status) {
         $query1 .= "  and status=$status ";
     }
-    if ($prob) {
+    if ($prob && $prob != -1) {
         $query1 .= "  and problem='$prob' ";
     }
     if ($id == 1 && $defect != -1) {

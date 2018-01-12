@@ -355,7 +355,7 @@ p {text-align: left;}
 .topnav {
     overflow: hidden;
     background-color: dimgray;
-    margin: 30px auto 0;
+    margin: 23px auto 10px;
     width: 70%
 }
 

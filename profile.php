@@ -7,16 +7,21 @@ if ($_POST) {
     $password = $_POST['password'];
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
-    $type = $_POST['type'];
-    $buildno = $_POST['buildno'];
-    $quarterno = $_POST['quarterno'];
-    $address = $type . "/" . $buildno . "/" . $quarterno;
+
+    if(isset($_SESSION['quarterno'])){
+        $address = $_SESSION['quarterno'];
+    } else{
+        $type = $_POST['type'];
+        $buildno = $_POST['buildno'];
+        $quarterno = $_POST['quarterno'];
+        $address = $type . "-" . $buildno . "/" . $quarterno;
+    }
 
     $Mobile = $_POST['Mobile'];
     $userEmail = $_POST['userEmail'];
     $qry2 = "SELECT * FROM user WHERE quarterno='$address'";
     $result2 = mysql_query($qry2);
-    if ($sapid !== '' and $cpfno !== '' and $password !== '' and $firstName !== '' and $lastName !== '' and $type !== '' and $buildno !== '' and $qrtno !== '') {
+    if ($sapid !== '' and $cpfno !== '' and $password !== '' and $firstName !== '' and $lastName !== '' and $type !== '' and $address !== '') {
         //echo $result2;
         if (mysql_fetch_array($result2) !== true) {
             if ($quarterno != '') {
@@ -33,7 +38,7 @@ if ($_POST) {
             mysql_query($qry1);
             $_SESSION['mobileno'] = $Mobile;
             $_SESSION['email'] = $userEmail;
-            $_SESSION['quarterno'] = $quarterno;
+            $_SESSION['quarterno'] = $address;
             
             echo "<script>
                     alert('Your information has been saved..!!');

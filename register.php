@@ -19,7 +19,7 @@ if ($_POST) {
         $type = $_POST['type'];
         $buildno = $_POST['buildno'];
         $qrtno = $_POST['qrtno'];
-        $address = $type . "/" . $buildno . "/" . $qrtno;        
+        $address = $type . "-" . $buildno . "/" . $qrtno;        
         $qry2 = "SELECT * FROM user WHERE quarterno='$address'";
         $result2 = mysql_query($qry2); 
     }

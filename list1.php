@@ -174,7 +174,7 @@ if (isset($_SESSION['emp_id'])) {
     $id = $_GET['id'];
 
     // Get page data
-    $query1 .= " SELECT * FROM $tableName where 1=1  ";
+    $query1 .= " SELECT ticketid, emp_id, problem, assign as qrtno, createdate, status, ipaddress, remark, nameofperson, ext FROM $tableName where 1=1  ";
 
 
     $status = mysql_escape_string($_GET['status']);
@@ -199,7 +199,7 @@ if (isset($_SESSION['emp_id'])) {
     }
     $query1 .= "  ORDER BY status,ticketid desc  LIMIT $start, $limit ";
 
-
+    
     $result = mysql_query($query1);
 
     // Initial page num setup
@@ -303,12 +303,16 @@ if (isset($_SESSION['emp_id'])) {
     }
     ?>
     <div>
+        <form id="form2" method="post" action="daownloadcsv.php">
+            <input type="hidden" name="qry" id="qry" value="<?php echo $query1?>" />
+            <input type="submit" name="submit" id="submit" value="Export" style="float: right; margin-right: 4%"  />             
+        </form>
+        
         <form id="form1" name="form1" method="post" action="list1.php?id=1&area=<?php echo $_GET['area']; ?>" onSubmit="return validate1();">
             <table width="95%" border="1" cellspacing="2" cellpadding="2">
-                .
                 <?php if ($_SESSION['privilege'] != 0) { ?>
 
-                    <span><select name="problem" id="problem">
+                <span><select name="problem" id="problem" style="margin-left: 1%">
                             <option value="-1">Select Defect Group</option>
                             <?php
                             IF ($_GET['area'] == 'civil') {
@@ -338,6 +342,7 @@ if (isset($_SESSION['emp_id'])) {
 
                     </span>
                     <input type="submit" name="submit" id="submit" value="Submit"  />
+                    
                 <?php } ?> 
         </form>
 
@@ -389,7 +394,7 @@ if (isset($_SESSION['emp_id'])) {
                     ?></td>
                 <td><?php
                     if ($_SESSION['privilege'] == 2 or $_SESSION['privilege'] == 1)
-                        echo $row['assign'];
+                        echo $row['qrtno'];
                     else
                         echo $_SESSION['quarterno'];
                     ?></td>

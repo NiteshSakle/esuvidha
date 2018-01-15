@@ -111,17 +111,16 @@
 include("connect.php");
 include("header.php");
 
-$result = mysql_query("SELECT * FROM civil_defect");
 if ($_POST) {
-    if (!isset($_SESSION['emp_id'])) {
-        $_SESSION['sapid'] = $member['sapid'];
-        $_SESSION['cpfno'] = $member['cpfno'];
-        $_SESSION['privilege'] = $member['privilege'];
-        $_SESSION['firstname'] = $member['firstname'];
-        $_SESSION['lastname'] = $member['lastname'];
-        $_SESSION['quarterno'] = $member['quarterno'];
-        $_SESSION['mobileno'] = $member['mobileno'];
-    }
+//    if (!isset($_SESSION['emp_id'])) {
+//        $_SESSION['sapid'] = $member['sapid'];
+//        $_SESSION['cpfno'] = $member['cpfno'];
+//        $_SESSION['privilege'] = $member['privilege'];
+//        $_SESSION['firstname'] = $member['firstname'];
+//        $_SESSION['lastname'] = $member['lastname'];
+//        $_SESSION['quarterno'] = $member['quarterno'];
+//        $_SESSION['mobileno'] = $member['mobileno'];
+//    }
 
 
     $emp_id = $_SESSION['emp_id'];
@@ -192,6 +191,7 @@ if ($_POST) {
 } else {
     $_SESSION['area'] = $_GET['area'];
 }
+$result = mysql_query("SELECT * FROM civil_defect");
 ?>
 
 <form id="form1" name="form1" method="post" action="addticket_civil.php" onSubmit="return validate1(this.form);">

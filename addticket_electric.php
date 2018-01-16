@@ -149,22 +149,24 @@ if ($_POST) {
         $qry = "insert into electric_ticketremarks values('',$ticketid,'$remark','$createdate','','')";
         mysql_query($qry);
 
-        //echo $ticketid;
-        //echo $firstname;
-        //echo urlencode($_SESSION['firstname']);
-        $sms = "Dear%20" . urlencode($_SESSION['firstname']) . "%20Thank%20you%20for%20contacting%20us.Ticket%20No:" . $ticketid . "%20%20We%20will%20get%20back%20to%20you%20soon!";
-// create a new cURL resource
-
-        $ch = curl_init();
-
-// set URL and other appropriate options
-        curl_setopt($ch, CURLOPT_URL, "http://api.mvaayoo.com/mvaayooapi/MessageCompose?user=sakoradi@mahagenco.in:ktps123&senderID=KTPSOM&receipientno=$ext&dcs=0&msgtxt='$sms'&state=4");
-
-// grab URL and pass it to the browser
-        curl_exec($ch);
-
-// close cURL resource, and free up system resources
-        curl_close($ch);
+        try {
+            // Account details
+            $apiKey = urlencode('3sC/BU7S7LI-d14vm2GSfGKeRnbkZuqf3IVzd7GM8L');	
+            $msg = "Dear " . $_SESSION['firstname'] . " Thank you for contacting us.Ticket No:" . $ticketid . "  We will get back to you soon!";
+            $sender = urlencode('MKHTPS');
+            $message = rawurlencode($msg);
+            // Prepare data for POST request
+            $data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $message);
+            // Send the POST request with cURL
+            $ch = curl_init('https://api.textlocal.in/send/');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);        
+        } catch (Exception $ex) {
+            
+        }
 
         echo "<script>
                     alert('Your ticket is submitted successfully ..!!');

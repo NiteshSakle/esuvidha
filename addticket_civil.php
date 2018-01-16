@@ -153,21 +153,25 @@ if ($_POST) {
         $qry = "insert into civil_ticketremarks values('',$ticketid,'$remark','$createdate','','')";
         mysql_query($qry);  
         
-	// Account details
-	$apiKey = urlencode('3sC/BU7S7LI-d14vm2GSfGKeRnbkZuqf3IVzd7GM8L');	
-	$msg = "Dear " . $_SESSION['firstname'] . " Thank you for contacting us.Ticket No:" . $ticketid . "  We will get back to you soon!";
-        $sender = urlencode('TXTLCL');
-	$message = rawurlencode($msg);
-	// Prepare data for POST request
-	$data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $message);
-	// Send the POST request with cURL
-	$ch = curl_init('https://api.textlocal.in/send/');
-	curl_setopt($ch, CURLOPT_POST, true);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$response = curl_exec($ch);
-	curl_close($ch);        
-                
+        try {
+            // Account details
+            $apiKey = urlencode('3sC/BU7S7LI-d14vm2GSfGKeRnbkZuqf3IVzd7GM8L');	
+            $msg = "Dear " . $_SESSION['firstname'] . " Thank you for contacting us.Ticket No:" . $ticketid . "  We will get back to you soon!";
+            $sender = urlencode('MKHTPS');
+            $message = rawurlencode($msg);
+            // Prepare data for POST request
+            $data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $message);
+            // Send the POST request with cURL
+            $ch = curl_init('https://api.textlocal.in/send/');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);        
+        } catch (Exception $ex) {
+            
+        }
+
         echo "<script>
                     alert('Your ticket is submitted successfully ..!!');
                     window.location.href='list1.php?area=civil';

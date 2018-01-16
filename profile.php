@@ -8,7 +8,7 @@ if ($_POST) {
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
 
-    if(isset($_SESSION['quarterno'])){
+    if($_SESSION['quarterno'] != ''){
         $address = $_SESSION['quarterno'];
     } else{
         $type = $_POST['type'];
@@ -22,13 +22,12 @@ if ($_POST) {
     $qry2 = "SELECT * FROM user WHERE quarterno='$address'";
     $result2 = mysql_query($qry2);
     if ($sapid !== '' and $cpfno !== '' and $password !== '' and $firstName !== '' and $lastName !== '' and $type !== '' and $address !== '') {
-        //echo $result2;
         if (mysql_fetch_array($result2) !== true) {
             if ($quarterno != '') {
 //$qry1="insert into user values('',$sapid,$cpfno,'','$firstName','$lastName','$address','$Mobile','$userEmail','$password','','','')";
                 echo $qry1 = "UPDATE user SET password='$password',quarterno='$address',mobileno='$Mobile',email='$userEmail' WHERE sapid=$_SESSION[sapid]";
             } else {
-                //$qry1="insert into user values('',$sapid,$cpfno,'','$firstName','$lastName','$address','$Mobile','$userEmail','$password','','','')";
+//$qry1="insert into user values('',$sapid,$cpfno,'','$firstName','$lastName','$address','$Mobile','$userEmail','$password','','','')";
                 echo $qry1 = "UPDATE user SET password='$password',mobileno='$Mobile',email='$userEmail' WHERE sapid=$_SESSION[sapid]";
             }
 
@@ -52,12 +51,10 @@ if ($_POST) {
             //echo "quarter problem.";
         }
     } else {
-
         //header('Location:editprofile.php');
     }
 }
 ?>
-<?php //echo date('d/m/Y h:i:s');  ?>
 <?php if (!isset($_SESSION['section'])) { ?>
     <form name="frmRegistration" method="post" action="register.php">
         <div id="content_main">

@@ -128,7 +128,7 @@ function get_real_up_address() {
                          <a href="addticket_civil.php?area=<?php echo $_GET['area'];?>">Add Defect</a>  
                     <?php }IF ($_GET['area'] == 'electric' and $_SESSION['quarterno'] !== '') { ?>
                          <a href="addticket_electric.php?area=<?php echo $_GET['area'];?>">Add Defect</a> <?php } 
-                    if(isset($_GET['area'])) {?>  <a href="list1.php?area=<?php echo $_GET['area'];?>">My Defect</a>  <?php } 
+                    if(isset($_GET['area'])) {?>  <a href="list1.php?area=<?php echo $_GET['area'];?>">Defect List</a>  <?php } 
                     if(!isset($_GET['area'])) {?>  <a href="#">IP Address <?php echo get_real_up_address(); ?></a>  <?php } ?>
                      <a href="editprofile.php">Edit Profile</a> 
                     <?php if ($_SESSION['privilege'] == 1) { ?>

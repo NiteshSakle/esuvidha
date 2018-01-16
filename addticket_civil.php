@@ -112,16 +112,6 @@ include("connect.php");
 include("header.php");
 
 if ($_POST) {
-//    if (!isset($_SESSION['emp_id'])) {
-//        $_SESSION['sapid'] = $member['sapid'];
-//        $_SESSION['cpfno'] = $member['cpfno'];
-//        $_SESSION['privilege'] = $member['privilege'];
-//        $_SESSION['firstname'] = $member['firstname'];
-//        $_SESSION['lastname'] = $member['lastname'];
-//        $_SESSION['quarterno'] = $member['quarterno'];
-//        $_SESSION['mobileno'] = $member['mobileno'];
-//    }
-
 
     $emp_id = $_SESSION['emp_id'];
     $sec = explode("#", $_POST['problem']);
@@ -147,7 +137,6 @@ if ($_POST) {
 
     $remarkby = $_SESSION['section'];
     if ($problem == "Other") {
-
         $problem = $_POST['other'];
         if ($problem == "")
             $problem = $_POST['problem'];
@@ -159,29 +148,26 @@ if ($_POST) {
     } else {
 
         $qry1 = "insert into civil_ticketmaster values('','$emp_id','$defect_id','$problem','$assign','$createdate','$solvedate','$status','$ipaddress','','$remark','$nameofperson',$ext)";
-
         mysql_query($qry1);
         $ticketid = mysql_insert_id();
         $qry = "insert into civil_ticketremarks values('',$ticketid,'$remark','$createdate','','')";
-        mysql_query($qry);
-
-        //echo $ticketid;
-        //echo $firstname;
-        //echo urlencode($_SESSION['firstname']);
-        $sms = "Dear%20" . urlencode($_SESSION['firstname']) . "%20Thank%20you%20for%20contacting%20us.Ticket%20No:" . $ticketid . "%20%20We%20will%20get%20back%20to%20you%20soon!";
- //create a new cURL resource
-
-        $ch = curl_init();
-
- //set URL and other appropriate options
-        curl_setopt($ch, CURLOPT_URL, "http://api.mvaayoo.com/mvaayooapi/MessageCompose?user=sakoradi@mahagenco.in:ktps123&senderID=KTPSOM&receipientno=$ext&dcs=0&msgtxt='$sms'&state=4");
-
- //grab URL and pass it to the browser
-        curl_exec($ch);
-
- //close cURL resource, and free up system resources
-        curl_close($ch);
-
+        mysql_query($qry);  
+        
+	// Account details
+	$apiKey = urlencode('3sC/BU7S7LI-d14vm2GSfGKeRnbkZuqf3IVzd7GM8L');	
+	$msg = "Dear " . $_SESSION['firstname'] . " Thank you for contacting us.Ticket No:" . $ticketid . "  We will get back to you soon!";
+        $sender = urlencode('TXTLCL');
+	$message = rawurlencode($msg);
+	// Prepare data for POST request
+	$data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $message);
+	// Send the POST request with cURL
+	$ch = curl_init('https://api.textlocal.in/send/');
+	curl_setopt($ch, CURLOPT_POST, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$response = curl_exec($ch);
+	curl_close($ch);        
+                
         echo "<script>
                     alert('Your ticket is submitted successfully ..!!');
                     window.location.href='list1.php?area=civil';
@@ -216,7 +202,6 @@ $result = mysql_query("SELECT * FROM civil_defect");
                             ?>
                         </select>
                     </h3>
-
                 </td>
             </tr>
 

@@ -286,7 +286,8 @@ if ($status == 2) echo "ATTENDED";if ($status == 3) echo "PENDING"; ?></td>
                 </div>      <?php } ?>
             <div align="left"  style="padding:10px 0 10px 0;">
                 <input type="submit" name="submit" id="submit" value="Post Reply"  />
-                <input class='button' type='button' value='Cancel' onClick="window.location.href = 'list.php'" />
-            </div> </div>
+                <input class='button' type='button' value='Cancel' onClick="window.location.href = 'list1.php?area=<?php echo $area?>'" />
+            </div>
+        </div>
     </form>
 </div>

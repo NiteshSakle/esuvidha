@@ -4,12 +4,8 @@
 session_start();
 include("header.php");
 include("connect.php");
-//Include database connection details
-//require_once('connection.php');
-//Array to store validation errors
-$errmsg_arr = array();
 
-//Validation error flag
+$errmsg_arr = array();
 $errflag = false;
 
 //Function to sanitize values received from the form. Prevents SQL injection
@@ -60,7 +56,6 @@ if ($result) {
         $_SESSION['firstname'] = $member['firstname'];
         $_SESSION['lastname'] = $member['lastname'];
         $_SESSION['quarterno'] = $member['quarterno'];
-//        $_SESSION['area'] = $_POST['area'];
         $_SESSION['mobileno'] = $member['mobileno'];
         $_SESSION['email'] = $member['email'];
 
@@ -73,24 +68,8 @@ if ($result) {
         }
         exit();                    
 
-//        IF ($_POST['area'] == 'civil') {
-//            if ($member['mobileno'] == '' and $_SESSION['privilege'] == 0 or $_SESSION['quarterno'] == '') {
-//                header("location: editprofile.php");
-//            } else
-//                header("location: addticket_civil.php");
-//            exit();
-//        }
-//        IF ($_POST['area'] == 'electric') {
-//            if ($member['mobileno'] == '' and $_SESSION['privilege'] == 0 or $_SESSION['quarterno'] == '') {
-//                header("location: editprofile.php");
-//                exit();
-//            } else
-//                header("location: addticket_electric.php");
-//            exit();
-//        }
     }else {
         //Login failed
-
         $errmsg_arr[] = 'user name and password not found';
         $errflag = true;
         if ($errflag) {

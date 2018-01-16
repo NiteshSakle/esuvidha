@@ -39,7 +39,7 @@ include("connect.php");
                 <tr><td>Password</td>
                     <td><input type="password" class="demoInputBox" name="password" id="password" ></td>
                 </tr>
-                <tr><td>First Name</td>
+                <tr><td>Full Name</td>
                     <td><?PHP echo $_SESSION['firstname']; ?></td>
                 </tr>
 

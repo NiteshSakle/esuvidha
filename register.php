@@ -21,17 +21,19 @@ if ($_POST) {
         $qrtno = $_POST['qrtno'];
         $address = $type . "-" . $buildno . "/" . $qrtno;        
         $qry2 = "SELECT * FROM user WHERE quarterno='$address'";
-        $result2 = mysql_query($qry2); 
+        $res = mysql_query($qry2); 
+        $result2 = mysql_fetch_array($res);
     }
     $Mobile = $_POST['Mobile'];
     $userEmail = $_POST['userEmail'];
     
-    $checkusr_qry = "SELECT * FROM user WHERE sapid='$sapid' and cpfno='$cpfno'";
-    $checkusr_res = mysql_query($checkusr_qry);
+    $checkusr_qry = "SELECT * FROM user WHERE sapid='$sapid' or cpfno='$cpfno'";
+    $checkusr = mysql_query($checkusr_qry);
+    $checkusr_res = mysql_fetch_array($checkusr);
     
     if ($sapid !== '' and $cpfno !== '' and $password !== '' and $firstName !== '' and (($qrtAlloted == 'yes' and $type !== '' and $buildno !== '' and $qrtno !== '')or $qrtAlloted == 'no')) {
         
-        if (mysql_fetch_array($checkusr_res) != true and mysql_fetch_array($result2) != true) {
+        if ($checkusr_res != true and $result2 != true) {
             $qry1 = "insert into user values('',$sapid,$cpfno,'','$firstName','','$address','$Mobile','$userEmail','$password','','','')";
             mysql_query($qry1);
             echo "<script>
@@ -41,11 +43,11 @@ if ($_POST) {
             exit();
 
         } else {
-            if (mysql_fetch_array($result2) != true) {
-                $updateQry = "UPDATE `user` SET `quarterno`= '$address' WHERE sapid='$sapid' and cpfno='$cpfno'";
+            if ($checkusr_res == true and $result2 != true) {
+                $updateQry = "UPDATE `user` SET `quarterno`= '$address', 'mobileno' = '$Mobile' WHERE sapid='$sapid' and cpfno='$cpfno'";
                 mysql_query($updateQry);
                 echo "<script>
-                    alert('Information saved successfully..!!');
+                    alert('Information Updated Successfully..!!');
                     window.location.href='index.php';
                     </script>";
                 exit();

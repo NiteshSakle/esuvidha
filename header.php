@@ -132,7 +132,7 @@ function get_real_up_address() {
                     if(!isset($_GET['area'])) {?>  <a href="#">IP Address <?php echo get_real_up_address(); ?></a>  <?php } ?>
                      <a href="editprofile.php">Edit Profile</a> 
                     <?php if ($_SESSION['privilege'] == 1) { ?>
-                         <a href="register.php?area=civil"> New / Change Of Quarter</a> 
+                         <a href="register.php?area=civil"> New / Change in Quarter</a> 
                         <?php }
                     ?>
                      <a href="logout.php">Logout</a>                     

@@ -305,7 +305,7 @@ if (isset($_SESSION['emp_id'])) {
     <div>
         <form id="form2" method="post" action="daownloadcsv.php">
             <input type="hidden" name="qry" id="qry" value="<?php echo $query1?>" />
-            <input type="submit" name="submit" id="submit" value="Export" style="float: right; margin-right: 4%"  />             
+            <input type="submit" name="submit" id="submit" value="Export To Excel" style="float: right; margin-right: 4%"  />             
         </form>
         
         <form id="form1" name="form1" method="post" action="list1.php?id=1&area=<?php echo $_GET['area']; ?>" onSubmit="return validate1();">
@@ -347,7 +347,7 @@ if (isset($_SESSION['emp_id'])) {
         </form>
 
         <tr>
-            <td colspan=4><?php
+            <td colspan=3><?php
                 echo 'Total:-' . $total_pages . '   ' . $paginate;
                 if ($id == 1) {
                     echo $defect;
@@ -355,21 +355,21 @@ if (isset($_SESSION['emp_id'])) {
                 ?>
 
             </td>
-
             <td><a href="list1.php?status=1&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>">View New</a></td>
             <td><a href="list1.php?status=2&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>">View Attended</a></td>
             <td><a href="list1.php?status=3&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>">View Pending</a></td>
+            <td><a href="list1.php?status=4&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>">View Qrt Locked</a></td>
             <td><a href="http://192.168.103.101:7777/esuvidha/list1.php?area=<?php echo $_GET['area']; ?>">View All</a></td>
         </tr>
         <tr>
             <th width='5%'>Ticket ID</th>
             <th width='20%'>Name</th>
-            <th width='40%'>Defect</th>
-            <th width='15%'>Create date</th>
-            <th width='15%'>Registered Mobile No</th>
-            <th width='5%'>status</th>
-            <th width='10%'>QrtNo</th>
-            <th width='10%'>Signature</th>
+            <th width='38%'>Defect</th>
+            <th width='10%'>Create date</th>
+            <th width='11%'>Registered Mobile No</th>
+            <th width='10%'>status</th>
+            <th width='17%'>Quarter Number</th>
+            <th width='5%'>Signature</th>
         </tr>
         <?php while ($row = mysql_fetch_array($result)) { ?>
             <tr>
@@ -391,6 +391,8 @@ if (isset($_SESSION['emp_id'])) {
                         echo "Attended";
                     if ($row['status'] == 3)
                         echo "Pending";
+                    if ($row['status'] == 4)
+                        echo "QRT LOCKED";
                     ?></td>
                 <td><?php
                     if ($_SESSION['privilege'] == 2 or $_SESSION['privilege'] == 1)

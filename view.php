@@ -19,14 +19,10 @@ function contact($deptid) {
 $area = $_GET['area'];
 IF ($area == 'civil') {
     $tableName = "civil_ticketmaster";
-}
-IF ($area == 'electric') {
-    $tableName = "electric_ticketmaster";
-}
-IF ($area == 'civil') {
     $tableName1 = "civil_ticketremarks";
 }
 IF ($area == 'electric') {
+    $tableName = "electric_ticketmaster";
     $tableName1 = "electric_ticketremarks";
 }
 //echo "SELECT * FROM ticketremarks where ticketid=".$_GET['ticketid'];
@@ -47,16 +43,6 @@ if ($row = mysql_fetch_array($result)) {
 }
 if ($_POST) {
     $area = $_POST['area'];
-    if (!isset($_SESSION['emp_id'])) {
-        $_SESSION['sapid'] = $member['sapid'];
-        $_SESSION['cpfno'] = $member['cpfno'];
-        $_SESSION['privilege'] = $member['privilege'];
-        $_SESSION['firstname'] = $member['firstname'];
-        $_SESSION['lastname'] = $member['lastname'];
-        $_SESSION['quarterno'] = $member['quarterno'];
-    }
-
-
     $ipaddress = get_real_up_address();
     $id = $_POST['id'];
     $remark = $_POST['remark'];
@@ -67,26 +53,18 @@ if ($_POST) {
 
     IF ($area == 'civil') {
         $tableName = "civil_ticketmaster";
+        $tableName1 = "civil_ticketremarks";        
     }
     IF ($area == 'electric') {
         $tableName = "electric_ticketmaster";
+        $tableName1 = "electric_ticketremarks";        
     }
-    IF ($area == 'civil') {
-        $tableName1 = "civil_ticketremarks";
-    }
-    IF ($area == 'electric') {
-        $tableName1 = "electric_ticketremarks";
-    }
-
-    //echo "UPDATE ticketmaster SET status=$status,solvedate=$solveddate WHERE ticketid=$id";
-//exit;
     if ($status != '') {
-
         $qry1 = "UPDATE $tableName SET status=$status,solvedate='$solveddate' WHERE ticketid=$id";
         mysql_query($qry1);
     }
+    
     if ($_SESSION['privilege'] != 1 and $_SESSION['privilege'] != 2 and $status == 2 and $remark != '') {
-
         $qry2 = "UPDATE $tableName SET status=1,solvedate='$solveddate'  WHERE ticketid=$id";
         mysql_query($qry2);
     }
@@ -95,9 +73,6 @@ if ($_POST) {
         mysql_query($qry);
     }
 
-    //echo $ticketid;
-    //echo $firstname;
-    //echo urlencode($_SESSION['firstname']);
     $qry5 = "select * from $tableName where ticketid=$id";
     $result5 = mysql_query($qry5);
     while ($row5 = mysql_fetch_assoc($result5)) {
@@ -110,21 +85,25 @@ if ($_POST) {
         $status1 = "PENDING";if ($status == 4)
         $status1 = "QUARTER LOCKED";
 
-    $sms = "Dear%20" . urlencode($nameofperson) . "%20Your%20Ticket%20No:" . $id . "%20%20status%20is%20" . urlencode($status1) . "%20!";
-// create a new cURL resource
-//echo $sms;
-    $ch = curl_init();
-//echo $sms;
-// set URL and other appropriate options
-    curl_setopt($ch, CURLOPT_URL, "http://api.mvaayoo.com/mvaayooapi/MessageCompose?user=sakoradi@mahagenco.in:ktps123&senderID=KTPSOM&receipientno=$ext&dcs=0&msgtxt='$sms'&state=4");
+        try {
+            // Account details
+            $apiKey = urlencode('3sC/BU7S7LI-d14vm2GSfGKeRnbkZuqf3IVzd7GM8L');	
+            $msg = "Dear " . $_SESSION['firstname'] . " Thank you for contacting us.Ticket No:" . $ticketid . "  We will get back to you soon!";
+            $sender = urlencode('MKHTPS');
+            $message = "Dear " . urlencode($nameofperson) . " Your Ticket No:" . $id . "  status is " . urlencode($status1) . " !";
 
-// grab URL and pass it to the browser
-    curl_exec($ch);
-
-// close cURL resource, and free up system resources
-    curl_close($ch);
-
-
+            // Prepare data for POST request
+            $data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $message);
+            // Send the POST request with cURL
+            $ch = curl_init('https://api.textlocal.in/send/');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);        
+        } catch (Exception $ex) {
+            
+        }
 
     header('Location:view.php?ticketid=' . $_POST['id'] . '&area=' . $area);
     exit;
@@ -200,8 +179,16 @@ if ($_POST) {
                 <table align="center" class="" cellspacing="1" cellpadding="3" width="95%" border=0>
                     <tr>
                         <th>Status:</th>
-                        <td><?php if ($status == 1) echo "NEW";
-if ($status == 2) echo "ATTENDED";if ($status == 3) echo "PENDING"; ?></td>
+                        <td><?php
+                            if ($status == 1)
+                                echo "NEW";
+                            if ($status == 2)
+                                echo "ATTENDED";
+                            if ($status == 3)
+                                echo "PENDING";
+                            if($status == 4)
+                                echo "QRT LOCKED";
+                            ?></td>
                     </tr>
                     <tr>
                         <th>IP Address:</th>
@@ -212,8 +199,8 @@ if ($status == 2) echo "ATTENDED";if ($status == 3) echo "PENDING"; ?></td>
                         <td><?php
                             $date1 = date_create($createdate);
                             echo date_format($date1, 'd/m/y H:i');
-                            //echo $createdate; 
-?></td>
+//echo $createdate; 
+                            ?></td>
                     </tr>
                 </table>
             </td>
@@ -226,11 +213,11 @@ if ($status == 2) echo "ATTENDED";if ($status == 3) echo "PENDING"; ?></td>
 
                     <tr>
                         <th>Registered Mobile No:</th>
-                        <td><?php echo $ext; //echo contact($sectionid);  ?></td>
+                        <td><?php echo $ext; //echo contact($sectionid);    ?></td>
                     </tr>
                     <tr>
                         <th>Contact to:</th>
-                        <td><?php echo $nameofperson; //echo contact($sectionid);  ?></td>
+                        <td><?php echo $nameofperson; //echo contact($sectionid);    ?></td>
                     </tr>
 
                 </table>
@@ -244,7 +231,7 @@ if ($status == 2) echo "ATTENDED";if ($status == 3) echo "PENDING"; ?></td>
         <div id="" align="">
             <table width="90%" cellpadding="1" cellspacing="0" border="0">
                 <tr class="">
-                    <td><p><?php //echo $remark; ?></p></td>
+                    <td><p><?php //echo $remark;   ?></p></td>
                 </tr>
 <?php while ($rmk = mysql_fetch_array($remarklist)) { ?>
                     <tr>
@@ -253,14 +240,14 @@ if ($status == 2) echo "ATTENDED";if ($status == 3) echo "PENDING"; ?></td>
                     <tr class="">
                         <td align =""><p>
 
-    <?php
-    $date2 = date_create($rmk['remakdate']);
-    echo $rmk['remark'];
-    ?>
+                                <?php
+                                $date2 = date_create($rmk['remakdate']);
+                                echo $rmk['remark'];
+                                ?>
 
                             </p><h4>Remark by: <?php echo $rmk['remarkby'] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" . date_format($date2, 'd/m/y H:i') . "&nbsp;&nbsp;&nbsp;" . $rmk['ipaddress']; ?></h4></td>
                     </tr>
-            <?php } ?>
+<?php } ?>
             </table>
         </div>
     </div>
@@ -269,8 +256,8 @@ if ($status == 2) echo "ATTENDED";if ($status == 3) echo "PENDING"; ?></td>
         <div id="reply" style="padding:10px 0 20px 40px;">
             <input type="hidden" name="id" value="<?php echo $_GET['ticketid']; ?>">
             <input type="hidden" name="status" value="<?php echo $status; ?>">
-            <input type="hidden" name="area" value="<?php echo $_GET['area']?>"
-            <div align="left">
+            <input type="hidden" name="area" value="<?php echo $_GET['area'] ?>"
+                   <div align="left">
                 Enter Message <font class="error">&nbsp;</font><br/>
                 <textarea name="remark" id="remark" cols="60" rows="7" wrap="soft"></textarea>
             </div>
@@ -286,8 +273,7 @@ if ($status == 2) echo "ATTENDED";if ($status == 3) echo "PENDING"; ?></td>
                 </div>      <?php } ?>
             <div align="left"  style="padding:10px 0 10px 0;">
                 <input type="submit" name="submit" id="submit" value="Post Reply"  />
-                <input class='button' type='button' value='Cancel' onClick="window.location.href = 'list1.php?area=<?php echo $area?>'" />
+                <input class='button' type='button' value='Cancel' onClick="window.location.href = 'list1.php?area=<?php echo $area ?>'" />
             </div>
-        </div>
     </form>
 </div>

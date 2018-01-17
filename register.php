@@ -104,7 +104,7 @@ if ($_POST) {
                             <option class="" value="C">C</option>
                             <option class="" value="D">D</option>
                             <option class="" value="E">E</option>
-
+                            <option class="" value="F">F</option>
                         </select>
                         <br/>
                         Bulid no:

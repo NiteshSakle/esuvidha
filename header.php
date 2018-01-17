@@ -120,13 +120,13 @@ function get_real_up_address() {
             <h2></h2><?php } ?>
 
         <div class="topnav">
-                <?php if (isset($_SESSION['sapid'])) { ?>
+                <?php if (isset($_SESSION['sapid']) and $_SESSION['quarterno'] !== '') { ?>
                     <a href="http://192.168.103.101:7777/esuvidha/index.php"><span>Home</span> </a> 
                     <?php
-                    IF ($_GET['area'] == 'civil' and $_SESSION['quarterno'] !== '') {
+                    IF ($_GET['area'] == 'civil') {
                         ?>
                          <a href="addticket_civil.php?area=<?php echo $_GET['area'];?>">Add Defect</a>  
-                    <?php }IF ($_GET['area'] == 'electric' and $_SESSION['quarterno'] !== '') { ?>
+                    <?php }IF ($_GET['area'] == 'electric') { ?>
                          <a href="addticket_electric.php?area=<?php echo $_GET['area'];?>">Add Defect</a> <?php } 
                     if(isset($_GET['area'])) {?>  <a href="list1.php?area=<?php echo $_GET['area'];?>">Defect List</a>  <?php } 
                     if(!isset($_GET['area'])) {?>  <a href="#">IP Address <?php echo get_real_up_address(); ?></a>  <?php } ?>
@@ -137,8 +137,5 @@ function get_real_up_address() {
                     ?>
                      <a href="logout.php">Logout</a>                     
                     <?php } ?> 
-
-                <!--li class="menuitem"><a href="search.php">Search</a></li--> 
-
         </div>
 

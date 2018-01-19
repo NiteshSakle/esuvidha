@@ -2,6 +2,11 @@
 include("header.php");
 include("connect.php");
 
+if(!isset($_SESSION['sapid'])) {
+    header("location:index.php");
+    exit();
+}
+
 function empName($deptid) {
     $query = "select  concat(firstname,'   ',lastname) as name  from user where emp_id='$deptid'";
     $rw = mysql_query($query);
@@ -163,12 +168,12 @@ if (isset($_SESSION['emp_id'])) {
     if ($_SESSION['privilege'] == 0) {
         $query .= "  and emp_id=" . $_SESSION['emp_id'];
     }
-    if ($tableName == "civil_ticketmaster" and $_SESSION['privilege'] == 2) {
-        $query .= "  and emp_id=" . $_SESSION['emp_id'];
-    }
-    if ($tableName == "electric_ticketmaster" and $_SESSION['privilege'] == 1) {
-        $query .= "  and emp_id=" . $_SESSION['emp_id'];
-    }
+//    if ($tableName == "civil_ticketmaster" and $_SESSION['privilege'] == 2) {
+//        $query .= "  and emp_id=" . $_SESSION['emp_id'];
+//    }
+//    if ($tableName == "electric_ticketmaster" and $_SESSION['privilege'] == 1) {
+//        $query .= "  and emp_id=" . $_SESSION['emp_id'];
+//    }
 
 
     $total_pages = mysql_fetch_array(mysql_query($query));
@@ -204,13 +209,13 @@ if (isset($_SESSION['emp_id'])) {
     if ($_SESSION['privilege'] == 0) {
         $query1 .= "  and emp_id=" . $_SESSION['emp_id'];
     }
-    if ($tableName == "civil_ticketmaster" and $_SESSION['privilege'] == 2) {
-        $query1 .= "  and emp_id=" . $_SESSION['emp_id'];
-    }
-    if ($tableName == "electric_ticketmaster" and $_SESSION['privilege'] == 1) {
-        $query1 .= "  and emp_id=" . $_SESSION['emp_id'];
-    }
-    
+//    if ($tableName == "civil_ticketmaster" and $_SESSION['privilege'] == 2) {
+//        $query1 .= "  and emp_id=" . $_SESSION['emp_id'];
+//    }
+//    if ($tableName == "electric_ticketmaster" and $_SESSION['privilege'] == 1) {
+//        $query1 .= "  and emp_id=" . $_SESSION['emp_id'];
+//    }
+//    
     $query1 .= "  ORDER BY status,ticketid desc  LIMIT $start, $limit ";    
     $result = mysql_query($query1);
 

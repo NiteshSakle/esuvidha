@@ -8,6 +8,12 @@
 <?php
 include("header.php");
 include("connect.php");
+
+if(!isset($_SESSION['sapid'])) {
+    header("location:index.php");
+    exit();
+}
+
 if ($_POST) {
     $address = "";
     $sapid = $_POST['sapid'];

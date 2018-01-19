@@ -5,19 +5,13 @@
             document.getElementById('other').hidden = false;
 
     }
-</script>
 
-
-
-<script>
     function edValueKeyPress()
     {
         var edValue = document.getElementById("name");
         edValue.value = "";
 
     }
-</script> 
-<script>
     var xmlhttp;
     function ajaxFunction(url, myReadyStateFunc)
     {
@@ -104,10 +98,7 @@
     }
 </script>
 
-
-
 <?php
-
 include("connect.php");
 include("header.php");
 
@@ -159,9 +150,7 @@ if ($_POST) {
             $msg = "Dear " . $_SESSION['firstname'] . " Thank you for contacting us.Ticket No:" . $ticketid . "  We will get back to you soon!";
             $sender = urlencode('MKHTPS');
             $message = rawurlencode($msg);
-            // Prepare data for POST request
             $data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $message);
-            // Send the POST request with cURL
             $ch = curl_init('https://api.textlocal.in/send/');
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -181,7 +170,12 @@ if ($_POST) {
 } else {
     $_SESSION['area'] = $_GET['area'];
 }
-$result = mysql_query("SELECT * FROM civil_defect");
+if($_SESSION['quarterno'] == "") {
+        echo "<script>
+            window.location.href='editprofile.php';
+            </script>";
+            exit();        
+}  
 ?>
 
 <form id="form1" name="form1" method="post" action="addticket_civil.php" onSubmit="return validate1(this.form);">
@@ -226,32 +220,12 @@ $result = mysql_query("SELECT * FROM civil_defect");
                 <td>Contact no.</td>
                 <td><input type="text" name="ext" id="ext" value="<?php echo $_SESSION['mobileno']; ?>" style="width: 40%"> *Other than registered number </td>
             </tr>
-        <!--    <tr>
-                td>Priority</td>
-                <td><input type="radio" name="group1" value="1"> High<br>
-         <input type="radio" name="group1" value="2" checked> Medium<br>
-         <input type="radio" name="group1" value="3"> Low
-          </td
-            </tr>-->
             <?php if (!isset($_SESSION['section'])) { ?>
                 <input type="hidden" name="name" id="name">
                 <!--input type="hidden" name="id" id="id"-->
                 <input type="hidden" name="contact" id="contact">
                 <input type="hidden" name="privilege" id="privilege">
-
-                <!--tr>
-                  <td>Select Section</td>
-                  <td> <select name="section" id="section" class="">
-                           <option class="" value="">Select Section</option>
-                <?php while ($row = mysql_fetch_array($result)) { ?>
-                                               <option class="" value="<?php echo $row['id'] . "#" . $row['name'] . "#" . $row['contact'] . "#" . $row['privilege'] ?>"><?php echo $row['name'] ?></option>
-                <?php } ?>
-                                   </select>
-                  </td>
-               </tr>  <?php } else { ?>
-               <input type="hidden" name="id" id="id" value="<?php echo $_SESSION['id']; ?>">
             <?php } ?>
-       <tr-->            
             <td colspan="2">
                     <input type="submit" name="submit" id="submit"  class="submitbutton" value="Submit" style="width: 50%"  />
             </td>

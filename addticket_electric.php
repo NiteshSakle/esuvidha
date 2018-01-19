@@ -1,3 +1,8 @@
+<?php
+//if ($_SESSION['quarterno'] == '') {    
+//        header("location:index.php");    
+//}
+?>
 <script type="text/javascript">
     function changeHandler(target) {
         var val = target.value;
@@ -5,19 +10,12 @@
             document.getElementById('other').hidden = false;
 
     }
-</script>
-
-
-
-<script>
     function edValueKeyPress()
     {
         var edValue = document.getElementById("name");
         edValue.value = "";
 
     }
-</script> 
-<script>
     var xmlhttp;
     function ajaxFunction(url, myReadyStateFunc)
     {
@@ -88,8 +86,6 @@
 
 </script>
 
-
-
 <?php
 include("connect.php");
 include("header.php");
@@ -104,7 +100,6 @@ if ($_POST) {
         $_SESSION['lastname'] = $member['lastname'];
         $_SESSION['quarterno'] = $member['quarterno'];
     }
-
 
     $emp_id = $_SESSION['emp_id'];
     $sec = explode("#", $_POST['problem']);
@@ -128,7 +123,6 @@ if ($_POST) {
     }
     $nameofperson = $_POST['nameofperson'];
     $ext = $_POST['ext'];
-
     $remarkby = $_SESSION['section'];
     if ($problem == "Other") {
 
@@ -169,13 +163,20 @@ if ($_POST) {
         }
 
         echo "<script>
-                    alert('Your ticket is submitted successfully ..!!');
+                    alert('Your ticket submitted successfully ..!!');
                     window.location.href='list1.php?area=electric';
                     </script>";
 
         exit;
     }
 }
+if($_SESSION['quarterno'] == "") {
+        echo "<script>
+            window.location.href='editprofile.php';
+            </script>";
+            exit();        
+}
+    
 ?>
 
 <form id="form1" name="form1" method="post" action="addticket_electric.php" onSubmit="return validate1();">
@@ -223,10 +224,10 @@ if ($_POST) {
             </tr>
             <tr>
                 <!--td>Priority</td>
-                <td><input type="radio" name="group1" value="1"> High<br>
-         <input type="radio" name="group1" value="2" checked> Medium<br>
-         <input type="radio" name="group1" value="3"> Low
-          </td-->
+                    <td><input type="radio" name="group1" value="1"> High<br>
+                    <input type="radio" name="group1" value="2" checked> Medium<br>
+                    <input type="radio" name="group1" value="3"> Low
+                </td-->
             </tr>
             <?php if (!isset($_SESSION['section'])) { ?>
                 <input type="hidden" name="name" id="name">

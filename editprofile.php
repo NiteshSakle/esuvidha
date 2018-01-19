@@ -2,7 +2,11 @@
 include("header.php");
 include("connect.php");
 ?>
-<?php if (isset($_SESSION['sapid'])) { ?>
+<?php
+    if(!isset($_SESSION['sapid'])) {
+        header("location:index.php");
+    }
+    if (isset($_SESSION['sapid'])) { ?>
     <script language="javascript" type="text/javascript">
         function valid1()
         {

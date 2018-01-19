@@ -4,7 +4,13 @@ include("connect.php");
 $result = mysql_query("SELECT * FROM section ORDER BY name ASC");
 ?>
 
-<?php if (!isset($_SESSION['section'])) { ?>
+<?php
+    
+    if(!isset($_SESSION['sapid'])) {
+        header("location:index.php");
+    }
+
+    if (!isset($_SESSION['section'])) { ?>
 
     <form id="form1" name="form1" method="post" action="login_exec.php" onSubmit="return validate();">
         

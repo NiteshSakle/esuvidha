@@ -21,6 +21,12 @@ if ($_POST) {
     }
 
     $defect = $_POST['problem'];
+    if($_POST['type'] != ''){
+        $type = $_POST['type'];
+        $buildno = $_POST['buildno'];
+        $qrtno = $_POST['qrtno'];
+        $address = $type. "-". $buildno. "/". $qrtno;   
+    }
 }
 
 if (isset($_SESSION['emp_id'])) {
@@ -128,6 +134,7 @@ if (isset($_SESSION['emp_id'])) {
         }
 
     </style>
+
     <?php
     $query = '';
     $query1 = '';
@@ -146,6 +153,9 @@ if (isset($_SESSION['emp_id'])) {
     $prob = mysql_escape_string($_GET['problem']);
     if ($status) {
         $query .= "  and status=$status ";
+    }
+        if ($address) {
+        $query .= "  and assign LIKE '%$address%' ";
     }
     if ($prob) {
         $query .= "  and problem='$prob' ";
@@ -182,6 +192,9 @@ if (isset($_SESSION['emp_id'])) {
     if ($status) {
         $query1 .= "  and status=$status ";
     }
+    if ($address) {
+        $query1 .= "  and assign LIKE '%$address%' ";
+    }
     if ($prob && $prob != -1) {
         $query1 .= "  and problem='$prob' ";
     }
@@ -197,9 +210,8 @@ if (isset($_SESSION['emp_id'])) {
     if ($tableName == "electric_ticketmaster" and $_SESSION['privilege'] == 1) {
         $query1 .= "  and emp_id=" . $_SESSION['emp_id'];
     }
-    $query1 .= "  ORDER BY status,ticketid desc  LIMIT $start, $limit ";
-
     
+    $query1 .= "  ORDER BY status,ticketid desc  LIMIT $start, $limit ";    
     $result = mysql_query($query1);
 
     // Initial page num setup
@@ -303,16 +315,16 @@ if (isset($_SESSION['emp_id'])) {
     }
     ?>
     <div>
+        <?php if ($_SESSION['privilege'] == 1) { ?>
         <form id="form2" method="post" action="daownloadcsv.php">
             <input type="hidden" name="qry" id="qry" value="<?php echo $query1?>" />
-            <input type="submit" name="submit" id="submit" value="Export To Excel" style="float: right; margin-right: 4%"  />             
+            <input type="submit" name="submit" id="submit" value="Export To Excel" class="export-btn"  />             
         </form>
         
-        <form id="form1" name="form1" method="post" action="list1.php?id=1&area=<?php echo $_GET['area']; ?>" onSubmit="return validate1();">
+        <?php } ?>
             <table width="95%" border="1" cellspacing="2" cellpadding="2">
-                <?php if ($_SESSION['privilege'] != 0) { ?>
-
-                <span><select name="problem" id="problem" style="margin-left: 1%">
+                <form id="form1" name="form1" method="post" action="list1.php?id=1&area=<?php echo $_GET['area']; ?>" onSubmit="return validate1();">
+                    <span><select name="problem" id="problem" style="margin-left: 1%">
                             <option value="-1">Select Defect Group</option>
                             <?php
                             IF ($_GET['area'] == 'civil') {
@@ -340,12 +352,28 @@ if (isset($_SESSION['emp_id'])) {
 
                         </select>									
 
-                    </span>
+                    </span>                   
                     <input type="submit" name="submit" id="submit" value="Submit"  />
-                    
-                <?php } ?> 
-        </form>
-
+            </form>
+        <?php if ($_SESSION['privilege'] != 0) { ?>
+            <span style="margin-left: 10px">
+                Type:&nbsp;&nbsp;
+                <select name="type" id="type">
+                    <option class="" value="">Type</option>
+                    <option class="" value="A" <?php if ($_POST['type'] == "A") echo "selected"; ?>>A</option>
+                    <option class="" value="B" <?php if ($_POST['type'] == "B") echo "selected"; ?>>B</option>
+                    <option class="" value="C" <?php if ($_POST['type'] == "C") echo "selected"; ?>>C</option>
+                    <option class="" value="D" <?php if ($_POST['type'] == "D") echo "selected"; ?>>D</option>
+                    <option class="" value="E" <?php if ($_POST['type'] == "E") echo "selected"; ?>>E</option>
+                    <option class="" value="F" <?php if ($_POST['type'] == "F") echo "selected"; ?>>F</option>
+                </select>
+                Bulid no:
+                <input type="text" id="buildno_txt" class="demoInputBox" name="buildno" value="<?php echo $_POST['buildno'] ?>" size=2" style="width: 15%; margin: 10px">
+                Qrt no:  &nbsp;&nbsp;
+                <input type="text" id="qrtno_txt" class="demoInputBox" name="qrtno" value="<?php echo $_POST['qrtno']?>" size="3" style="width: 15%">
+                <input type="submit" name="submit" value="Get List" />                
+            </span>
+        <?php } ?> 
         <tr>
             <td colspan=3><?php
                 echo 'Total:-' . $total_pages . '   ' . $paginate;
@@ -355,7 +383,7 @@ if (isset($_SESSION['emp_id'])) {
                 ?>
 
             </td>
-            <td><a href="list1.php?status=1&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>">View New</a></td>
+            <td><a href="list1.php?status=1&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>&address=<?php echo $address?>">View New</a></td>
             <td><a href="list1.php?status=2&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>">View Attended</a></td>
             <td><a href="list1.php?status=3&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>">View Pending</a></td>
             <td><a href="list1.php?status=4&problem=<?php if ($_POST[problem]) echo $_POST[problem];echo $_GET[problem]; ?>&area=<?php echo $_GET['area']; ?>">View Qrt Locked</a></td>
@@ -363,12 +391,12 @@ if (isset($_SESSION['emp_id'])) {
         </tr>
         <tr>
             <th width='5%'>Ticket ID</th>
-            <th width='20%'>Name</th>
-            <th width='38%'>Defect</th>
-            <th width='10%'>Create date</th>
-            <th width='11%'>Registered Mobile No</th>
-            <th width='10%'>status</th>
-            <th width='17%'>Quarter Number</th>
+            <th width='24%'>Name</th>
+            <th width='34%'>Defect</th>
+            <th width='8%'>Create date</th>
+            <th width='10%'>Registered Mobile No</th>
+            <th width='9%'>status</th>
+            <th width='21%'>Quarter Number</th>
             <th width='5%'>Signature</th>
         </tr>
         <?php while ($row = mysql_fetch_array($result)) { ?>
@@ -404,5 +432,4 @@ if (isset($_SESSION['emp_id'])) {
 
             </tr>        	<?php } ?>
     </table>
-    .
     </div>      <?php } ?>

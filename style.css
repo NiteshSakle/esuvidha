@@ -354,7 +354,7 @@ p {text-align: left;}
 /* Style the top navigation bar */
 .topnav {
     overflow: hidden;
-    background-color: dimgray;
+    background-color: #707070;
     margin: 30px auto 10px;
     width: 70%
 }
@@ -374,4 +374,24 @@ p {text-align: left;}
 .topnav a:hover {
     background-color: #ddd;
     color: black;
+}
+.button {
+    display: block;
+    background: #707070;
+    padding: 4px;
+    text-align: center;
+    color: white;
+    border:0.5px solid;
+    text-decoration:none;
+}
+
+.export-btn{
+    float: right; 
+    margin: 0 4% 0 5px;
+    background-color: #707070;
+    border:0;
+    padding:4px;
+    color: white;
+    border:0.5px solid;    
+    cursor: pointer;
 }

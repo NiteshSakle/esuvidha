@@ -108,7 +108,7 @@ if (isset($_SESSION['emp_id'])) {
             padding:2px 5px 2px 5px;
             margin:2px;
             border:1px solid #999;
-            text-decoration:none;
+            text-decoration:none !important;
             color: #666;
         }
         .paginate a:hover, .paginate a:active {
@@ -143,82 +143,57 @@ if (isset($_SESSION['emp_id'])) {
     <?php
     $query = '';
     $query1 = '';
-    IF ($_GET['area'] == 'civil') {
-        $tableName = "civil_ticketmaster";
-    }
-    IF ($_GET['area'] == 'electric') {
-        $tableName = "electric_ticketmaster";
-    }
+    $stages = 3;
     $targetpage = "list1.php";
     $limit = 50;
-
-    $query .= " SELECT COUNT(*) as num FROM $tableName where 1=1 ";
-
+    $carea = $_GET['area'];
+    $id = $_GET['id'];
     $status = mysql_escape_string($_GET['status']);
     $prob = mysql_escape_string($_GET['problem']);
-    if ($status) {
-        $query .= "  and status=$status ";
+    
+    IF ($carea == 'civil') {
+        $tableName = "civil_ticketmaster";
     }
-        if ($address) {
-        $query .= "  and assign LIKE '%$address%' ";
+    IF ($carea == 'electric') {
+        $tableName = "electric_ticketmaster";
     }
-    if ($prob) {
-        $query .= "  and problem='$prob' ";
-    }
-    if ($_SESSION['privilege'] == 0) {
-        $query .= "  and emp_id=" . $_SESSION['emp_id'];
-    }
-//    if ($tableName == "civil_ticketmaster" and $_SESSION['privilege'] == 2) {
-//        $query .= "  and emp_id=" . $_SESSION['emp_id'];
-//    }
-//    if ($tableName == "electric_ticketmaster" and $_SESSION['privilege'] == 1) {
-//        $query .= "  and emp_id=" . $_SESSION['emp_id'];
-//    }
+    
+    $query .= " SELECT COUNT(*) as num FROM $tableName where 1=1 ";
+    $query1 .= " SELECT ticketid, emp_id, problem, assign as qrtno, createdate, status, ipaddress, remark, nameofperson, ext FROM $tableName where 1=1  ";
 
-
-    $total_pages = mysql_fetch_array(mysql_query($query));
-    $total_pages = $total_pages[num];
-
-    $stages = 3;
     $page = mysql_escape_string($_GET['page']);
+   
     if ($page) {
         $start = ($page - 1) * $limit;
     } else {
         $start = 0;
     }
-    $id = $_GET['id'];
-
-    // Get page data
-    $query1 .= " SELECT ticketid, emp_id, problem, assign as qrtno, createdate, status, ipaddress, remark, nameofperson, ext FROM $tableName where 1=1  ";
-
-
-    $status = mysql_escape_string($_GET['status']);
-    $prob = mysql_escape_string($_GET['problem']);
     if ($status) {
+        $query .= "  and status=$status ";
         $query1 .= "  and status=$status ";
     }
     if ($address) {
+        $query .= "  and assign LIKE '%$address%' ";
         $query1 .= "  and assign LIKE '%$address%' ";
     }
     if ($prob && $prob != -1) {
+         $query .= "  and problem='$prob' ";
         $query1 .= "  and problem='$prob' ";
     }
     if ($id == 1 && $defect != -1) {
+        $query .= "  and problem='$defect' ";
         $query1 .= "  and problem='$defect' ";
     }
     if ($_SESSION['privilege'] == 0) {
+        $query .= "  and emp_id=" . $_SESSION['emp_id'];
         $query1 .= "  and emp_id=" . $_SESSION['emp_id'];
     }
-//    if ($tableName == "civil_ticketmaster" and $_SESSION['privilege'] == 2) {
-//        $query1 .= "  and emp_id=" . $_SESSION['emp_id'];
-//    }
-//    if ($tableName == "electric_ticketmaster" and $_SESSION['privilege'] == 1) {
-//        $query1 .= "  and emp_id=" . $_SESSION['emp_id'];
-//    }
-//    
+
     $query1 .= "  ORDER BY status,ticketid desc  LIMIT $start, $limit ";    
     $result = mysql_query($query1);
-
+    
+    $total_pages = mysql_fetch_array(mysql_query($query));
+    $total_pages = $total_pages[num];
     // Initial page num setup
     if ($page == 0) {
         $page = 1;
@@ -234,20 +209,18 @@ if (isset($_SESSION['emp_id'])) {
         //$paginate .= "<div class='paginate'>";
         // Previous
         if ($page > 1) {
-            $paginate .= "<a href='$targetpage?page=$prev'>previous</a>";
+            $paginate .= "<a href='$targetpage?page=$prev&area=$carea'> previous</a>";
         } else {
-            $paginate .= "<span class='disabled'>previous</span>";
+            $paginate .= "<span class='disabled'> previous</span>";
         }
-
-
 
         // Pages
         if ($lastpage < 7 + ($stages * 2)) { // Not enough pages to breaking it up
             for ($counter = 1; $counter <= $lastpage; $counter++) {
                 if ($counter == $page) {
-                    $paginate .= "<span class='current'>$counter</span>";
+                    $paginate .= "<span class='current'> $counter</span>";
                 } else {
-                    $paginate .= "<a href='$targetpage?page=$counter&status=$status'>$counter</a>";
+                    $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea'> $counter</a>";
                 }
             }
         } elseif ($lastpage > 5 + ($stages * 2)) { // Enough pages to hide a few?
@@ -255,41 +228,41 @@ if (isset($_SESSION['emp_id'])) {
             if ($page < 1 + ($stages * 2)) {
                 for ($counter = 1; $counter < 4 + ($stages * 2); $counter++) {
                     if ($counter == $page) {
-                        $paginate .= "<span class='current'>$counter</span>";
+                        $paginate .= "<span class='current'> $counter</span>";
                     } else {
-                        $paginate .= "<a href='$targetpage?page=$counter&status=$status'>$counter</a>";
+                        $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea'>$ counter</a>";
                     }
                 }
                 $paginate .= "...";
-                $paginate .= "<a href='$targetpage?page=$LastPagem1&status=$status'>$LastPagem1</a>";
-                $paginate .= "<a href='$targetpage?page=$lastpage&status=$status'>$lastpage</a>";
+                $paginate .= "<a href='$targetpage?page=$LastPagem1&status=$status&area=$carea'> $LastPagem1</a>";
+                $paginate .= "<a href='$targetpage?page=$lastpage&status=$status&area=$carea'> $lastpage</a>";
             }
             // Middle hide some front and some back
             elseif ($lastpage - ($stages * 2) > $page && $page > ($stages * 2)) {
-                $paginate .= "<a href='$targetpage?page=1&status=$status'>1</a>";
-                $paginate .= "<a href='$targetpage?page=2&status=$status'>2</a>";
+                $paginate .= "<a href='$targetpage?page=1&status=$status&area=$carea'> 1</a>";
+                $paginate .= "<a href='$targetpage?page=2&status=$status&area=$carea'> 2</a>";
                 $paginate .= "...";
                 for ($counter = $page - $stages; $counter <= $page + $stages; $counter++) {
                     if ($counter == $page) {
                         $paginate .= "<span class='current'>$counter</span>";
                     } else {
-                        $paginate .= "<a href='$targetpage?page=$counter&status=$status'>$counter</a>";
+                        $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea'> $counter</a>";
                     }
                 }
                 $paginate .= "...";
-                $paginate .= "<a href='$targetpage?page=$LastPagem1&status=$status'>$LastPagem1</a>";
-                $paginate .= "<a href='$targetpage?page=$lastpage&status=$status'>$lastpage</a>";
+                $paginate .= "<a href='$targetpage?page=$LastPagem1&status=$status&area=$carea'> $LastPagem1</a>";
+                $paginate .= "<a href='$targetpage?page=$lastpage&status=$status&area=$carea'> $lastpage</a>";
             }
             // End only hide early pages
             else {
-                $paginate .= "<a href='$targetpage?page=1&status=$status'>1</a>";
-                $paginate .= "<a href='$targetpage?page=2&status=$status'>2</a>";
+                $paginate .= "<a href='$targetpage?page=1&status=$status&area=$carea'>1</a>";
+                $paginate .= "<a href='$targetpage?page=2&status=$status&area=$carea'>2</a>";
                 $paginate .= "...";
                 for ($counter = $lastpage - (2 + ($stages * 2)); $counter <= $lastpage; $counter++) {
                     if ($counter == $page) {
-                        $paginate .= "<span class='current'>$counter</span>";
+                        $paginate .= "<span class='current'> $counter</span>";
                     } else {
-                        $paginate .= "<a href='$targetpage?page=$counter&status=$status'>$counter</a>";
+                        $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea'> $counter</a>";
                     }
                 }
             }
@@ -297,9 +270,9 @@ if (isset($_SESSION['emp_id'])) {
 
         // Next
         if ($page < $counter - 1) {
-            $paginate .= "<a href='$targetpage?page=$next&status=$status'>next</a>";
-        } else {
-            $paginate .= "<span class='disabled'>next</span>";
+            $paginate .= "<a href='$targetpage?page=$next&status=$status&area=$carea'> next</a>";
+        } else { 
+            $paginate .= "<span class='disabled'> next</span>";
         }
 
         //	$paginate.= "</div>";
@@ -321,14 +294,14 @@ if (isset($_SESSION['emp_id'])) {
     ?>
     <div>
         <?php if ($_SESSION['privilege'] == 1) { ?>
-        <form id="form2" method="post" action="daownloadcsv.php">
+        <form id="form2" method="post" action="exportcsv.php">
             <input type="hidden" name="qry" id="qry" value="<?php echo $query1?>" />
             <input type="submit" name="submit" id="submit" value="Export To Excel" class="export-btn"  />             
         </form>
         
         <?php } ?>
+                        <form id="form1" name="form1" method="post" action="list1.php?id=1&area=<?php echo $_GET['area']; ?>" onSubmit="return validate1();">
             <table width="95%" border="1" cellspacing="2" cellpadding="2">
-                <form id="form1" name="form1" method="post" action="list1.php?id=1&area=<?php echo $_GET['area']; ?>" onSubmit="return validate1();">
                     <span><select name="problem" id="problem" style="margin-left: 1%">
                             <option value="-1">Select Defect Group</option>
                             <?php
@@ -381,10 +354,7 @@ if (isset($_SESSION['emp_id'])) {
         <?php } ?> 
         <tr>
             <td colspan=3><?php
-                echo 'Total:-' . $total_pages . '   ' . $paginate;
-                if ($id == 1) {
-                    echo $defect;
-                }
+                echo 'Total:-' . $total_pages . "    " . $paginate;
                 ?>
 
             </td>
@@ -397,11 +367,11 @@ if (isset($_SESSION['emp_id'])) {
         <tr>
             <th width='5%'>Ticket ID</th>
             <th width='24%'>Name</th>
-            <th width='34%'>Defect</th>
-            <th width='8%'>Create date</th>
-            <th width='10%'>Registered Mobile No</th>
-            <th width='9%'>status</th>
-            <th width='21%'>Quarter Number</th>
+            <th width='33%'>Defect</th>
+            <th width='9%'>Create Date</th>
+            <th width='10%'>Mobile No</th>
+            <th width='9%'>Status</th>
+            <th width='23%'>Quarter Number</th>
             <th width='5%'>Signature</th>
         </tr>
         <?php while ($row = mysql_fetch_array($result)) { ?>

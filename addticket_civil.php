@@ -110,11 +110,8 @@ if ($_POST) {
     $problem = $sec[1];
     $other = $_POST['other'];
     $assign = $_SESSION['quarterno'];
-    $createdate = date('Y-m-d h:i:s');
-    $solvedate = '';
     $status = 1;
     $ipaddress = get_real_up_address();
-    $priority = $_POST['group1'];
     $remark = $_POST['remark'];
     if($remark == "Please Select Subdefect") {
         echo "<script>
@@ -138,7 +135,7 @@ if ($_POST) {
         exit;
     } else {
 
-        $qry1 = "insert into civil_ticketmaster values('','$emp_id','$defect_id','$problem','$assign','$createdate','$solvedate','$status','$ipaddress','','$remark','$nameofperson',$ext)";
+        $qry1 = "INSERT INTO `civil_ticketmaster`(`emp_id`, `defect_id`, `problem`, `assign`, `status`, `ipaddress`, `remark`, `nameofperson`, `ext`) VALUES ('$emp_id','$defect_id','$problem','$assign','$status','$ipaddress','$remark','$nameofperson',$ext);";
         mysql_query($qry1);
         $ticketid = mysql_insert_id();
         $qry = "insert into civil_ticketremarks values('',$ticketid,'$remark','$createdate','','')";

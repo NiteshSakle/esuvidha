@@ -1,7 +1,10 @@
 <?php
 include("header.php");
 include("connect.php");
-
+if(!isset($_SESSION['sapid'])) {
+    header("location:index.php");
+    exit();
+}
 function deptName($deptid) {
     $query = "select  name  from section where id='$deptid'";
     $rw = mysql_query($query);
@@ -84,27 +87,27 @@ if ($_POST) {
         $status1 = "ATTENDED";if ($status == 3)
         $status1 = "PENDING";if ($status == 4)
         $status1 = "QUARTER LOCKED";
+    
+    if($_SESSION['privilege'] == 1) {
+        try {
+            // Account details
+            $apiKey = urlencode('3sC/BU7S7LI-d14vm2GSfGKeRnbkZuqf3IVzd7GM8L');
+            $sender = urlencode('MKHTPS');
+            $message = "Dear " . $_SESSION['firstname'] . " Your Ticket No:" . $id . "  status is " . urlencode($status1) . " !";
 
-    try {
-        // Account details
-        $apiKey = urlencode('3sC/BU7S7LI-d14vm2GSfGKeRnbkZuqf3IVzd7GM8L');
-        $msg = "Dear " . $_SESSION['firstname'] . " Thank you for contacting us.Ticket No:" . $ticketid . "  We will get back to you soon!";
-        $sender = urlencode('MKHTPS');
-        $message = "Dear " . urlencode($nameofperson) . " Your Ticket No:" . $id . "  status is " . urlencode($status1) . " !";
+            // Prepare data for POST request
+            $data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $message);
+            // Send the POST request with cURL
+            $ch = curl_init('https://api.textlocal.in/send/');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response = curl_exec($ch);
+            curl_close($ch);
+        } catch (Exception $ex) {
 
-        // Prepare data for POST request
-        $data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $message);
-        // Send the POST request with cURL
-        $ch = curl_init('https://api.textlocal.in/send/');
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
-    } catch (Exception $ex) {
-        
+        }        
     }
-
     header('Location:view.php?ticketid=' . $_POST['id'] . '&area=' . $area);
     exit;
 }
@@ -181,6 +184,24 @@ if ($_POST) {
         </tr>
         <tr>
             <td width=30%>
+                <table align="center" class="infotable" cellspacing="1" cellpadding="3" width="90%" border=0>
+                    <tr>
+                        <td width="100">Qrt No:</td>
+                        <td><?php echo $row['assign']; ?></td>
+                    </tr>
+
+                    <tr>
+                        <td>Mobile No:</td>
+                        <td><?php echo $ext; //echo contact($sectionid);     ?></td>
+                    </tr>
+                    <tr>
+                        <td>Contact to:</td>
+                        <td><?php echo $nameofperson; //echo contact($sectionid);     ?></td>
+                    </tr>
+
+                </table>
+            </td>
+            <td width=30% valign="middle" align="center">
                 <table align="center" class="" cellspacing="1" cellpadding="3" width="95%" border=0>
                     <tr>
                         <td>Status:</td>
@@ -207,24 +228,6 @@ if ($_POST) {
 //echo $createdate; 
                             ?></td>
                     </tr>
-                </table>
-            </td>
-            <td width=30% valign="middle" align="center">
-                <table align="center" class="infotable" cellspacing="1" cellpadding="3" width="90%" border=0>
-                    <tr>
-                        <td width="100">Qrt No:</td>
-                        <td><?php echo $row['assign']; ?></td>
-                    </tr>
-
-                    <tr>
-                        <td>Mobile No:</td>
-                        <td><?php echo $ext; //echo contact($sectionid);     ?></td>
-                    </tr>
-                    <tr>
-                        <td>Contact to:</td>
-                        <td><?php echo $nameofperson; //echo contact($sectionid);     ?></td>
-                    </tr>
-
                 </table>
             </td>
         </tr>
@@ -257,7 +260,7 @@ if ($_POST) {
             <br/>
             <b> Enter Remark (Optional)
                 <br/>
-                <textarea name="remark" id="remark" cols="60" rows="7" wrap="soft"></textarea>
+                <textarea name="remark" id="remark" cols="132" rows="6" wrap="soft"></textarea>
         </div>
         <br/>
         <div style="margin-left: 15%">

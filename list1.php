@@ -294,7 +294,7 @@ if (isset($_SESSION['emp_id'])) {
     ?>
     <div>
         <?php if ($_SESSION['privilege'] == 1) { ?>
-        <form id="form2" method="post" action="exportcsv.php">
+        <form id="form2" method="post" action="downloadcsv.php">
             <input type="hidden" name="qry" id="qry" value="<?php echo $query1?>" />
             <input type="submit" name="submit" id="submit" value="Export To Excel" class="export-btn"  />             
         </form>

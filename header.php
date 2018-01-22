@@ -27,7 +27,7 @@ function get_real_up_address() {
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="style.css" />
         <style>
-            body { background-image:url(images/back.JPG); no-repeat;}
+            body { background-image:url(images/back.JPG); }
 
         </style>
         <title>Khaperkheda TPS e-सुविधा</title>
@@ -115,11 +115,13 @@ function get_real_up_address() {
             ?>
             <h2 style="text-align: center; margin: 30px 0px 0px 0px"> <u> CIVIL COLONY MAINTENANCE </u> </h2> 
         <?php } elseif ($_GET['area'] == 'electric' OR $area1 == 'electric') { ?>
-            <h2 style="text-align: center; margin: 30px 0px 0px 0px"> <u> EM-COLONY </u> </h2><?php } ?>
-        <?php IF ($area1 == '' AND ! isset($_SESSION['sapid'])) { ?>
-            <h2></h2><?php } ?>
-
-        <div class="topnav">
+            <h2 style="text-align: center; margin: 30px 0px 0px 0px"> <u> EM-COLONY </u> </h2><?php } 
+            
+            if($_SESSION['privilege'] == 0 ) { ?>
+                <div class="topnav" style="width: 50%"> 
+                <?php } else{?>
+                    <div class="topnav">
+                <?php }?>
                 <?php if (isset($_SESSION['sapid']) and $_SESSION['quarterno'] !== '') { ?>
                     <a href="http://192.168.103.101:7777/esuvidha/index.php"><span>Home</span> </a> 
                     <?php

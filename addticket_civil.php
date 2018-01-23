@@ -123,7 +123,7 @@ if ($_POST) {
     $nameofperson = $_POST['nameofperson'];
     $ext = $_POST['ext'];
 
-    $remarkby = $_SESSION['section'];
+    $remarkby = $_SESSION['firstname'];
     if ($problem == "Other") {
         $problem = $_POST['other'];
         if ($problem == "")
@@ -137,8 +137,9 @@ if ($_POST) {
 
         $qry1 = "INSERT INTO `civil_ticketmaster`(`emp_id`, `defect_id`, `problem`, `assign`, `status`, `ipaddress`, `remark`, `nameofperson`, `ext`) VALUES ('$emp_id','$defect_id','$problem','$assign','$status','$ipaddress','$remark','$nameofperson',$ext);";
         mysql_query($qry1);
-        $ticketid = mysql_insert_id();
-        $qry = "insert into civil_ticketremarks values('',$ticketid,'$remark','$createdate','','')";
+        $ticketid = mysql_insert_id();        
+        $qry = "INSERT INTO `civil_ticketremarks`(`ticketid`, `remark`,`remarkby`, `ipaddress`) VALUES ($ticketid,'$remark','$remarkby','$ipaddress')";
+
         mysql_query($qry);  
         
         try {

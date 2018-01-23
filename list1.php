@@ -159,7 +159,7 @@ if (isset($_SESSION['emp_id'])) {
     }
     
     $query .= " SELECT COUNT(*) as num FROM $tableName where 1=1 ";
-    $query1 .= " SELECT ticketid, emp_id, problem, assign as qrtno, createdate, status, ipaddress, remark, nameofperson, ext FROM $tableName where 1=1  ";
+    $query1 .= " SELECT ticketid, nameofperson as Contact_Name, assign as qrtno, ext as Mobile_Number, problem, remark, createdate, status, emp_id as Name FROM $tableName where 1=1  ";
 
     $page = mysql_escape_string($_GET['page']);
    
@@ -378,7 +378,7 @@ if (isset($_SESSION['emp_id'])) {
             <tr>
                 <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid'] ?>&area=<?php echo $_GET['area']; ?>"><?php echo $row['ticketid'];
         $_GET ?></a></td>
-                <td><?php echo empName($row['emp_id']); ?></td>
+                <td><?php echo empName($row['Name']); ?></td>
                 <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid'] ?>&area=<?php echo $_GET['area']; ?>"><?php echo $row['remark']; ?></a></td>
                 <td><?php
                     //echo $row['createdate'] ; 
@@ -386,7 +386,7 @@ if (isset($_SESSION['emp_id'])) {
                     ?>
 
                 </td>
-                <td><?php echo $row['ext']; ?></td>
+                <td><?php echo $row['Mobile_Number']; ?></td>
                 <td <?php if ($row['status'] == 1) { ?> class="datacellone" <?php } ?> ><?php
                     if ($row['status'] == 1)
                         echo "New";

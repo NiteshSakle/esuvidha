@@ -104,7 +104,6 @@ function get_real_up_address() {
             <h1 class="headline">KHAPERKHEDA THERMAL POWER STATION</h1>
         </div>
         <span>
-<!--         <a href="http://192.168.103.101:7777/esuvidha/index.php"><span style="font-size:20px;color: lightskyblue; text-align: left; margin-left: 20px;top:10px">Home</span> </a>   -->
             <?php if (isset($_SESSION['firstname'])) { ?>
                 <span style="float:right; color: lightskyblue;font-size:20px; margin-right: 2%"> Welcome, <?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']; ?></span>
             <?php } ?>
@@ -118,7 +117,7 @@ function get_real_up_address() {
             <h2 style="text-align: center; margin: 30px 0px 0px 0px"> <u> EM-COLONY </u> </h2><?php } 
             
             if($_SESSION['privilege'] == 0 ) { ?>
-                <div class="topnav" style="width: 50%"> 
+                <div class="topnav" style="width: 55%"> 
                 <?php } else{?>
                     <div class="topnav">
                 <?php }?>

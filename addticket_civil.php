@@ -145,7 +145,7 @@ if ($_POST) {
         try {
             // Account details
             $apiKey = urlencode('3sC/BU7S7LI-d14vm2GSfGKeRnbkZuqf3IVzd7GM8L');	
-            $msg = "Dear " . $_SESSION['firstname'] . " Thank you for contacting us.Ticket No:" . $ticketid . "  We will get back to you soon!";
+            $msg = "Dear " . $_SESSION['firstname'] . " Thank you for contacting us. Your Ticket No is:" . $ticketid . "  We will get back to you soon!";
             $sender = urlencode('MKHTPS');
             $message = rawurlencode($msg);
             $data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $message);
@@ -203,7 +203,7 @@ if($_SESSION['quarterno'] == "") {
 
             <tr>
                 <td>Sub Defect<font color="red">*</font></td>
-                <td><!--textarea name="remark" rows="9" cols="55"></textarea--> 
+                <td>
                     <h3><select name="remark" id="remark" onchange="getCity(this.value)" required>
                             <option value="">Please Select Sub Defect</option>
                         </select>

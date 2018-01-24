@@ -277,10 +277,8 @@ if (isset($_SESSION['emp_id'])) {
 
         //	$paginate.= "</div>";
     }
-// echo $total_pages.' Results';
-    // pagination
-// echo $paginate;
-    if ($total_pages == 0 && !isset($_GET['status'])) {
+    //condition to check if any filter is aaplied
+    if ($total_pages == 0 && !isset($_GET['status']) && $_POST['type'] == '') {
         echo "<script>
                     alert('Please add defect first..!!');                    
                     </script>";
@@ -296,13 +294,13 @@ if (isset($_SESSION['emp_id'])) {
         <?php if ($_SESSION['privilege'] == 1) { ?>
         <form id="form2" method="post" action="downloadcsv.php">
             <input type="hidden" name="qry" id="qry" value="<?php echo $query1?>" />
-            <input type="submit" name="submit" id="submit" value="Export To Excel" class="export-btn"  />             
+            <input type="submit" name="submit" id="submit" value="Export Defects" class="export-btn"  />             
         </form>
         
         <?php } ?>
                         <form id="form1" name="form1" method="post" action="list1.php?id=1&area=<?php echo $_GET['area']; ?>" onSubmit="return validate1();">
             <table width="95%" border="1" cellspacing="2" cellpadding="2">
-                    <span><select name="problem" id="problem" style="margin-left: 1%">
+                    <span><select name="problem" id="problem" style="margin-left: 1.3%">
                             <option value="-1">Select Defect Group</option>
                             <?php
                             IF ($_GET['area'] == 'civil') {
@@ -334,7 +332,7 @@ if (isset($_SESSION['emp_id'])) {
                     <input type="submit" name="submit" id="submit" value="Submit"  />
             </form>
         <?php if ($_SESSION['privilege'] != 0) { ?>
-            <span style="margin-left: 10px">
+            <span style="margin-left: 20px">
                 Type:&nbsp;&nbsp;
                 <select name="type" id="type">
                     <option class="" value="">Type</option>
@@ -346,9 +344,9 @@ if (isset($_SESSION['emp_id'])) {
                     <option class="" value="F" <?php if ($_POST['type'] == "F") echo "selected"; ?>>F</option>
                 </select>
                 Bulid no:
-                <input type="text" id="buildno_txt" class="demoInputBox" name="buildno" value="<?php echo $_POST['buildno'] ?>" size=2" style="width: 15%; margin: 10px">
+                <input type="text" id="buildno_txt" class="demoInputBox" name="buildno" value="<?php echo $_POST['buildno'] ?>" size=2" style="width: 5%;">
                 Qrt no:  &nbsp;&nbsp;
-                <input type="text" id="qrtno_txt" class="demoInputBox" name="qrtno" value="<?php echo $_POST['qrtno']?>" size="3" style="width: 15%">
+                <input type="text" id="qrtno_txt" class="demoInputBox" name="qrtno" value="<?php echo $_POST['qrtno']?>" size="3" style="width: 5%">
                 <input type="submit" name="submit" value="Get List" />                
             </span>
         <?php } ?> 

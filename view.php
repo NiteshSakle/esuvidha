@@ -63,16 +63,16 @@ if ($_POST) {
         $tableName1 = "electric_ticketremarks";
     }
     if ($status != '') {
-        $qry1 = "UPDATE $tableName SET status=$status,solvedate='$solveddate' WHERE ticketid=$id";
+        $qry1 = "UPDATE $tableName SET status=$status WHERE ticketid=$id";
         mysql_query($qry1);
     }
 
     if ($_SESSION['privilege'] != 1 and $_SESSION['privilege'] != 2 and $status == 2 and $remark != '') {
-        $qry2 = "UPDATE $tableName SET status=1,solvedate='$solveddate'  WHERE ticketid=$id";
+        $qry2 = "UPDATE $tableName SET status=1 WHERE ticketid=$id";
         mysql_query($qry2);
     }
     if ($remark != '') {
-        $qry = "insert into $tableName1 values('',$id,'$remark','$remakdate','$remarkby','$ipaddress')";
+        $qry = "INSERT INTO `$tableName1`(`ticketid`, `remark`, `remarkby`, `ipaddress`) VALUES($id,'$remark','$remarkby','$ipaddress')";
         mysql_query($qry);
     }
 
@@ -89,14 +89,20 @@ if ($_POST) {
         $status1 = "QUARTER LOCKED";
     
     if($_SESSION['privilege'] == 1) {
+        echo "<script>window.close();</script>";
         try {
             // Account details
             $apiKey = urlencode('3sC/BU7S7LI-d14vm2GSfGKeRnbkZuqf3IVzd7GM8L');
             $sender = urlencode('MKHTPS');
-            $message = "Dear " . $_SESSION['firstname'] . " Your Ticket No:" . $id . "  status is " . urlencode($status1) . " !";
-
+            $msg = "Dear " . $_SESSION['firstname']. ", For Your Ticket No:" . $id. ",";
+            if($status1 != '' ){
+                $msg .= " Status Updated To ". $status1;
+            }
+            if($remark != '' ){
+                $msg .= " Remark ". "'$remark'" . " Has Been Added By ". $remarkby ;
+            }
             // Prepare data for POST request
-            $data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $message);
+            $data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $msg);
             // Send the POST request with cURL
             $ch = curl_init('https://api.textlocal.in/send/');
             curl_setopt($ch, CURLOPT_POST, true);
@@ -119,7 +125,7 @@ if ($_POST) {
     th {
         font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica,
             sans-serif;
-        color: #6D929B;
+        color: black;
         border-right: 1px solid #C1DAD7;
         border-bottom: 1px solid #C1DAD7;
         border-top: 1px solid #C1DAD7;

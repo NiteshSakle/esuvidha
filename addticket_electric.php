@@ -134,7 +134,6 @@ if ($_POST) {
     } else {
         
         $qry1 = "INSERT INTO `electric_ticketmaster`(`emp_id`, `defect_id`, `problem`, `assign`, `status`, `ipaddress`, `remark`, `nameofperson`, `ext`) VALUES ('$emp_id','$defect_id','$problem','$assign','$status','$ipaddress','$remark','$nameofperson',$ext)";
-
         mysql_query($qry1);
         $ticketid = mysql_insert_id();        
         $qry = "INSERT INTO `electric_ticketremarks`(`ticketid`, `remark`,`remarkby`, `ipaddress`) VALUES ($ticketid,'$remark','$remarkby','$ipaddress')";

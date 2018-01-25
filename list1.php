@@ -278,7 +278,7 @@ if (isset($_SESSION['emp_id'])) {
         //	$paginate.= "</div>";
     }
     //condition to check if any filter is aaplied
-    if ($total_pages == 0 && !isset($_GET['status']) && $_POST['type'] == '') {
+    if ($total_pages == 0 && !isset($_GET['status']) && $_POST['type'] == '' && $_POST['problem'] == '') {
         echo "<script>
                     alert('Please add defect first..!!');                    
                     </script>";

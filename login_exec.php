@@ -58,6 +58,7 @@ if ($result) {
         $_SESSION['quarterno'] = $member['quarterno'];
         $_SESSION['mobileno'] = $member['mobileno'];
         $_SESSION['email'] = $member['email'];
+        $_SESSION['section'] = $member['section'];
 
 
         session_write_close();

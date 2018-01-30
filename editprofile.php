@@ -26,7 +26,11 @@ include("connect.php");
                 alert("Please Enter Valid Mobile Number");
                 document.frmRegistration.Mobile.focus();
                 return false;
-            }  
+            } else if (document.frmRegistration.section.value == "") {
+                alert("Please Enter Section..!!");
+                document.frmRegistration.section.focus();
+                return false;
+            } 
                 return true;
         }
     </script>
@@ -81,6 +85,9 @@ include("connect.php");
                 <tr><td>Email</td>
                     <td><input type="text" class="demoInputBox" name="userEmail" id="userEmail" value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Not a valid email"></td>
                 </tr>
+                <tr><td>Section</td>
+                    <td><input type="text" class="demoInputBox" name="section" id="section" value="<?php if (isset($_SESSION['section'])) echo $_SESSION['section']; ?>" ></td>
+                </tr>                
                 <td colspan="2">
                     <input type="submit" name="submit" id="submit"  class="submitbutton" value="Save Details" style="width: 50%"  />
                 </td> 

@@ -7,7 +7,7 @@ if ($_POST) {
     $password = $_POST['password'];
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
-
+    $section = $_POST['section'];
     if($_SESSION['quarterno'] != ''){
         $address = $_SESSION['quarterno'];
     } else{
@@ -25,10 +25,10 @@ if ($_POST) {
         if (mysql_fetch_array($result2) !== true) {
             if ($quarterno != '') {
 //$qry1="insert into user values('',$sapid,$cpfno,'','$firstName','$lastName','$address','$Mobile','$userEmail','$password','','','')";
-                echo $qry1 = "UPDATE user SET password='$password',quarterno='$address',mobileno='$Mobile',email='$userEmail' WHERE sapid=$_SESSION[sapid]";
+                echo $qry1 = "UPDATE user SET password='$password',quarterno='$address',mobileno='$Mobile',email='$userEmail', section='$section' WHERE sapid=$_SESSION[sapid]";
             } else {
 //$qry1="insert into user values('',$sapid,$cpfno,'','$firstName','$lastName','$address','$Mobile','$userEmail','$password','','','')";
-                echo $qry1 = "UPDATE user SET password='$password',mobileno='$Mobile',email='$userEmail' WHERE sapid=$_SESSION[sapid]";
+                echo $qry1 = "UPDATE user SET password='$password',mobileno='$Mobile',email='$userEmail', section='$section' WHERE sapid=$_SESSION[sapid]";
             }
 
 // $qry1="insert into user values('',$sapid,$cpfno,'','$firstName','$lastName','$address','$Mobile','$userEmail','$password','','','')";
@@ -38,7 +38,7 @@ if ($_POST) {
             $_SESSION['mobileno'] = $Mobile;
             $_SESSION['email'] = $userEmail;
             $_SESSION['quarterno'] = $address;
-            
+            $_SESSION['section'] = $section;
             echo "<script>
                     alert('Your information has been saved..!!');
                     window.location.href='login.php';

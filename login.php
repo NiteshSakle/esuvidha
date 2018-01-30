@@ -10,7 +10,7 @@ $result = mysql_query("SELECT * FROM section ORDER BY name ASC");
         header("location:index.php");
     }
 
-    if (!isset($_SESSION['section'])) { ?>
+  ?>
 
     <form id="form1" name="form1" method="post" action="login_exec.php" onSubmit="return validate();">
         
@@ -28,14 +28,5 @@ $result = mysql_query("SELECT * FROM section ORDER BY name ASC");
             </tr>
         </table>
 
-<?php } else { ?>
-        <div id="content_main">
-            <h2>You have Succesfully logged in As a <?php echo $_SESSION['section']; ?></h2>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <h3>Your Computer IP Address is</h3>
-            <h1><p><?php echo get_real_up_address(); ?></p></h1>
-            <p>&nbsp;</p>
-        </div>
-<?php } ?>
+<?php  ?>
 </form>

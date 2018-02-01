@@ -60,9 +60,8 @@ if ($result) {
         $_SESSION['email'] = $member['email'];
         $_SESSION['section'] = $member['section'];
 
-
         session_write_close();
-        if ($member['mobileno'] == '' or $_SESSION['quarterno'] == '') {
+        if ($member['mobileno'] == '' or $_SESSION['quarterno'] == '' or $_SESSION['section'] == '') {
             header("location: editprofile.php");
         } else {
             header("location: login.php");

@@ -1,8 +1,3 @@
-<?php
-//if ($_SESSION['quarterno'] == '') {    
-//        header("location:index.php");    
-//}
-?>
 <script type="text/javascript">
     function changeHandler(target) {
         var val = target.value;
@@ -107,6 +102,13 @@ if ($_POST) {
     $problem = $sec[1];
     $other = $_POST['other'];
     $assign = $_SESSION['quarterno'];
+    if($assign == '') {
+        echo "<script>
+            alert('Please Update Your information First..');
+            window.location.href='editprofile.php?area=civil';
+            </script>";
+        exit();        
+    }
     $status = 1;
     $ipaddress = get_real_up_address();
     $remark = $_POST['remark'];

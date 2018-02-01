@@ -8,7 +8,7 @@ if(!isset($_SESSION['sapid'])) {
 }
 
 function empName($deptid) {
-    $query = "select  concat(firstname,'   ',lastname) as name  from user where emp_id='$deptid'";
+    $query = "select firstname as name  from user where emp_id='$deptid'";
     $rw = mysql_query($query);
     if ($row1 = mysql_fetch_object($rw))
         return $row1->name;

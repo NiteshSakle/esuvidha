@@ -7,6 +7,11 @@ include("connect.php");
         header("location:index.php");
     }
     if (isset($_SESSION['sapid'])) { ?>
+ 
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <SCRIPT LANGUAGE="JavaScript" src="js/jquery.js"></SCRIPT>
+    <SCRIPT LANGUAGE="JavaScript" src="js/script.js"></SCRIPT>
+    
     <script language="javascript" type="text/javascript">
         function valid1()
         {
@@ -86,7 +91,10 @@ include("connect.php");
                     <td><input type="text" class="demoInputBox" name="userEmail" id="userEmail" value="<?php if (isset($_SESSION['email'])) echo $_SESSION['email']; ?>" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Not a valid email"></td>
                 </tr>
                 <tr><td>Section</td>
-                    <td><input type="text" class="demoInputBox" name="section" id="section" value="<?php if (isset($_SESSION['section'])) echo $_SESSION['section']; ?>" ></td>
+                    <td>
+                        <input type="text" id="keyword" tabindex="0" class="demoInputBox" name="section" autocomplete="off" value="<?php if (isset($_SESSION['section'])) echo $_SESSION['section']; ?>">
+                        <!--<input type="text" class="demoInputBox" name="section" id="section" value="<?php if (isset($_SESSION['section'])) echo $_SESSION['section']; ?>" ></td>-->
+                        <div id="ajax_response"></div>
                 </tr>                
                 <td colspan="2">
                     <input type="submit" name="submit" id="submit"  class="submitbutton" value="Save Details" style="width: 50%"  />

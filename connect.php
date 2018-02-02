@@ -1,6 +1,12 @@
 <?php
 session_start();
-$con = mysql_connect("localhost","root","");
+
+$host    = "localhost"; // Host name
+$db_name = "civil";		// Database name
+$db_user = "root";		// Database user name
+$db_pass = "";			// Database Password
+
+$con = mysql_connect($host,$db_user,$db_pass);
 if (!$con)
   {
   die('Could not connect: ' . mysql_error());

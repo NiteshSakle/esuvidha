@@ -70,8 +70,10 @@ if ($_POST) {
     }
 }
 ?>
-<?php //echo date('d/m/Y h:i:s');  ?>
-<?php if (!isset($_SESSION['section'])) { ?>
+
+    <?php if ($_SESSION['privilege']) { ?>
+<!--    <a href="occupied.php" style="margin-left: 41%">
+        <span style="color: lightsalmon"> <u>Allocated quarters to Mahagenco Employee</u></span></a>-->
     <form name="frmRegistration" method="post" action="register.php">
         <div class="table-form">
             <table border="2px solid #ffffff" cellspacing="2" cellpadding="10" class="new-table" style="width: 100%" >
@@ -136,4 +138,7 @@ if ($_POST) {
             </table>
         </div>
     </form>
-<?php } include("footer.php"); ?>
+<?php }else{
+    echo "<br><h1> You don't have enough rights to change/register new quarter</h1>";
+}
+include("footer.php"); ?>

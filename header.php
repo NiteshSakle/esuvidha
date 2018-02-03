@@ -117,11 +117,12 @@ function get_real_up_address() {
             <h2 style="text-align: center; margin: 30px 0px 0px 0px"> <u> EM-COLONY </u> </h2><?php } 
             
             if($_SESSION['privilege'] == 0 ) { ?>
+            <!--less number of menu so less width-->
                 <div class="topnav" style="width: 55%"> 
                 <?php } else{?>
                     <div class="topnav">
                 <?php }?>
-                <?php if (isset($_SESSION['sapid']) and $_SESSION['quarterno'] !== '') { ?>
+                <?php if (isset($_SESSION['sapid']) and $_SESSION['quarterno'] !== '' and $_SESSION['section'] !== NULL) { ?>
                     <a href="http://192.168.103.101:7777/esuvidha/index.php"><span>Home</span> </a> 
                     <?php
                     IF ($_GET['area'] == 'civil') {
@@ -130,10 +131,11 @@ function get_real_up_address() {
                     <?php }IF ($_GET['area'] == 'electric') { ?>
                          <a href="addticket_electric.php?area=<?php echo $_GET['area'];?>">Add Defect</a> <?php } 
                     if(isset($_GET['area'])) {?>  <a href="list1.php?area=<?php echo $_GET['area'];?>">Defect List</a>  <?php } 
-                    if(!isset($_GET['area'])) {?>  <a href="#">IP Address <?php echo get_real_up_address(); ?></a>  <?php } ?>
-                     <a href="editprofile.php">Edit Profile</a> 
+                    if(!isset($_GET['area'])) {?>  <a href="#">IP Address <?php echo get_real_up_address(); ?></a>  
+                     <a href="editprofile.php">Edit Profile</a> <?php } ?>
                     <?php if ($_SESSION['privilege'] == 1) { ?>
                          <a href="register.php?area=civil"> New / Change in Quarter</a> 
+                         <a href="occupied.php"> Quarter Report</a> 
                         <?php }
                     ?>
                      <a href="logout.php">Logout</a>                     

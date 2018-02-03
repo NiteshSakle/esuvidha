@@ -365,19 +365,19 @@ if (isset($_SESSION['emp_id'])) {
         <tr>
             <th width='5%'>Ticket ID</th>
             <th width='24%'>Name</th>
-            <th width='33%'>Defect</th>
-            <th width='9%'>Create Date</th>
-            <th width='10%'>Mobile No</th>
+            <th width='36%'>Defect</th>
+            <th width='8%'>Create Date</th>
+            <th width='9%'>Mobile No</th>
             <th width='9%'>Status</th>
-            <th width='23%'>Quarter Number</th>
-            <th width='5%'>Signature</th>
+            <th width='22%'>Quarter Number</th>
+            <th width='4%'>Signature</th>
         </tr>
         <?php while ($row = mysql_fetch_array($result)) { ?>
             <tr>
                 <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid'] ?>&area=<?php echo $_GET['area']; ?>"><?php echo $row['ticketid'];
         $_GET ?></a></td>
                 <td><?php echo empName($row['Name']); ?></td>
-                <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid'] ?>&area=<?php echo $_GET['area']; ?>"><?php echo $row['remark']; ?></a></td>
+                <td><a target="_blank" href="view.php?ticketid=<?php echo $row['ticketid'] ?>&area=<?php echo $_GET['area']; ?>"><?php echo $row['problem']. " ( " . $row['remark']. " )"; ?></a></td>
                 <td><?php
                     //echo $row['createdate'] ; 
                     echo date("d/m/y", strtotime($row['createdate']));

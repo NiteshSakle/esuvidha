@@ -4,7 +4,6 @@ session_start();
 
 function get_real_up_address() {
 
-
     if (isset($_SERVER)) {
         if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
             return $_SERVER["HTTP_X_FORWARDED_FOR"];
@@ -118,7 +117,7 @@ function get_real_up_address() {
             
             if($_SESSION['privilege'] == 0 ) { ?>
             <!--less number of menu so less width-->
-                <div class="topnav" style="width: 55%"> 
+                <div class="topnav" style="width: 62%"> 
                 <?php } else{?>
                     <div class="topnav">
                 <?php }?>
@@ -131,8 +130,8 @@ function get_real_up_address() {
                     <?php }IF ($_GET['area'] == 'electric') { ?>
                          <a href="addticket_electric.php?area=<?php echo $_GET['area'];?>">Add Defect</a> <?php } 
                     if(isset($_GET['area'])) {?>  <a href="list1.php?area=<?php echo $_GET['area'];?>">Defect List</a>  <?php } 
-                    if(!isset($_GET['area'])) {?>  <a href="#">IP Address <?php echo get_real_up_address(); ?></a>  
-                     <a href="editprofile.php">Edit Profile</a> <?php } ?>
+                    if(!isset($_GET['area'])) {?>  <a href="#">IP Address <?php echo get_real_up_address(); ?></a>  <?php } ?>
+                     <a href="editprofile.php">Edit Profile</a> 
                     <?php if ($_SESSION['privilege'] == 1) { ?>
                          <a href="register.php?area=civil"> New / Change in Quarter</a> 
                          <a href="occupied.php"> Quarter Report</a> 

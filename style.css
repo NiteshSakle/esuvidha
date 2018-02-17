@@ -7,8 +7,7 @@ body {
     font: 12px Arial, Helvetica, sans-serif;
     font-size: 13px;
     color: #FFFFFF;
-    background: #EEEFE4;
-    background-image:url(images/BACK.JPG);
+    background: #161616;
     overflow-x: hidden
 }
 
@@ -356,7 +355,7 @@ p {text-align: left;}
     overflow: hidden;
     background-color: #707070;
     margin: 30px auto 10px;
-    width: 78%
+    width: 90%
 }
 
 /* Style the topnav links */
@@ -365,7 +364,7 @@ p {text-align: left;}
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 25px 40px;
+    padding: 25px 45px;
     text-decoration: none;
     font-weight: bold;
 }

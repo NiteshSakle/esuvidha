@@ -101,6 +101,7 @@
 <?php
 include("connect.php");
 include("header.php");
+include("shared_functions.php");
 
 if ($_POST) {
 
@@ -149,23 +150,10 @@ if ($_POST) {
 
         mysql_query($qry);  
         
-        try {
-            // Account details
-            $apiKey = urlencode('3sC/BU7S7LI-d14vm2GSfGKeRnbkZuqf3IVzd7GM8L');	
-            $msg = "Dear " . $_SESSION['firstname'] . " Thank you for contacting us. Your Ticket No is:" . $ticketid . "  We will get back to you soon!";
-            $sender = urlencode('MKHTPS');
-            $message = rawurlencode($msg);
-            $data = array('apikey' => $apiKey, 'numbers' => $ext, "sender" => $sender, "message" => $message);
-            $ch = curl_init('https://api.textlocal.in/send/');
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response = curl_exec($ch);
-            curl_close($ch);        
-        } catch (Exception $ex) {
-            
-        }
-
+        $msg = "Dear " . $_SESSION['firstname'] . " Thank you for contacting us. Your Ticket No is:" . $ticketid . "  We will get back to you soon!";
+        $message = rawurlencode($msg);
+        sendMsg($ext, $message);
+        
         echo "<script>
                     alert('Your ticket is submitted successfully ..!!');
                     window.location.href='list1.php?area=civil';

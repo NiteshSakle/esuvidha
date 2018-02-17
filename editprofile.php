@@ -92,7 +92,7 @@ include("connect.php");
                 </tr>
                 <tr><td>Section</td>
                     <td>
-                        <input type="text" id="keyword" tabindex="0" class="demoInputBox" name="section" autocomplete="off" value="<?php if (isset($_SESSION['section'])) echo $_SESSION['section']; ?>">
+                        <input type="text" id="keyword" class="demoInputBox" name="section" autocomplete="off" value="<?php if (isset($_SESSION['section'])) echo $_SESSION['section']; ?>">
                         <!--<input type="text" class="demoInputBox" name="section" id="section" value="<?php if (isset($_SESSION['section'])) echo $_SESSION['section']; ?>" ></td>-->
                         <div id="ajax_response"></div>
                 </tr>                

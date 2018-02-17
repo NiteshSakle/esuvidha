@@ -94,7 +94,7 @@ if ($_POST) {
             // Account details
             $apiKey = urlencode('3sC/BU7S7LI-d14vm2GSfGKeRnbkZuqf3IVzd7GM8L');
             $sender = urlencode('MKHTPS');
-            $msg = "Dear " . $_SESSION['firstname']. ", For Your Ticket No:" . $id. ",";
+            $msg = "Dear " . $nameofperson. ", For Your Ticket No:" . $id. ",";
             if($status1 != '' ){
                 $msg .= " Status Updated To ". $status1;
             }

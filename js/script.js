@@ -9,7 +9,7 @@ $(document).ready(function(){
 	$("#keyword").focus();
 	var offset = $("#keyword").offset();
 	var width = $("#keyword").width()-2;
-	$("#ajax_response").css("left",offset.left); 
+	//$("#ajax_response").css("left",offset.left); 
 	$("#ajax_response").css("width",width);
 	$("#keyword").keyup(function(event){
 		 //alert(event.keyCode);

@@ -2,7 +2,7 @@
 	border : 1px solid black;
 	background : #FFFFFF;
 	position:absolute;
-        left: 315px !important;
+        left: 315px;
         width: 384px !important;
 	display:none;
 	padding:2px 2px;

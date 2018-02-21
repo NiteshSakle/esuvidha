@@ -28,9 +28,13 @@ if ($_POST) {
     $defect = $_POST['problem'];
     if($_POST['type'] != ''){
         $type = $_POST['type'];
-        $buildno = $_POST['buildno'];
-        $qrtno = $_POST['qrtno'];
-        $address = $type. "-". $buildno. "/". $qrtno;   
+        $address = $type;
+        if($_POST['buildno'] != '') {
+            $address .= "-" . $_POST['buildno'];
+        }
+        if($_POST['qrtno'] != '') {
+            $address .= "/" . $_POST['qrtno'];
+        }
     }
 }
 

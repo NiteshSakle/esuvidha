@@ -9,6 +9,9 @@
         }
     </script>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <SCRIPT LANGUAGE="JavaScript" src="js/jquery.js"></SCRIPT>
+    <SCRIPT LANGUAGE="JavaScript" src="js/script.js"></SCRIPT>
     <style>
         body {font-family: Arial;}
         * {box-sizing: border-box}
@@ -93,31 +96,32 @@
                 <h1><center>QUARTER APPLICATION FORM</center></h1>
                 <hr>
                 <table style="width: 75%;margin: 0px auto">
-                    <td> <b> Applicant's Name </b> </td>
+                    <td> <b> Applicant's Name </b><font color="red">*</font> </td>
                     <td><input type="text" placeholder="Enter Name" name="empname" required></td>
                     </tr>
                     <tr>
-                        <td> <b> SAP ID </b> </td>
+                        <td> <b> SAP ID </b> <font color="red">*</font></td>
                         <td><input type="number" placeholder="Enter SAP ID" name="sapid" required></td>
                     </tr>
 
                     <tr>
-                        <td> <b> CPF NO </b> </td>
+                        <td> <b> CPF NO </b> <font color="red">*</font> </td>
                         <td><input type="number" placeholder="Enter CPF NO" name="cpfno" required></td>
                     </tr>
 
                     <tr>
-                        <td> <b> Designation </b> </td>
+                        <td> <b> Designation </b> <font color="red">*</font> </td>
                         <td><input type="text" placeholder="Enter Designation" name="designation" required></td>
                     </tr>
 
                     <tr>
-                        <td> <b> Section </b> </td>
-                        <td><input type="text" placeholder="Enter Section" name="section" required></td>
+                        <td> <b> Section </b> <font color="red">*</font> </td>
+                        <td><input type="text" id="keyword" class="demoInputBox" placeholder="Enter Section" name="section" autocomplete="off"  required></td>
+                    <div id="ajax_response" style=" left: 380px;width: 425px;top: 541px;"></div>
                     </tr>
 
                     <tr>
-                        <td> <b> Mobile No. </b> </td>
+                        <td> <b> Mobile No </b> <font color="red">*</font></td>
                         <td><input type="number" placeholder="Enter Mobile Number" name="mobileno" required></td>
                     </tr>
 
@@ -132,7 +136,7 @@
                     </tr>
 
                     <tr>
-                        <td><b> Holding a quarter currently?</b></td>
+                        <td><b> Holding a quarter currently?</b><font color="red">*</font></td>
                         <td>
                             <label for="chkYes">
                                 <input type="radio" id="chkYes" name="chkqrt" value="yes" onclick="ShowHideDiv()" required=""/>
@@ -145,9 +149,9 @@
                         </td>
                     </tr>
                     <tr id="address" style="display: none">
-                        <td><b> Address </b></td>
+                        <td><b> Address </b> <font color="red">*</font></td>
                         <td>
-                            Type: <select name="type" id="type" class="" style="margin-left: 9%">
+                            Type: <select name="type" id="type" class="" style="margin-left: 3%" required>
                                 <option class="" value="">Type</option>
                                 <option class="" value="A">A</option>
                                 <option class="" value="B">B</option>
@@ -158,19 +162,20 @@
                             </select>
                             <br/>
                             Bulid no:
-                            <input type="number" id="buildno_txt" placeholder="Building Number" name="buildno" value="" size=2" style="width: 74%; margin: 10px">
+                            <input type="number" id="buildno_txt" placeholder="Building Number" name="buildno" value="" size=2" style="width: 20%; margin: 10px" required>
                             <br/>
-                            Qrt no:  &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="number" id="qrtno_txt" placeholder="Quarter number" name="qrtno" value="" size="3" style="width: 74%">
+                            Qrt no:  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="number" id="qrtno_txt" placeholder="Quarter number" name="qrtno" value="" size="3" style="width: 20%" required>
                         </td>
                     </tr>
-
+                    <tr>
+                        <td></td>
+                    </tr>
                     <tr>
                         <td> <b> Remark </b> </td>
                         <td>
                             <textarea name="remark" id="remark" cols="75" rows="6" wrap="soft" style="background: #f1f1f1;"></textarea>
                         </td>
-
                     </tr>
                 </table>
                 <div class="clearfix">

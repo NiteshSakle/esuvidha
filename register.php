@@ -36,11 +36,11 @@ if ($_POST) {
     $checkusr_qry = "SELECT * FROM user WHERE sapid='$sapid' or cpfno='$cpfno'";
     $checkusr = mysql_query($checkusr_qry);
     $checkusr_res = mysql_fetch_array($checkusr);
-    
+
     if ($sapid !== '' and $cpfno !== '' and $password !== '' and $firstName !== '' and (($qrtAlloted == 'yes' and $type !== '' and $buildno !== '' and $qrtno !== '')or $qrtAlloted == 'no')) {
         
         if ($checkusr_res != true and $result2 != true) {
-            $qry1 = "insert into user values('',$sapid,$cpfno,'','$firstName','','$address','$Mobile','$userEmail','$password','','','')";
+            $qry1 = "insert into user ( `sapid`, `cpfno`,`firstname` ,`quarterno`, `mobileno`,`email`,`password`) values($sapid,$cpfno,'$firstName','$address','$Mobile','$userEmail','$password')";
             mysql_query($qry1);
             echo "<script>
                     alert('Information saved successfully..!!');
@@ -50,7 +50,7 @@ if ($_POST) {
 
         } else {
             if ($checkusr_res == true and $result2 != true) {
-                $updateQry = "UPDATE `user` SET `quarterno`= '$address', 'mobileno' = '$Mobile' WHERE sapid='$sapid' and cpfno='$cpfno'";
+                $updateQry = "update user set quarterno = '$address', mobileno = '$Mobile' WHERE sapid='$sapid' and cpfno='$cpfno'";
                 mysql_query($updateQry);
                 echo "<script>
                     alert('Information Updated Successfully..!!');

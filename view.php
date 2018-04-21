@@ -215,7 +215,7 @@ if ($_POST) {
                             if ($status == 1)
                                 echo "NEW";
                             if ($status == 2)
-                                echo "ATTENDED";
+                                echo "ATTENDED (". $solvedate .")";
                             if ($status == 3)
                                 echo "PENDING";
                             if ($status == 4)

@@ -46,8 +46,8 @@ th {
 <table border="2" style="margin: auto">
     <tr>
         <td colspan="2"> <?php echo "Total Application: ". $total ?></td>
-        <td><a href="quarter_waitlist.php?id=1">View Open</a></td>
-        <td><a href="quarter_waitlist.php?id=2">View Closed</a></td>
+        <td><a href="quarter_waitlist.php?id=1">View Unallocated</a></td>
+        <td><a href="quarter_waitlist.php?id=2">View Allocated</a></td>
         <td><a href="quarter_waitlist.php">View all</a></td>
     </tr>
     <tr>

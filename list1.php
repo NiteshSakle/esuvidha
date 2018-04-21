@@ -96,10 +96,13 @@ if (isset($_SESSION['emp_id'])) {
 
 
         td.datacellone {
-            background-color: #CC9999; color: pink;
+            background-color: #5bc0de; color: whitesmoke;
         }
         td.datacelltwo {
-            background-color: #9999CC; color: green;
+            background-color: #4CAF50 ; color: whitesmoke;
+        }
+        td.datacellthree {
+            background-color: red ; color: whitesmoke;
         }
 
         .paginate {
@@ -155,6 +158,11 @@ if (isset($_SESSION['emp_id'])) {
     $status = mysql_escape_string($_GET['status']);
     $prob = mysql_escape_string($_GET['problem']);
     
+    if($_POST) {
+        $prob = $_POST['problem'];        
+    }else {
+        $address = mysql_escape_string($_GET['address']);
+    }   
     IF ($carea == 'civil') {
         $tableName = "civil_ticketmaster";
     }
@@ -222,9 +230,9 @@ if (isset($_SESSION['emp_id'])) {
         if ($lastpage < 7 + ($stages * 2)) { // Not enough pages to breaking it up
             for ($counter = 1; $counter <= $lastpage; $counter++) {
                 if ($counter == $page) {
-                    $paginate .= "<span class='current'> $counter</span>";
+                    $paginate .= "<span class='current'> &nbsp; $counter</span>";
                 } else {
-                    $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea'> $counter</a>";
+                    $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea&problem=$prob&address=$address'> $counter</a>";
                 }
             }
         } elseif ($lastpage > 5 + ($stages * 2)) { // Enough pages to hide a few?
@@ -232,60 +240,57 @@ if (isset($_SESSION['emp_id'])) {
             if ($page < 1 + ($stages * 2)) {
                 for ($counter = 1; $counter < 4 + ($stages * 2); $counter++) {
                     if ($counter == $page) {
-                        $paginate .= "<span class='current'> $counter</span>";
+                        $paginate .= "<span class='current'>&nbsp; $counter</span>";
                     } else {
-                        $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea'>$ counter</a>";
+                        $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea&problem=$prob&address=$address'>&nbsp; $counter</a>";
                     }
                 }
                 $paginate .= "...";
-                $paginate .= "<a href='$targetpage?page=$LastPagem1&status=$status&area=$carea'> $LastPagem1</a>";
-                $paginate .= "<a href='$targetpage?page=$lastpage&status=$status&area=$carea'> $lastpage</a>";
+                $paginate .= "<a href='$targetpage?page=$LastPagem1&status=$status&area=$carea&problem=$prob&address=$address'> $LastPagem1</a>";
+                $paginate .= "<a href='$targetpage?page=$lastpage&status=$status&area=$carea&problem=$prob&address=$address'> $lastpage</a>";
             }
             // Middle hide some front and some back
             elseif ($lastpage - ($stages * 2) > $page && $page > ($stages * 2)) {
-                $paginate .= "<a href='$targetpage?page=1&status=$status&area=$carea'> 1</a>";
-                $paginate .= "<a href='$targetpage?page=2&status=$status&area=$carea'> 2</a>";
+                $paginate .= "<a href='$targetpage?page=1&status=$status&area=$carea&problem=$prob&address=$address'> 1</a>";
+                $paginate .= "<a href='$targetpage?page=2&status=$status&area=$carea&problem=$prob&address=$address'> 2</a>";
                 $paginate .= "...";
                 for ($counter = $page - $stages; $counter <= $page + $stages; $counter++) {
                     if ($counter == $page) {
-                        $paginate .= "<span class='current'>$counter</span>";
+                        $paginate .= "<span class='current'>&nbsp;$counter</span>";
                     } else {
-                        $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea'> $counter</a>";
+                        $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea&problem=$prob&address=$address'> &nbsp;$counter</a>";
                     }
                 }
                 $paginate .= "...";
-                $paginate .= "<a href='$targetpage?page=$LastPagem1&status=$status&area=$carea'> $LastPagem1</a>";
-                $paginate .= "<a href='$targetpage?page=$lastpage&status=$status&area=$carea'> $lastpage</a>";
+                $paginate .= "<a href='$targetpage?page=$LastPagem1&status=$status&area=$carea&problem=$prob&address=$address'> $LastPagem1</a>";
+                $paginate .= "<a href='$targetpage?page=$lastpage&status=$status&area=$carea&problem=$prob&address=$address'> $lastpage</a>";
             }
             // End only hide early pages
             else {
-                $paginate .= "<a href='$targetpage?page=1&status=$status&area=$carea'>1</a>";
-                $paginate .= "<a href='$targetpage?page=2&status=$status&area=$carea'>2</a>";
+                $paginate .= "<a href='$targetpage?page=1&status=$status&area=$carea&problem=$prob&address=$address'>1</a>";
+                $paginate .= "<a href='$targetpage?page=2&status=$status&area=$carea&problem=$prob&address=$address'>2</a>";
                 $paginate .= "...";
                 for ($counter = $lastpage - (2 + ($stages * 2)); $counter <= $lastpage; $counter++) {
                     if ($counter == $page) {
                         $paginate .= "<span class='current'> $counter</span>";
                     } else {
-                        $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea'> $counter</a>";
+                        $paginate .= "<a href='$targetpage?page=$counter&status=$status&area=$carea&problem=$prob&address=$address'> $counter</a>";
                     }
                 }
             }
         }
-
         // Next
         if ($page < $counter - 1) {
-            $paginate .= "<a href='$targetpage?page=$next&status=$status&area=$carea'> next</a>";
+            $paginate .= "<a href='$targetpage?page=$next&status=$status&area=$carea&problem=$prob&address=$address'> next</a>";
         } else { 
             $paginate .= "<span class='disabled'> next</span>";
         }
-
-        //	$paginate.= "</div>";
     }
-    //condition to check if any filter is aaplied
+    //condition to check if any filter is applied
     if ($total_pages == 0 && !isset($_GET['status']) && $_POST['type'] == '' && $_POST['problem'] == '') {
         echo "<script>
                     alert('Please add defect first..!!');                    
-                    </script>";
+              </script>";
         if ($_GET['area'] == 'civil') {
             echo "<script> window.location.href='addticket_civil.php?area=civil' </script>";
         } elseif ($_GET['area'] == 'electric') {
@@ -328,10 +333,7 @@ if (isset($_SESSION['emp_id'])) {
                                 }
                             }
                             ?>
-
-
                         </select>									
-
                     </span>                   
                     <input type="submit" name="submit" id="submit" value="Submit"  />
             </form>
@@ -389,7 +391,11 @@ if (isset($_SESSION['emp_id'])) {
 
                 </td>
                 <td><?php echo $row['Mobile_Number']; ?></td>
-                <td <?php if ($row['status'] == 1) { ?> class="datacellone" <?php } ?> ><?php
+                <td <?php if ($row['status'] == 1) { ?> 
+                        class="datacellone" 
+                    <?php } elseif ($row['status'] == 2) { ?> 
+                        class="datacelltwo" 
+                    <?php } else { ?> class="datacellthree"  <?php }?> > <?php  
                     if ($row['status'] == 1)
                         echo "New";
                     if ($row['status'] == 2)
